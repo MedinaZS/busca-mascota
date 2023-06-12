@@ -13,5 +13,8 @@ export const SRC_FILES = {
     ONLY_LOGO: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/v1686586307/busca_mascota/only-logo-without-bg.png',
     DOG: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/v1686528905/busca_mascota/dog_bg_circle.png',
     DOG_NO_BG: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/busca_mascota/dog_bg_circle_without_bg.png',
+    GIRL_DOG: 'https://res.cloudinary.com/dhzoxdo6q/image/upload//busca_mascota/girl-hug-dog.png',
+    PAW_FIVE: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/busca_mascota/paw-five.png',
+    DOG_CAT: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/busca_mascota/dog-cat.png',
 }
 
