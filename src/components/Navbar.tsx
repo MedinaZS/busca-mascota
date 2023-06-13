@@ -9,11 +9,11 @@ const Navbar = () => {
         { text: 'Publicar', icon: 'fas fa-paw', url: APP_ROUTES.PUBLICAR_MASCOTA },
         { text: 'Buscar', icon: 'fas fa-search', url: APP_ROUTES.BUSCAR_MASCOTA },
         { text: 'Colaborar', icon: 'fas fa-hands-holding', url: APP_ROUTES.COLABORAR, color: '#65CAD5' },
-        { text: 'Adopciones', icon: 'fas fa-hand-holding-heart', url: APP_ROUTES.ADOPCIONES }
+        { text: 'Adopciones', icon: 'fas fa-hand-holding-heart', url: APP_ROUTES.ADOPCIONES, disabled: true }
     ]
 
     return (
-        <nav className="navbar navbar-light navbar-expand-lg px-3 sticky-lg-top">
+        <nav className="navbar navbar-light navbar-expand-lg px-3 sticky-lg-top border-bottom">
             <a className="navbar-brand" href="/">
                 <img src={SRC_FILES.COMPLETE_LOGO} height="80" alt="Logo Busca Mascota" />
                 {/* <img className="d-none d-sm-inline" src={SRC_FILES.COMPLETE_LOGO} height="80" alt="Logo Busca Mascota" /> */}
@@ -27,7 +27,7 @@ const Navbar = () => {
                 <ul className="navbar-nav text-center">
                     {links && links.map((item, index) => (
                         <li key={index} className="nav-item">
-                            <NavLink className="nav-link py-3 px-0 px-lg-2 px-xl-3" to={item.url}>
+                            <NavLink className={"nav-link py-3 px-0 px-lg-2 px-xl-3" + (item.disabled ? " disabled-link" :'')} to={item.url}>
                                 <h5 className="text-dark">
                                     <i className={item.icon + ' me-2'} ></i>
                                     {item.text}

@@ -6,6 +6,7 @@ export const APP_ROUTES = {
     BUSCAR_MASCOTA: '/buscar',
     COLABORAR: '/colaborar',
     ADOPCIONES: '/adopciones',
+    TERMS: '/terminos-de-uso',
 }
 
 export const SRC_FILES = {
@@ -16,5 +17,6 @@ export const SRC_FILES = {
     GIRL_DOG: 'https://res.cloudinary.com/dhzoxdo6q/image/upload//busca_mascota/girl-hug-dog.png',
     PAW_FIVE: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/busca_mascota/paw-five.png',
     DOG_CAT: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/busca_mascota/dog-cat.png',
+    BOOTCAMPERS: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/busca_mascota/bootcampers.png',
 }
 
