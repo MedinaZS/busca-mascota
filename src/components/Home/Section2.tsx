@@ -36,33 +36,33 @@ const Section2 = () => {
 	]
 
 	return (
-		<div className='p-3'>
-			<h2 className='my-5 text-center' data-aos='fade-up'>¿Que puedes realizar?</h2>
-			<div className='row row-cols-1 row-cols-md-2 row-cols-xl-4'>
-				{services.map((service, index) => (
-					<div key={index} className='col mb-3 d-flex justify-content-center align-items-center' data-aos='fade-up' data-aos-delay={service.delay}>
-						<div className="card-container w-100 mx-3">
-							<div className='card h-100 rounded-5'>
-								<div className="card-body h-100 flip-front d-flex flex-column align-items-center justify-content-center">
-									<div className='text-center'>
-										<h3 className="card-title fw-bold mb-4">{service.title}</h3>
-										<p className='m-0'><i className={service.icon + ' fs-1'}></i></p>
+		<section className="p-3">
+			<div className='p-3'>
+				<h2 className='my-5 text-center' data-aos='fade-up'>¿Que puedes realizar?</h2>
+				<div className='row row-cols-1 row-cols-md-2 row-cols-xl-4'>
+					{services.map((service, index) => (
+						<div key={index} className='col mb-3 d-flex justify-content-center align-items-center' data-aos='fade-up' data-aos-delay={service.delay}>
+							<div className="card-container w-100 mx-3">
+								<div className='card h-100 rounded-5'>
+									<div className="card-body h-100 flip-front d-flex flex-column align-items-center justify-content-center">
+										<div className='text-center'>
+											<h3 className="card-title fw-bold mb-4">{service.title}</h3>
+											<p className='m-0'><i className={service.icon + ' fs-1'}></i></p>
+										</div>
 									</div>
-								</div>
-								<div className="card-body h-100 flip-back">
-									<div className='text-center d-flex flex-column h-100'>
-										<p className='my-auto text-center'>{service.description}</p>
-										<Link className="btn bg-blue-subtle fw-bold w-25 mx-auto mt-3" to={service.url}>Ir</Link>
+									<div className="card-body h-100 flip-back">
+										<div className='text-center d-flex flex-column h-100'>
+											<p className='my-auto text-center'>{service.description}</p>
+											<Link className="btn bg-blue-subtle fw-bold w-25 mx-auto mt-3" to={service.url}>Ir</Link>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				))}
+					))}
+				</div>
 			</div>
-
-
-		</div>
+		</section>
 	)
 }
 
