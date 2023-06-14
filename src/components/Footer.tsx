@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { APP_ROUTES, SRC_FILES } from "../helper/utility"
+import { APP_ROUTES, SRC_FILES, URL_LINKS } from "../helper/utility"
 
 const Footer = () => {
     return (
@@ -26,7 +26,7 @@ const Footer = () => {
                             <Link to={APP_ROUTES.TERMS} className="text-white">T&eacute;rminos de uso <i className="bi bi-book"></i></Link>
                         </li>
                         <li className="list-group-item mb-3">
-                            <a className="text-white text-decoration-none" href="https://github.com/MedinaZS/busca-mascota" target="_blank"> C&oacute;digo fuente aqu&iacute; <i className="bi bi-github"></i></a>
+                            <a className="text-white text-decoration-none" href={URL_LINKS.REPOSITORIO} target="_blank"> C&oacute;digo fuente aqu&iacute; <i className="bi bi-github"></i></a>
                         </li>
 
                     </ul>

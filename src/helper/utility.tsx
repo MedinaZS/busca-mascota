@@ -18,5 +18,11 @@ export const SRC_FILES = {
     PAW_FIVE: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/busca_mascota/paw-five.png',
     DOG_CAT: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/busca_mascota/dog-cat.png',
     BOOTCAMPERS: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/busca_mascota/bootcampers.png',
+    VISION_BANCO: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/busca_mascota/vision-banco.png',
+    GIROS_CLARO: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/busca_mascota/giros-claro.png',
+}
+
+export const URL_LINKS ={
+    REPOSITORIO : 'https://github.com/MedinaZS/busca-mascota'
 }
 
