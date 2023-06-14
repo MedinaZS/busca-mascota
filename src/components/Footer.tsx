@@ -4,7 +4,8 @@ import { APP_ROUTES, SRC_FILES } from "../helper/utility"
 const Footer = () => {
     return (
         <footer className="bg-dark py-5 pb-3 px-3" >
-            <div className="row row-cols-1 row-cols-md-3 m-0 text-white">
+            <div className="row row-cols-1 row-cols-md-3 m-0 text-white text-center text-md-start">
+                {/* Creado por */}
                 <div className="col mb-3 mb-md-0">
                     <h5 className="footer-title mb-4">
                         <span>Sitio creado y administrado por</span>
@@ -13,28 +14,31 @@ const Footer = () => {
                     <img src={SRC_FILES.BOOTCAMPERS} className="img-fluid" style={{ maxHeight: 200 + 'px' }} />
                     <p className="mt-4">Bootcampers React</p>
                 </div>
+
+                {/* Sobre nosotros */}
                 <div className="col mb-3 mb-md-0">
                     <h5 className="footer-title mb-4">
                         <span>Sobre Nosotros</span>
                     </h5>
 
-                    <ul>
-                        <li className="mb-3">
+                    <ul className="ps-0">
+                        <li className="list-group-item mb-3">
                             <Link to={APP_ROUTES.TERMS} className="text-white">T&eacute;rminos de uso <i className="bi bi-book"></i></Link>
                         </li>
-                        <li className="mb-3">
+                        <li className="list-group-item mb-3">
                             <a className="text-white text-decoration-none" href="https://github.com/MedinaZS/busca-mascota" target="_blank"> C&oacute;digo fuente aqu&iacute; <i className="bi bi-github"></i></a>
                         </li>
 
                     </ul>
-
                 </div>
+
+                {/* Contactanos */}
                 <div className="col mb-3 mb-md-0">
                     <h5 className="footer-title mb-4">
                         <span>Contáctanos</span>
                     </h5>
 
-                    <div className="d-flex justify-content-between">
+                    <div className="d-flex gap-3 gap-md-2 gap-lg-3 justify-content-center justify-content-md-start">
                         <a className="text-white rounded-circle fs-3 social-icons twitter d-inline-block d-flex align-items-center justify-content-center" href="https://twitter.com/BuscaMascotapy" target="_blank">
                             <i className="fab fa-fw fa-twitter"></i>
                         </a>

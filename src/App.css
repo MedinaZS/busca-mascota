@@ -204,41 +204,51 @@ section {
 
 }
 
-.social-icons{
-    width: 60px;
-    height: 60px;
+@media only screen and (max-width: 767px) {
+
+    .footer-title span:after {
+        width: 100%;
+    }
+}
+
+.social-icons {
+    width: 50px;
+    height: 50px;
     outline: 2px solid white;
     transition: all .1s;
 }
 
-.social-icons:hover{
+.social-icons:hover {
     outline-offset: 4px;
 }
 
-.social-icons.twitter:hover{
+.social-icons.twitter:hover {
     background-color: #60bfc9;
     outline-color: #60bfc9;
 }
-.social-icons.facebook:hover{
+
+.social-icons.facebook:hover {
     background-color: #2050b3;
     outline-color: #2050b3;
 }
-.social-icons.instagram:hover{
+
+.social-icons.instagram:hover {
     background-image: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);
     outline-color: #9b36b7;
 }
-.social-icons.mail:hover{
+
+.social-icons.mail:hover {
     background-color: #c71610;
     outline-color: #c71610;
 }
 
 /* Publicar */
-.leaflet-container{
+.leaflet-container {
     width: 100%;
     height: 400px;
 }
 
-.bi.bi-info-circle{
+.bi.bi-info-circle {
     cursor: pointer;
 }
 
@@ -246,11 +256,11 @@ section {
     max-width: 300px;
 }
 
-.small{
+.small {
     font-size: .8rem;
 }
 
-.disabled-link{
+.disabled-link {
     pointer-events: none;
     opacity: .5;
 }
@@ -258,4 +268,6 @@ section {
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
+
+
 
