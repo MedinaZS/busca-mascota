@@ -8,6 +8,7 @@ function App() {
   return (
     <>
       <Navbar />
+      
       <div className='container-fluid px-0 bg-gray-subtle'>
         <Outlet />
       </div>
