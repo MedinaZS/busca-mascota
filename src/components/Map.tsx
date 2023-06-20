@@ -1,5 +1,5 @@
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents, } from "react-leaflet";
 
 interface Report {
     id: number,
@@ -11,8 +11,28 @@ interface Report {
     longitude: number,
 }
 
-const Map = ({ zoom = 11, listaReportes }: { zoom?: number, listaReportes?: Array<Report> }) => {
+const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click,  listaReportes}: { click: boolean, zoom?: number, currentPosition?: any, setCurrentPosition?: any, listaReportes?: Array<Report> }) => {
     const Ip = 'http://localhost:8000'
+    function LocationMarker() {
+
+        const map = useMapEvents({
+            click(e) {
+                if (click) {
+                    setCurrentPosition(e.latlng)
+                }
+            }
+        });
+
+        // Si el mapa es clickeable
+        if (click) {
+            return currentPosition === null && click == true ? null : (
+                <Marker position={currentPosition}>
+                    <Popup>You are here</Popup>
+                </Marker>
+            )
+        }
+
+    }
 
     return (
         <div>
@@ -35,6 +55,7 @@ const Map = ({ zoom = 11, listaReportes }: { zoom?: number, listaReportes?: Arra
                 </Marker>
                 ))}
                 
+                <LocationMarker></LocationMarker>
             </MapContainer>
         </div>
     )
