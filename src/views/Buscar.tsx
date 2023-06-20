@@ -89,7 +89,7 @@ const Buscar = () => {
 			</div>
 
 			<div>
-				{isMapView ? <Map zoom={8}/> : <ListaReportes/> }
+				{isMapView ? <Map zoom={8} click={false} /> : <ListaReportes />}
 			</div>
 
 		</PageCard>
