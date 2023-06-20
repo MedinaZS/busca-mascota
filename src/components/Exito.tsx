@@ -28,7 +28,7 @@ export const Exito = () => {
   useEffect(() => {
     const fetchReportData = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/reportget/${id}/`);
+        const response = await fetch(`http://127.0.0.1:8000/reportesget/${id}/`);
         const data = await response.json();
         setReportData(data);
       } catch (error) {
