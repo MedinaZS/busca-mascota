@@ -1,24 +1,32 @@
 import Map from '../components/Map'
-import { Link, useAsyncError } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { API_ROUTES, APP_ROUTES } from '../helper/utility';
 import PageCard from '../components/PageCard';
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios'
 
 
 const Publicar = () => {
 
+	interface ILatLng {
+		lat: number,
+		lng: number
+	}
+
+	const REPORT_TYPES = ['Perdido', 'Avistado', 'Retenido', 'Otro']
+	const SPECIES = ['Perro', 'Gato', 'Otro']
+	const SEX = ['Macho', 'Hembra', 'Desconocido']
 
 	const [report, setReport] = useState({
-		report_type: '',
+		report_type: REPORT_TYPES[0].toLowerCase(),
 		title: '',
 		description: '',
 		picture: '',
 		name: '',
 		phone: '',
-		specie: '',
-		age: 0,
-		sex: '',
+		specie: SPECIES[0].toLowerCase(),
+		age: '',
+		sex: SEX[0].toLowerCase(),
 		ubication_resume: '',
 		last_time_seen: '',
 		accept_terms: false,
@@ -30,15 +38,13 @@ const Publicar = () => {
 		longitude: ''
 	})
 
-	const [currentPosition, setCurrentPosition] = useState(null)
+	const [currentPosition, setCurrentPosition] = useState<ILatLng>({ lat: 0, lng: 0 })
 
 	useEffect(() => {
 		if (currentPosition !== null) {
 			completeUbicationWidgets(currentPosition.lat, currentPosition.lng)
 		}
 	}, [currentPosition])
-
-
 
 
 	function completeUbicationWidgets(latitude: any, longitude: any) {
@@ -63,9 +69,7 @@ const Publicar = () => {
 
 
 	const handleChange = (event: any) => {
-
 		const { id, value, files } = event.target
-		console.log(id)
 		setReport({ ...report, [id]: files ? files[0] : value })
 	}
 
@@ -81,9 +85,9 @@ const Publicar = () => {
 		}
 
 		// Send data
-		axios.post(API_ROUTES.PUBLICAR_MASCOTA, report,config)
-		.then(response => console.log(response))
-		.catch(error => console.error("Error en post", error))
+		axios.post(API_ROUTES.PUBLICAR_MASCOTA, report, config)
+			.then(response => console.log(response))
+			.catch(error => console.error("Error en post", error))
 
 	}
 
@@ -102,11 +106,9 @@ const Publicar = () => {
 						</label>
 
 						<select id='report_type' value={report.report_type} className="form-select" required onChange={handleChange}>
-							<option value="" disabled>Seleccione...</option>
-							<option value="perdido">Perdido</option>
-							<option value="avistado">Avistado</option>
-							<option value="retenido">Retenido</option>
-							<option value="otro">Otro</option>
+							{REPORT_TYPES.map((item, index) => (
+								<option key={index} value={item.toLowerCase()} disabled>{item}</option>
+							))}
 						</select>
 
 					</div>
@@ -173,10 +175,9 @@ const Publicar = () => {
 							Especie: *
 						</label>
 						<select value={report.specie} id="specie" className='form-select' required onChange={handleChange}>
-							<option value="" disabled>Seleccione...</option>
-							<option value="perro">Perro</option>
-							<option value="gato">Gato</option>
-							<option value="otro">Otro</option>
+							{SPECIES.map((item, index) => (
+								<option key={index} value={item.toLowerCase()} disabled>{item}</option>
+							))}
 						</select>
 					</div>
 
@@ -196,10 +197,9 @@ const Publicar = () => {
 							Sexo: *
 						</label>
 						<select value={report.sex} id="sex" className='form-select' required onChange={handleChange}>
-							<option value="" disabled>Seleccione...</option>
-							<option value="macho">Macho</option>
-							<option value="hembra">Hembra</option>
-							<option value="desconocido">Desconocido</option>
+							{SEX.map((item, index) => (
+								<option key={index} value={item.toLowerCase()} disabled>{item}</option>
+							))}
 						</select>
 					</div>
 
