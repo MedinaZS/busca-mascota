@@ -18,15 +18,16 @@
     --gradient-4: linear-gradient(214deg, #8ee9f1 20%, #797cff 100%);
 
     /* Color palette */
-    --yellow: #fbdb38
-    --blue: #60bfc9
-    --blue-subtle: #c0e3eb 
+    --yellow: #fbdb38;
+    --blue: #60bfc9;
+    --blue-subtle: #c0e3eb; 
 }
 
 
 * {
     font-family: 'Comfortaa', cursive;
 }
+
 
 #root {
     width: 100%;
@@ -53,11 +54,11 @@ nav {
 
 /* Icon navbar active */
 .nav-link.active i.fas {
-    color: #65CAD5;
+    color: var(--blue);
 }
 
 .nav-link:hover i.fas {
-    color: #65CAD5;
+    color: var(--blue);
 }
 
 
@@ -79,7 +80,7 @@ nav {
 }
 
 .btn.bg-blue-subtle:is(:hover) {
-    background-color: #6cd6ed !important;
+    background-color: var(--blue-subtle) !important;
 }
 
 
@@ -225,8 +226,8 @@ section {
 }
 
 .social-icons.twitter:hover {
-    background-color: #60bfc9;
-    outline-color: #60bfc9;
+    background-color: var(--blue);
+    outline-color: var(--blue);
 }
 
 .social-icons.facebook:hover {
@@ -248,6 +249,10 @@ section {
 .leaflet-container {
     width: 100%;
     height: 400px;
+}
+
+#buscarMap .leaflet-container{
+    height: 500px;
 }
 
 .bi.bi-info-circle {
@@ -273,7 +278,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* Colab page */
 .border-blue-subtle{
-    border-color: #60bfc9  !important;
+    border-color: var(--blue)  !important;
 }
 
 .card.card-payment{
