@@ -88,7 +88,7 @@ const Buscar = () => {
 				</div>
 			</div>
 
-			<div>
+			<div id='buscarMap'>
 				{isMapView ? <Map zoom={8} click={false} /> : <ListaReportes />}
 			</div>
 
