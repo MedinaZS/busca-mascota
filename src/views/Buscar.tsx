@@ -3,9 +3,10 @@ import PageCard from '../components/PageCard'
 import Map from '../components/Map';
 import ListaReportes from '../components/Buscar/ListaReportes';
 
-const Buscar = () => {
 
-	const [isMapView, setIsMapView] = useState(true)
+const Buscar = () => {
+	const [isMapView, setIsMapView] = useState(true);
+	
 
 	return (
 		<PageCard title={'Buscar'}>

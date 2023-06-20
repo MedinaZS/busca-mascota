@@ -8,6 +8,7 @@ export const APP_ROUTES = {
     ADOPCIONES: '/adopciones',
     TERMS: '/terminos-de-uso',
     EXITO: '/exito/:id',
+    DETALLEREPORTE: '/reporte/:id'
 }
 
 const IP = 'http://127.0.0.1:8000'

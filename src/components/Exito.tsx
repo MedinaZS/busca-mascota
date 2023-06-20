@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import { Link, useParams } from "react-router-dom";
 
@@ -75,6 +75,7 @@ export const Exito = () => {
     picture,
   } = reportData;
   const baseUrl = "http://127.0.0.1:8000";
+  
   return (
     <div className="reportcont">
         <span> Reporte #{report_id},{" "}creado con éxito!
