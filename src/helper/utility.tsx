@@ -7,6 +7,7 @@ export const APP_ROUTES = {
     COLABORAR: '/colaborar',
     ADOPCIONES: '/adopciones',
     TERMS: '/terminos-de-uso',
+    EXITO: '/exito/:id',
 }
 
 export const SRC_FILES = {
