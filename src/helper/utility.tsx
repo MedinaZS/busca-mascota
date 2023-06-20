@@ -8,6 +8,7 @@ export const APP_ROUTES = {
     ADOPCIONES: '/adopciones',
     TERMS: '/terminos-de-uso',
     EXITO: '/exito/:id',
+    DETALLE_ADOPCION: '/detalle-adopcion/:id',
 }
 
 export const SRC_FILES = {
