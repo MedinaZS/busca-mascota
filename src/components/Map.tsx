@@ -1,7 +1,28 @@
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 
-const Map = ({ zoom = 11 }: { zoom?: number }) => {
+const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click }: { click: boolean, zoom?: number, currentPosition?: any, setCurrentPosition?: any }) => {
+
+    function LocationMarker() {
+
+        const map = useMapEvents({
+            click(e) {
+                if (click) {
+                    setCurrentPosition(e.latlng)
+                }
+            }
+        });
+
+        // Si el mapa es clickeable
+        if (click) {
+            return currentPosition === null && click == true ? null : (
+                <Marker position={currentPosition}>
+                    <Popup>You are here</Popup>
+                </Marker>
+            )
+        }
+
+    }
 
     return (
         <div>
@@ -15,6 +36,7 @@ const Map = ({ zoom = 11 }: { zoom?: number }) => {
                         A pretty CSS3 popup. <br /> Easily customizable.
                     </Popup>
                 </Marker> */}
+                <LocationMarker></LocationMarker>
             </MapContainer>
         </div>
     )

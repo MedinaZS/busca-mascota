@@ -11,6 +11,12 @@ export const APP_ROUTES = {
     DETALLE_ADOPCION: '/detalle-adopcion/:id',
 }
 
+const IP = 'http://127.0.0.1:8000'
+
+export const API_ROUTES = {
+    PUBLICAR_MASCOTA: IP + '/publicar/',
+}
+
 export const SRC_FILES = {
     COMPLETE_LOGO: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/v1686586283/busca_mascota/complete-logo-without-bg.png',
     ONLY_LOGO: 'https://res.cloudinary.com/dhzoxdo6q/image/upload/v1686586307/busca_mascota/only-logo-without-bg.png',
