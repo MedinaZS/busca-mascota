@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import html2canvas from "html2canvas";
+import {IP} from '../helper/utility.tsx';
 
 interface ReportData {
   title: string;
@@ -68,7 +69,7 @@ const Detalle_Adopcion = () => {
     phone,
     picture,
   } = reportData;
-  const baseUrl = "http://127.0.0.1:8000";
+  const baseUrl = IP;
 
   return (
     <div className="reportcont">
@@ -153,6 +154,17 @@ const Detalle_Adopcion = () => {
       >
         Exportar como imagen
       </button>
+      <div className="btn-group btn-group-lg mb-5" role="group" aria-label="share">
+                <a className="btn btn-success" href={`https://wa.me/?text=Conoces+esta+mascota%3F+Echa+un+vistazo%21+${baseUrl}%2Fdetalle-adopcion%2F${id}`} data-action="share/whatsapp/share" target="_blank">
+                    <i className="fab fa-whatsapp"></i>
+                </a>
+                <a className="btn btn-primary" href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}/detalle-adopcion/${id}`} target="_blank">
+                    <i className="fab fa-facebook"></i>
+                </a>
+                <a className="btn btn-info" href={`https://twitter.com/share?text=Conoces+esta+mascota%3F+Echa+un+vistazo%21+${baseUrl}%2Fdetalle-adopcion%2F${id}&amp;hashtags=BuscaMascota`} target="_blank">
+                    <i className="fab fa-twitter"></i>
+                </a>
+        </div>
     </div>
   );
 };
