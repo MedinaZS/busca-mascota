@@ -7,6 +7,14 @@ export const APP_ROUTES = {
     COLABORAR: '/colaborar',
     ADOPCIONES: '/adopciones',
     TERMS: '/terminos-de-uso',
+    LINCENCE: '/licencia',
+}
+
+const IP = 'http://127.0.0.1:8000'
+
+export const API_ROUTES = {
+    PUBLICAR_MASCOTA: IP +'/publicar/',
+    REPORTES: IP +'/api/reportes/',
 }
 
 export const SRC_FILES = {
