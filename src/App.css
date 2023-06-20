@@ -251,6 +251,10 @@ section {
     height: 400px;
 }
 
+#buscarMap .leaflet-container{
+    height: 500px;
+}
+
 .bi.bi-info-circle {
     cursor: pointer;
 }

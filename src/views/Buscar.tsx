@@ -111,8 +111,8 @@ const Buscar = () => {
 				</div>
 			</div>
 
-			<div className='mb-4'>
-				{isMapView ? <Map listaReportes={listaReportes} zoom={8} click={false}/> : <ListaReportes />}
+			<div id='buscarMap mb-4'>
+				{isMapView ? <Map listaReportes={listaReportes} zoom={8} click={false} /> : <ListaReportes />}
 			</div>
 
 		</PageCard>
