@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import html2canvas from "html2canvas";
-import {IP} from '../helper/utility.tsx';
+import { IP } from "../helper/utility.tsx";
 
 interface ReportData {
   title: string;
@@ -100,7 +100,8 @@ const Detalle_Adopcion = () => {
               </svg>
             </div>
             <span className="textoReport">
-              {name!=null ? `Nombre: ${name}. ` : ""}{age!=null ? `Edad aprox. ${age} años. ` : ""}Sexo: {sex}
+              {name != null ? `Nombre: ${name}. ` : ""}
+              {age != null ? `Edad aprox. ${age} años. ` : ""}Sexo: {sex}
             </span>
           </div>
           <div className="datosContainer">
@@ -149,22 +150,43 @@ const Detalle_Adopcion = () => {
         </div>
       </div>
       <button
-        className="btn btn-primary botonReporte"
+        className="btn btn-primary botonReporte my-3"
         onClick={handleExportClick}
       >
         Exportar como imagen
       </button>
-      <div className="btn-group btn-group-lg mb-5" role="group" aria-label="share">
-                <a className="btn btn-success" href={`https://wa.me/?text=Conoces+esta+mascota%3F+Echa+un+vistazo%21+${baseUrl}%2Fdetalle-adopcion%2F${id}`} data-action="share/whatsapp/share" target="_blank">
-                    <i className="fab fa-whatsapp"></i>
-                </a>
-                <a className="btn btn-primary" href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}/detalle-adopcion/${id}`} target="_blank">
-                    <i className="fab fa-facebook"></i>
-                </a>
-                <a className="btn btn-info" href={`https://twitter.com/share?text=Conoces+esta+mascota%3F+Echa+un+vistazo%21+${baseUrl}%2Fdetalle-adopcion%2F${id}&amp;hashtags=BuscaMascota`} target="_blank">
-                    <i className="fab fa-twitter"></i>
-                </a>
-        </div>
+      <h5 className="mt-3">
+          Puedes compartir esta publicación{" "}
+          <i className="fas fa-share text-success"></i>{" "}
+        </h5>
+      <div
+        className="btn-group btn-group-lg my-3"
+        role="group"
+        aria-label="share"
+      >
+        <a
+          className="btn btn-success"
+          href={`https://wa.me/?text=Conoces+esta+mascota%3F+Echa+un+vistazo%21+${baseUrl}%2Fdetalle-adopcion%2F${id}`}
+          data-action="share/whatsapp/share"
+          target="_blank"
+        >
+          <i className="fab fa-whatsapp"></i>
+        </a>
+        <a
+          className="btn btn-primary"
+          href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}/detalle-adopcion/${id}`}
+          target="_blank"
+        >
+          <i className="fab fa-facebook"></i>
+        </a>
+        <a
+          className="btn btn-info"
+          href={`https://twitter.com/share?text=Conoces+esta+mascota%3F+Echa+un+vistazo%21+${baseUrl}%2Fdetalle-adopcion%2F${id}&amp;hashtags=BuscaMascota`}
+          target="_blank"
+        >
+          <i className="fab fa-twitter"></i>
+        </a>
+      </div>
     </div>
   );
 };
