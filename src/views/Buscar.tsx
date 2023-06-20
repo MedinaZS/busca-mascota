@@ -2,10 +2,33 @@ import { useEffect, useState } from 'react'
 import PageCard from '../components/PageCard'
 import Map from '../components/Map';
 import ListaReportes from '../components/Buscar/ListaReportes';
+import axios from 'axios';
+import { API_ROUTES } from '../helper/utility';
 
 const Buscar = () => {
 
+	interface Report {
+		id?: number,
+		title?: string,
+		picture?: string,
+		country?: string,
+		city?: string,
+		latitude?: number,
+		longitude?: number,
+	}
+
 	const [isMapView, setIsMapView] = useState(true)
+	const [listaReportes, setListaReportes] = useState<Report[]>([])
+
+	useEffect(() => {
+		axios.get(API_ROUTES.REPORTES)
+			.then(response => {
+				const data = response.data.results;
+				console.log(response.data.results);
+				setListaReportes(data)
+			})
+			.catch(error => console.log("Error", error))
+	}, [])
 
 	return (
 		<PageCard title={'Buscar'}>
@@ -88,8 +111,8 @@ const Buscar = () => {
 				</div>
 			</div>
 
-			<div>
-				{isMapView ? <Map zoom={8}/> : <ListaReportes/> }
+			<div className='mb-4'>
+				{isMapView ? <Map listaReportes={listaReportes} zoom={8} /> : <ListaReportes />}
 			</div>
 
 		</PageCard>
