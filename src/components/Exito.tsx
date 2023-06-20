@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import { Link, useParams } from "react-router-dom";
+import { API_ROUTES} from '../helper/utility';
 
 
 
 interface ReportData {
-    report_id: number;
+  id : number; 
     title: string;
     specie: string;
     report_type: string;
@@ -16,8 +17,8 @@ interface ReportData {
     name: string;
     phone: string;
     picture: string;
-  }
 
+   }
 
 export const Exito = () => {
   const [reportData, setReportData] = useState<ReportData | null>(null);
@@ -28,9 +29,10 @@ export const Exito = () => {
   useEffect(() => {
     const fetchReportData = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/reportesget/${id}/`);
+        const response = await fetch(`${API_ROUTES.GET_REPORTBYID}${id}`);
         const data = await response.json();
         setReportData(data);
+   
       } catch (error) {
         console.error("Error fetching report data:", error);
       }
@@ -62,7 +64,7 @@ export const Exito = () => {
 
 
   const {
-    report_id,
+    id :report_id,
     report_type,
     title,
     specie,
@@ -74,16 +76,16 @@ export const Exito = () => {
     phone,
     picture,
   } = reportData;
-  const baseUrl = "http://127.0.0.1:8000";
+ 
   return (
     <div className="reportcont">
-        <span> Reporte #{report_id},{" "}creado con éxito!
+        <span> Reporte # {report_id},{" "}creado con éxito!
 El ID de su reporte es: {report_id},{" "}, guarde este identificador para futuras modificaciones o consultas.</span>
       <div aria-label="Reporte" className="cartaReporte " ref={cardRef}>
       
           <div className="headerContent">
     
-                <img src={`${baseUrl}${picture}`} alt="imagen de mascota" className="imageReport"  ref={imageRef}/>
+                <img src={`${picture}`} alt="imagen de mascota" className="imageReport"  ref={imageRef}/>
             <div className="titleReport">
                 <h3 >
                   {specie.toUpperCase()} {report_type.toUpperCase()}

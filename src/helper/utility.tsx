@@ -14,6 +14,8 @@ const IP = 'http://127.0.0.1:8000'
 
 export const API_ROUTES = {
     PUBLICAR_MASCOTA: IP + '/publicar/',
+    GET_REPORTBYID: IP + '/reportesget/',
+    JUST_IP: IP,
 }
 
 export const SRC_FILES = {
