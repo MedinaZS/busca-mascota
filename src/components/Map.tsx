@@ -1,5 +1,6 @@
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, } from "react-leaflet";
+import { APP_ROUTES } from "../helper/utility";
 
 interface Report {
     id: number,
@@ -42,14 +43,15 @@ const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click,  listaRepo
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 {listaReportes.length !== 0 && listaReportes.map((item, index)=> (
-                    // <div key={index}>{item.title}</div>
                 <Marker key={index} position={[item.latitude, item.longitude]}>
                     <Popup>
                         <div className="text-center">
                             <h2 className="fs-3 pt-3 px-3 text-danger fw-bold">{item.title.toUpperCase()}</h2> <br />
                             <img src={Ip + item.picture} width={200} alt="hola" />
                             <p className="fs-6 fw-bold">{item.city && item.city + ','} {item.country && item.country}</p>
-                            <button className="bg-blue-subtle btn text-dark">Ver Reporte Completo</button>
+                            <p className="text-center" >
+                                <a className="bg-blue-subtle btn text-dark" href={APP_ROUTES.DETALLE_REPORTE  + item.id}>Ver Reporte Completo</a>
+                            </p>
                         </div>
                     </Popup>
                 </Marker>
