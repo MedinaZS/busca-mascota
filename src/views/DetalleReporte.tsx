@@ -83,6 +83,10 @@ const DetalleReporte = () => {
         longitude
     } = reportData;
 
+    const linkFacebook = `https://www.facebook.com/sharer/sharer.php?u=${API_ROUTES.JUST_IP}/reporte/${id}`
+    const linkWhatsapp = `https://wa.me/?text=Conoces+esta+mascota%3F+Echa+un+vistazo%21+${API_ROUTES.JUST_IP}%2Freporte%2F${id}`
+    const linkTwitter = `https://twitter.com/share?text=Conoces+esta+mascota%3F+Echa+un+vistazo%21+${API_ROUTES.JUST_IP}%2Freporte%2F${id}&amp;hashtags=BuscaMascota`
+
     return (
         <PageCard title={'Detalle Reporte #' + report_id}>
 
@@ -138,6 +142,42 @@ const DetalleReporte = () => {
                 <button className="btn btn-primary btn-success text-white w-100" onClick={handleGoogleMapsClick}>
                     <i className="bi bi-geo-alt-fill me-2"></i>Abrir en Google Maps
                 </button>
+            </div>
+
+            {/* Compartir redes sociales */}
+            <div className="text-center mt-3">
+                <h5>
+                    Puedes compartir esta publicación{" "}
+                    <i className="fas fa-share text-success"></i>{" "}
+                </h5>
+                <div
+                    className="btn-group btn-group-lg mt-3 mb-3"
+                    role="group"
+                    aria-label="share"
+                >
+                    <a
+                        className="btn btn-success"
+                        href={linkWhatsapp}
+                        data-action="share/whatsapp/share"
+                        target="_blank"
+                    >
+                        <i className="fab fa-whatsapp text-white"></i>
+                    </a>
+                    <a
+                        className="btn btn-primary"
+                        href={linkFacebook}
+                        target="_blank"
+                    >
+                        <i className="fab fa-facebook text-white"></i>
+                    </a>
+                    <a
+                        className="btn btn-info"
+                        href={linkTwitter}
+                        target="_blank"
+                    >
+                        <i className="fab fa-twitter text-white"></i>
+                    </a>
+                </div>
             </div>
 
         </PageCard>
