@@ -85,12 +85,11 @@ export const Exito = () => {
         <div aria-label="Reporte" className="cartaReporte " ref={cardRef}>
 
           <div className="headerContent">
-
-            <img src={`${picture}`} alt="imagen de mascota" className="imageReport" ref={imageRef} />
             <div className="titleReport">
-              <h3 >
-                {specie.toUpperCase() === 'OTRO' ? 'ANIMAL' : specie.toUpperCase() } {report_type.toUpperCase()}
-              </h3>
+              <h3 className="fs-1 fw-bold">{specie.toUpperCase() === 'OTRO' ? 'ANIMAL' : specie.toUpperCase()} {report_type.toUpperCase()}</h3>
+            </div>
+            <div className="p-3 bg-white">
+              <img src={`${picture}`} alt="imagen de mascota" className="imageReport" ref={imageRef} />
             </div>
           </div>
 

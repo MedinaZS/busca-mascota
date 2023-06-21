@@ -95,7 +95,7 @@ const DetalleReporte = () => {
                 {/* Header reporte */}
                 <div className="headerContent">
                     <div className="titleReport">
-                        <h3 className="fs-1 fw-bold">{specie.toUpperCase()} {report_type.toUpperCase()}</h3>
+                        <h3 className="fs-1 fw-bold">{specie.toUpperCase() === 'OTRO' ? 'ANIMAL' : specie.toUpperCase()} {report_type.toUpperCase()}</h3>
                     </div>
                     <div className="p-3 bg-white">
                         <img src={`${picture}`} alt="imagen de mascota" className="imageReport" ref={imageRef} />
@@ -131,7 +131,7 @@ const DetalleReporte = () => {
 
                 </div>
             </div>
-            <div className="text-center mb-3 mt-3">
+            <div className="text-center mb-3">
                 <button className="btn btn-primary botonReporte" onClick={handleExportClick}>
                     <i className="bi bi-download me-2"></i>Guardar como imagen
                 </button>
