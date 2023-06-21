@@ -204,7 +204,7 @@ line-height: 1.75rem; /* 28px */
   transition: filter 250ms;
 
 }
-.shadow {
+.shadowbutton {
   position: absolute;
   top: 0;
   left: 0;

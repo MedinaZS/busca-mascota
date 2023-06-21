@@ -13,7 +13,7 @@ const Navbar = () => {
     ]
 
     return (
-        <nav className="navbar navbar-light navbar-expand-lg px-3 sticky-top border-bottom">
+        <nav className="navbar navbar-light navbar-expand-lg px-3 border-bottom">
             <a className="navbar-brand" href="/">
                 <img src={SRC_FILES.COMPLETE_LOGO} height="80" alt="Logo Busca Mascota" />
                 {/* <img className="d-none d-sm-inline" src={SRC_FILES.COMPLETE_LOGO} height="80" alt="Logo Busca Mascota" /> */}
