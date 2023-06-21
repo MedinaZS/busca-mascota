@@ -1,6 +1,7 @@
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, } from "react-leaflet";
 import { APP_ROUTES } from "../helper/utility";
+import { Link } from "react-router-dom";
 
 interface Report {
     id: number,
@@ -44,13 +45,13 @@ const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click,  listaRepo
                 />
                 {listaReportes.length !== 0 && listaReportes.map((item, index)=> (
                 <Marker key={index} position={[item.latitude, item.longitude]}>
-                    <Popup>
-                        <div className="text-center">
-                            <h2 className="fs-3 pt-3 px-3 text-danger fw-bold">{item.title.toUpperCase()}</h2> <br />
-                            <img src={Ip + item.picture} width={200} alt="hola" />
+                    <Popup >
+                        <div id="popup" className="text-center">
+                            <h2 className="fs-5 text-danger fw-bold">{item.title.toUpperCase()}</h2> <br />
+                            <img src={Ip + item.picture} width={120} alt="foto de mascota" />
                             <p className="fs-6 fw-bold">{item.city && item.city + ','} {item.country && item.country}</p>
                             <p className="text-center" >
-                                <a className="bg-blue-subtle btn text-dark" href={APP_ROUTES.DETALLE_REPORTE  + item.id}>Ver Reporte Completo</a>
+                                <Link className="bg-blue-subtle btn text-dark small" to={APP_ROUTES.DETALLE_REPORTE  + item.id}>Ver Reporte Completo</Link>
                             </p>
                         </div>
                     </Popup>

@@ -21,10 +21,10 @@ const Buscar = () => {
 	const [listaReportes, setListaReportes] = useState<Report[]>([])
 
 	useEffect(() => {
-		axios.get(API_ROUTES.REPORTES)
+		axios.get(API_ROUTES.REPORTES_SIN_PAGINAR)
 			.then(response => {
 				const data = response.data.results;
-				console.log(response.data.results);
+				// console.log(response.data.results);
 				setListaReportes(data)
 			})
 			.catch(error => console.log("Error", error))
@@ -111,7 +111,7 @@ const Buscar = () => {
 				</div>
 			</div>
 
-			<div id='buscarMap mb-4'>
+			<div id='buscarMap' className='mb-4'>
 				{isMapView ? <Map listaReportes={listaReportes} zoom={8} click={false} /> : <ListaReportes />}
 			</div>
 
