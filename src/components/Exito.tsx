@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import { Link, useParams } from "react-router-dom";
 import { API_ROUTES} from '../helper/utility';
@@ -29,7 +29,7 @@ export const Exito = () => {
   useEffect(() => {
     const fetchReportData = async () => {
       try {
-        const response = await fetch(`${API_ROUTES.GET_REPORTBYID}${id}`);
+        const response = await fetch(`${API_ROUTES.GET_REPORT_BY_ID}${id}`);
         const data = await response.json();
         setReportData(data);
    

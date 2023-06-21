@@ -9,9 +9,8 @@ import Publicar from './views/Publicar.tsx';
 import Buscar from './views/Buscar.tsx';
 import Colaborar from './views/Colaborar.tsx';
 import { Exito } from './components/Exito.tsx';
-import Detalle_Adopcion from './components/Detalle_Adopcion.tsx';
-
-
+import Detalle_Adopcion from './views/Detalle_Adopcion.tsx';
+import DetalleReporte from './views/DetalleReporte.tsx';
 
 
 const router = createBrowserRouter(
@@ -23,6 +22,7 @@ const router = createBrowserRouter(
 			<Route path={APP_ROUTES.PUBLICAR_MASCOTA} element={<Publicar />} />
 			<Route path={APP_ROUTES.BUSCAR_MASCOTA} element={<Buscar />} />
 			<Route path={APP_ROUTES.COLABORAR} element={<Colaborar />} />
+			<Route path={APP_ROUTES.DETALLEREPORTE} element={<DetalleReporte />} />
 			<Route path="*" element={<p className='text-center fs-1 my-auto'>404 Path not resolved</p>} />
 		</Route>
 	)
