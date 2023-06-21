@@ -13,6 +13,7 @@ import Detalle_Adopcion from './views/Detalle_Adopcion.tsx';
 import DetalleReporte from './views/DetalleReporte.tsx';
 
 
+
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="" element={<App />}>
