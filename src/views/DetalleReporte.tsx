@@ -128,7 +128,7 @@ const DetalleReporte = () => {
                             </p>}
                     </div>
                 </div>
-                <div className="text-center mb-3">
+                <div className="text-center mb-3 mt-3">
                     <button className="btn btn-primary botonReporte" onClick={handleExportClick}>
                         <i className="bi bi-download me-2"></i>Guardar como imagen
                     </button>
