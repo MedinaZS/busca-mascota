@@ -1,5 +1,5 @@
 import Map from '../components/Map'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { API_ROUTES, APP_ROUTES } from '../helper/utility';
 import PageCard from '../components/PageCard';
 import { useEffect, useState } from 'react';
@@ -14,6 +14,8 @@ const Publicar = () => {
 		lng: number
 	}
 
+	const navigate = useNavigate()
+
 	const REPORT_TYPES = ['Perdido', 'Avistado', 'Retenido', 'Otro']
 	const SPECIES = ['Perro', 'Gato', 'Otro']
 	const SEX = ['Macho', 'Hembra', 'Desconocido']
@@ -22,7 +24,7 @@ const Publicar = () => {
 		report_type: { value: REPORT_TYPES[0].toLowerCase(), required: true },
 		title: { value: '', required: true },
 		description: { value: '', required: true },
-		picture: { value: '', required: true },
+		picture: { value: {}, required: true },
 		name: { value: '', required: false },
 		phone: { value: '', required: false },
 		specie: { value: SPECIES[0].toLowerCase(), required: true },
@@ -56,12 +58,12 @@ const Publicar = () => {
 					setReport({
 						...report,
 						['ubication_resume']: { ...report['ubication_resume'], value: data.display_name },
-						['country']: { ...report['country'], value: data.display_name },
-						['city']: { ...report['city'], value: data.display_name },
-						['postal_code']: { ...report['postal_code'], value: data.display_name },
-						['address']: { ...report['address'], value: data.display_name, },
-						['latitude']: { ...report['latitude'], value: data.display_name },
-						['longitude']: { ...report['longitude'], value: data.display_name },
+						['country']: { ...report['country'], value: data.address.country },
+						['city']: { ...report['city'], value: data.address.city },
+						['postal_code']: { ...report['postal_code'], value: data.address.postcode },
+						['address']: { ...report['address'], value: data.address.road },
+						['latitude']: { ...report['latitude'], value: data.lat },
+						['longitude']: { ...report['longitude'], value: data.lon },
 					})
 				}
 			})
@@ -79,17 +81,16 @@ const Publicar = () => {
 	const onSubmitHandler = (event: any) => {
 		event.preventDefault();
 
-		console.log(report)
-
-		let newReport = {};
-
+		
 		if (validateForm()) {
+			let newReport = {};
+			// Create Form Data
 			for (const property in report) {
 				const value = report[property as keyof typeof report].value
 				newReport[property as keyof typeof report] = value
 			}
-			console.log(newReport)
-
+			// console.log(newReport)
+			
 			const config = {
 				headers: {
 					'Content-Type': `multipart/form-data;`,
@@ -98,7 +99,12 @@ const Publicar = () => {
 
 			// Send data
 			axios.post(API_ROUTES.PUBLICAR_MASCOTA, newReport, config)
-				.then(response => console.log(response))
+				.then(response => {
+					// console.log(response)
+					let id = response.data?.id
+					navigate(APP_ROUTES.EXITO + id)
+
+				})
 				.catch(error => console.log("Error en post", error))
 		}
 	}
@@ -107,12 +113,18 @@ const Publicar = () => {
 		for (const property in report) {
 			const value = report[property as keyof typeof report].value
 			const required = report[property as keyof typeof report].required
-			if (typeof value === 'string' && value.trim() === '' && required === true) {
-				Swal.fire({ icon: 'error', text: 'Completa los campos requeridos' })
-				return false
-			} else if (typeof value === 'boolean' && value === false && required === true) {
-				Swal.fire({ icon: 'error', text: 'Debes aceptar los términos de uso' })
-				return false
+			if (required === true) {
+
+				if (typeof value === 'string' && value.trim() === '') {
+					Swal.fire({ icon: 'error', text: 'Completa los campos requeridos' })
+					return false
+				} else if (typeof value === 'boolean' && value === false) {
+					Swal.fire({ icon: 'error', text: 'Debes aceptar los términos de uso' })
+					return false
+				} else if (typeof value === 'object' && value.name === '') {
+					Swal.fire({ icon: 'error', text: 'Completa los campos requeridos. La imagen es necesaria' })
+					return false
+				}
 			}
 		}
 
