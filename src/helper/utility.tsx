@@ -9,6 +9,7 @@ export const APP_ROUTES = {
     TERMS: '/terminos-de-uso',
     DETALLE_REPORTE: '/reporte/',
     EXITO: '/exito/:id',
+    DETALLE_ADOPCION: '/detalle-adopcion/:id',
 }
 
 const IP = 'http://127.0.0.1:8000'
@@ -19,6 +20,7 @@ export const API_ROUTES = {
     REPORTES_SIN_PAGINAR: IP +'/api/reportes/?paginated=false',
     GET_REPORTBYID: IP + '/reportesget/',
     JUST_IP: IP,
+    DETALLE_ADOPCION: IP + '/adopcion/',
 }
 
 export const SRC_FILES = {
