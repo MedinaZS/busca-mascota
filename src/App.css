@@ -29,11 +29,11 @@
 }
 
 
-#root {
+#root,html {
     width: 100%;
     max-width: 100vw;
     min-height: 100vh;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 h1,
@@ -49,7 +49,7 @@ h1 {
 
 nav {
     background-color: rgba(255, 255, 255, 0.799);
-    height: 15vh;
+    /* min-height: 15vh; */
 }
 
 /* Icon navbar active */
@@ -252,7 +252,7 @@ section {
 }
 
 #buscarMap .leaflet-container{
-    height: 500px;
+    height: 700px;
 }
 
 .bi.bi-info-circle {
@@ -294,4 +294,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 100%;
 }
 
-
+.leaflet-popup-content{
+    width: 180px !important;
+}

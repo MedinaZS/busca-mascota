@@ -1,52 +1,34 @@
 import { useEffect, useState, useRef } from "react";
+import { useParams } from "react-router-dom";
 import html2canvas from "html2canvas";
-import { Link, useParams } from "react-router-dom";
-import { API_ROUTES} from '../helper/utility';
-import { delay, motion } from "framer-motion";
-
-
+import { API_ROUTES } from "../helper/utility.tsx";
 
 interface ReportData {
-  id : number; 
-    title: string;
-    specie: string;
-    report_type: string;
-    age: number;
-    sex: string;
-    last_time_seen: string;
-    ubication_resume: string;
-    name: string;
-    phone: string;
-    picture: string;
+  title: string;
+  name: string;
+  description: string;
+  specie: string;
+  age: number;
+  sex: string;
+  city: string;
+  country: string;
+  phone: string;
+  picture: string;
+}
 
-   }
-
-   const maindiv = {
-    hidden: {
-      x: "-100vw",
-    },
-    visible: {
-      x: "0",
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.3,
-      },
-    },
-  }
-
-export const Exito = () => {
+const Detalle_Adopcion = () => {
   const [reportData, setReportData] = useState<ReportData | null>(null);
+  const { id } = useParams<{ id: string }>();
   const cardRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
-  const { id } = useParams<{ id: string }>(); 
 
   useEffect(() => {
     const fetchReportData = async () => {
       try {
-        const response = await fetch(`${API_ROUTES.GET_REPORT_BY_ID}${id}`);
+        const response = await fetch(`${API_ROUTES.DETALLE_ADOPCION}${id}`);
         const data = await response.json();
+        console.log(data);
         setReportData(data);
-   
       } catch (error) {
         console.error("Error fetching report data:", error);
       }
@@ -56,7 +38,6 @@ export const Exito = () => {
   }, [id]);
 
   const handleExportClick = () => {
-    
     if (imageRef.current) {
       if (cardRef.current && imageRef.current.complete) {
         html2canvas(cardRef.current, {
@@ -76,53 +57,37 @@ export const Exito = () => {
     return <div>Loading...</div>;
   }
 
-
   const {
-    id :report_id,
-    report_type,
     title,
+    name,
+    description,
     specie,
     age,
     sex,
-    last_time_seen,
-    ubication_resume,
-    name,
+    city,
+    country,
     phone,
     picture,
   } = reportData;
- 
+  const baseUrl = API_ROUTES.JUST_IP;
+
   return (
-    <motion.div 
-    variants={maindiv}
-    initial = "hidden"
-    animate="visible"
-    transition={{duration: 0.38,
-    
-      when: "afterChildren",
-      staggerChildren: 1,
-    }}
-    
-    className="reportcont">
-     
-        <span className="reportnro" > Reporte # {report_id},{" "}creado con éxito!</span>
-<span className="reportmessagge">El ID de su reporte es: {report_id},{" "}, guarde este identificador para futuras modificaciones o consultas.</span>
-      <motion.div 
-       initial={{ opacity: 0}}
-       animate={{ opacity: 1}}
-      transition={{ duration : 2, delay: 1}}
-      aria-label="Reporte" className="cartaReporte " ref={cardRef}>
-      
-          <div className="headerContent">
-    
-                <img src={`${picture}`} alt="imagen de mascota" className="imageReport"  ref={imageRef}/>
-            <div className="titleReport">
-                <h3 >
-                  {specie.toUpperCase()} {report_type.toUpperCase()}
-                </h3>
-            </div>
+    <div className="reportcont">
+      <h2 className="text-center">{title}</h2>
+      <div aria-label="Reporte" className="cartaReporte shadow-none rounded" ref={cardRef}>
+        <div className="headerContent rounded border border-5 border-white">
+          <img
+            src={`${baseUrl}${picture}`}
+            alt="imagen de mascota"
+            className="imageReport"
+            ref={imageRef}
+          />
+          <div className="titleReport">
+            <h3>{specie == 'otro' ? 'ANIMAL' : specie.toUpperCase()} EN ADOPCIÓN</h3>
+          </div>
         </div>
 
-        <div className="contentContainer">
+        <div className="contentContainer justify-content-start align-items-start">
           <div className="datosContainer">
             <div>
               <svg
@@ -135,7 +100,8 @@ export const Exito = () => {
               </svg>
             </div>
             <span className="textoReport">
-              {name} Tiene aprox. : {age} años Sexo: {sex}
+              {name != null ? `Nombre: ${name}. ` : ""}
+              {age != null ? `Edad aprox.: ${age} años. ` : ""}Sexo: {sex}
             </span>
           </div>
           <div className="datosContainer">
@@ -146,14 +112,12 @@ export const Exito = () => {
                 viewBox="0 -960 960 960"
                 width="30"
               >
-                <path d="M180-80q-24 0-42-18t-18-42v-620q0-24 18-42t42-18h65v-60h65v60h340v-60h65v60h65q24 0 42 18t18 42v620q0 24-18 42t-42 18H180Zm0-60h600v-430H180v430Zm0-490h600v-130H180v130Zm0 0v-130 130Zm300 230q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z" />
+                <path d="M319-250h322v-60H319v60Zm0-170h322v-60H319v60ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z" />
               </svg>
             </div>
-            <span className="textoReport">
-              Ult vez visto : {last_time_seen}
-            </span>
+            <span className="textoReport">Descripción: {description}</span>
           </div>
-          <div className="direccionContainer">
+          <div className="direccionContainer m-0 justify-content-start align-items-start">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +129,9 @@ export const Exito = () => {
               </svg>
             </div>
             <div>
-              <span className="textoReport">{ubication_resume}</span>
+              <span className="textoReport">
+                {city}, {country}
+              </span>
             </div>
           </div>
           <div className="datosContainer">
@@ -179,24 +145,50 @@ export const Exito = () => {
                 <path d="M60-120q-24 0-42-18T0-180v-600q0-24 18-42t42-18h840q24 0 42 18t18 42v600q0 24-18 42t-42 18H60Zm531-60h309v-600H60v600h7q44-69 112.5-109T329-329q81 0 149.5 40T591-180ZM329-400q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm427 172 77-76-57-81h-70q-9-25-12.5-46.5T690-479q0-26 3.5-47t12.5-47h70l57-81-77-76q-55 45-85.5 111T640-479q0 74 30.5 140T756-228Zm-613 48h372q-35.606-42.275-84.303-65.637Q382-269 329-269t-101.5 23.5Q179-222 143-180Zm186-280q-25.5 0-42.75-17.25T269-520q0-25.5 17.25-42.75T329-580q25.5 0 42.75 17.25T389-520q0 25.5-17.25 42.75T329-460Zm151-20Z" />
               </svg>
             </div>
-            <span className="textoReport">
-              Contactar a: {title} &nbsp;
-              al: {phone}
-            </span>
+            <span className="textoReport">Contactar al: {phone}</span>
           </div>
         </div>
-       
-      </motion.div>
-      
-      <button className="pushable" onClick={handleExportClick}>
-  <span className="shadow"></span>
-  <span className="edge"></span>
-  <span className="front">
-    Exportar como Imagen
-  </span>
-</button>
-      
-        <span>La información proporcionada fue publicada en este sitio web, puede ver el reporte completo <Link to={`/report/${report_id}`}>aqui</Link>, también fue publicada en las distintas redes sociales de la página.</span>
-    </motion.div>
+      </div>
+      <button
+        className="btn btn-primary botonReporte mt-3"
+        onClick={handleExportClick}
+      >
+        Exportar como imagen
+      </button>
+      <h5 className="mt-3 text-center">
+          Puedes compartir esta publicación{" "}
+          <i className="fas fa-share text-success"></i>{" "}
+        </h5>
+      <div
+        className="btn-group btn-group-lg mt-3 mb-3"
+        role="group"
+        aria-label="share"
+      >
+        <a
+          className="btn btn-success"
+          href={`https://wa.me/?text=${specie == 'otro' ? 'ANIMAL' : specie.toUpperCase()}+EN+ADOPCION%21+Echa+un+vistazo%21+${baseUrl}%2Fdetalle-adopcion%2F${id}`}
+          data-action="share/whatsapp/share"
+          target="_blank"
+        >
+          <i className="fab fa-whatsapp"></i>
+        </a>
+        <a
+          className="btn btn-primary"
+          href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}/detalle-adopcion/${id}`}
+          target="_blank"
+        >
+          <i className="fab fa-facebook"></i>
+        </a>
+        <a
+          className="btn btn-info"
+          href={`https://twitter.com/share?text=${specie == 'otro' ? 'ANIMAL' : specie.toUpperCase()}+EN+ADOPCION%21+Echa+un+vistazo%21+${baseUrl}%2Fdetalle-adopcion%2F${id}&amp;hashtags=BuscaMascota`}
+          target="_blank"
+        >
+          <i className="fab fa-twitter"></i>
+        </a>
+      </div>
+    </div>
   );
 };
+
+export default Detalle_Adopcion;
