@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import html2canvas from "html2canvas";
-import { IP } from "../helper/utility.tsx";
+import { API_ROUTES } from "../helper/utility.tsx";
 
 interface ReportData {
   title: string;
@@ -25,7 +25,7 @@ const Detalle_Adopcion = () => {
   useEffect(() => {
     const fetchReportData = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/adopcion/${id}`);
+        const response = await fetch(`${API_ROUTES.DETALLE_ADOPCION}${id}`);
         const data = await response.json();
         console.log(data);
         setReportData(data);
@@ -69,11 +69,11 @@ const Detalle_Adopcion = () => {
     phone,
     picture,
   } = reportData;
-  const baseUrl = IP;
+  const baseUrl = API_ROUTES.JUST_IP;
 
   return (
     <div className="reportcont">
-      <span>{title}</span>
+      <h2>{title}</h2>
       <div aria-label="Reporte" className="cartaReporte " ref={cardRef}>
         <div className="headerContent">
           <img
@@ -83,7 +83,7 @@ const Detalle_Adopcion = () => {
             ref={imageRef}
           />
           <div className="titleReport">
-            <h3>{specie.toUpperCase()} EN ADOPCIÓN</h3>
+            <h3>{specie == 'otro' ? 'ANIMAL' : specie.toUpperCase()} EN ADOPCIÓN</h3>
           </div>
         </div>
 
@@ -101,7 +101,7 @@ const Detalle_Adopcion = () => {
             </div>
             <span className="textoReport">
               {name != null ? `Nombre: ${name}. ` : ""}
-              {age != null ? `Edad aprox. ${age} años. ` : ""}Sexo: {sex}
+              {age != null ? `Edad aprox.: ${age} años. ` : ""}Sexo: {sex}
             </span>
           </div>
           <div className="datosContainer">
@@ -166,7 +166,7 @@ const Detalle_Adopcion = () => {
       >
         <a
           className="btn btn-success"
-          href={`https://wa.me/?text=Conoces+esta+mascota%3F+Echa+un+vistazo%21+${baseUrl}%2Fdetalle-adopcion%2F${id}`}
+          href={`https://wa.me/?text=${specie == 'otro' ? 'ANIMAL' : specie.toUpperCase()}+EN+ADOPCION%21+Echa+un+vistazo%21+${baseUrl}%2Fdetalle-adopcion%2F${id}`}
           data-action="share/whatsapp/share"
           target="_blank"
         >
@@ -181,7 +181,7 @@ const Detalle_Adopcion = () => {
         </a>
         <a
           className="btn btn-info"
-          href={`https://twitter.com/share?text=Conoces+esta+mascota%3F+Echa+un+vistazo%21+${baseUrl}%2Fdetalle-adopcion%2F${id}&amp;hashtags=BuscaMascota`}
+          href={`https://twitter.com/share?text=${specie == 'otro' ? 'ANIMAL' : specie.toUpperCase()}+EN+ADOPCION%21+Echa+un+vistazo%21+${baseUrl}%2Fdetalle-adopcion%2F${id}&amp;hashtags=BuscaMascota`}
           target="_blank"
         >
           <i className="fab fa-twitter"></i>
