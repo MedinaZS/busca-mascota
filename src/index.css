@@ -77,7 +77,8 @@ button:focus-visible {
   padding: 1rem;
 align-items: center; 
 justify-content: center;
-width: 100%; 
+width: 100%;
+gap: 1rem; /* 16px */
 
 
 }
@@ -145,6 +146,7 @@ column-gap: 0.75rem;
   display: flex; 
 justify-content: center; 
 column-gap: 0.75rem; 
+text-wrap: balance
 
  }
  .textoReport{
@@ -157,10 +159,19 @@ column-gap: 0.75rem;
   .heroContainer{
     height: 558px;
      }
-     .direccionContainer{  margin-left: 2rem; 
+     .direccionContainer{  margin-left: 5.50rem; 
      }
      .botonReporte{
       width: 700px;
      }
  }
 
+ .reportnro{
+  color: green;
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
+ }
+ .reportmessagge{
+  font-size: 1.125rem; /* 18px */
+line-height: 1.75rem; /* 28px */
+ }

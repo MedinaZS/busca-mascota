@@ -79,8 +79,8 @@ export const Exito = () => {
  
   return (
     <div className="reportcont">
-        <span> Reporte # {report_id},{" "}creado con éxito!
-El ID de su reporte es: {report_id},{" "}, guarde este identificador para futuras modificaciones o consultas.</span>
+        <span className="reportnro" > Reporte # {report_id},{" "}creado con éxito!</span>
+<span className="reportmessagge">El ID de su reporte es: {report_id},{" "}, guarde este identificador para futuras modificaciones o consultas.</span>
       <div aria-label="Reporte" className="cartaReporte " ref={cardRef}>
       
           <div className="headerContent">
