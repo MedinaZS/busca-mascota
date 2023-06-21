@@ -13,13 +13,18 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-pre
-{
-    white-space: pre-wrap; /* CSS3 */
-    white-space: -moz-pre-wrap; /* Mozilla, post millennium */
-    white-space: -pre-wrap; /* Opera 4-6 */
-    white-space: -o-pre-wrap; /* Opera 7 */
-    word-wrap: break-word; /* Internet Explorer 5.5+ */
+
+pre {
+  white-space: pre-wrap;
+  /* CSS3 */
+  white-space: -moz-pre-wrap;
+  /* Mozilla, post millennium */
+  white-space: -pre-wrap;
+  /* Opera 4-6 */
+  white-space: -o-pre-wrap;
+  /* Opera 7 */
+  word-wrap: break-word;
+  /* Internet Explorer 5.5+ */
 }
 
 a {
@@ -27,6 +32,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -55,9 +61,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -68,9 +76,11 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
@@ -86,96 +96,212 @@ button:focus-visible {
 
 
 /* CSS CARD EN PAGINA DE EXITO*/
-.reportcont{
-  display: flex; 
+.reportcont {
+  display: flex;
   flex-direction: column;
   padding: 1rem;
-align-items: center; 
-justify-content: center;
-width: 100%; 
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
+  /* 16px */
 
 
 }
 
 
- .cartaReporte{
-  display: flex; 
-background-color: #FBBF24; 
-flex-direction: column; 
-width: 100%; 
-border-radius: 0.5rem; 
-padding: 1.25rem;
-gap: 2rem;
-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
- }
+.cartaReporte {
+  display: flex;
+  background-color: #FBBF24;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  gap: 2rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
 
 
- .headerContent{
+.headerContent {
   display: flex;
   flex-direction: column;
 
-  border-radius: 0.5rem; 
-border: 4px solid white;
+  border-radius: 0.5rem;
+  border: 4px solid white;
 
- }
- .imageReport{
-  object-fit: cover; 
-width: 100%; 
-height: 100%; 
+}
 
- }
- .titleReport{
-  color: #ffffff; 
-font-size: 1.5rem;
-line-height: 2rem; 
-font-weight: 700; 
-text-align: center; 
+.imageReport {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 
-padding: 0.75rem;
-width: 100%; 
-height: 100%;
-background-color: rgb(107,202,208);
- }
- .contentContainer{
-  display: flex; 
-padding: 1.5rem; 
-background-color:white;
-font-size: 1.125rem;
-line-height: 1.75rem; 
-flex-direction: column; 
-align-items: center; 
-width: 100%; 
-border-radius: 0.5rem; 
-border-width: 1px; 
-gap: 1rem; 
+}
 
- }
- .datosContainer{
-  display: flex; 
-align-items: center; 
-column-gap: 0.75rem; 
+.titleReport {
+  color: #ffffff;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  text-align: center;
 
- }
- .direccionContainer{
-  display: flex; 
-justify-content: center; 
-column-gap: 0.75rem; 
+  padding: 0.75rem;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(107, 202, 208);
+}
 
- }
- .textoReport{
+.contentContainer {
+  display: flex;
+  padding: 1.5rem;
+  background-color: white;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  gap: 1rem;
+
+}
+
+.datosContainer {
+  display: flex;
+  align-items: center;
+  column-gap: 0.75rem;
+
+}
+
+.direccionContainer {
+  display: flex;
+  justify-content: center;
+  column-gap: 0.75rem;
+  text-wrap: balance
+}
+
+.textoReport {
   color: black;
- }
- @media (min-width: 1024px) { 
-  .cartaReporte{
+}
+
+.botonReporte {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .cartaReporte {
     width: 700px;
   }
-  .heroContainer{
-    height: 558px;
-     }
-     .direccionContainer{  margin-left: 2rem; 
-     }
-     .botonReporte{
-      width: 700px;
-     }
- }
 
+  .heroContainer {
+    height: 558px;
+  }
+
+  .direccionContainer {
+    margin-left: 5.50rem;
+  }
+
+  .pushable {
+    width: 700px;
+  }
+}
+
+.reportnro {
+  color: green;
+  font-size: 1.5rem;
+  /* 24px */
+  line-height: 2rem;
+  /* 32px */
+}
+
+.reportmessagge {
+  font-size: 1.125rem;
+  /* 18px */
+  line-height: 1.75rem;
+  /* 28px */
+}
+
+/* boton3d */
+
+.pushable {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+
+}
+
+.shadowbutton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: hsl(0deg 0% 0% / 0.25);
+  will-change: transform;
+  transform: translateY(2px);
+  transition:
+    transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+.edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(to left,
+      hsl(340deg 100% 16%) 0%,
+      hsl(340deg 100% 32%) 8%,
+      hsl(340deg 100% 32%) 92%,
+      hsl(340deg 100% 16%) 100%);
+}
+
+.front {
+  display: block;
+  position: relative;
+  padding: 12px 42px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  color: white;
+  background: hsl(345deg 100% 47%);
+  will-change: transform;
+  transform: translateY(-4px);
+  transition:
+    transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+.pushable:hover {
+  filter: brightness(110%);
+}
+
+.pushable:hover .front {
+  transform: translateY(-6px);
+  transition:
+    transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.pushable:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+.pushable:hover .shadow {
+  transform: translateY(4px);
+  transition:
+    transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.pushable:active .shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.pushable:focus:not(:focus-visible) {
+  outline: none;
+}

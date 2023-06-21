@@ -10,16 +10,32 @@ import Paginacion from '../components/Buscar/Paginacion';
 const Buscar = () => {
 
 	const [isMapView, setIsMapView] = useState(true)
+
 	const [lista, setLista] = useState<ResultReporte[]>([]);
 	const [nextPage, setNextPage] = useState(null);
 	const [previousPage, setPreviousPage] = useState(null);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
 
+	const [listaReportesSinPaginar, setListaReportesSinPaginar] = useState([])
+
 	useEffect(() => {
-			cargarReportes('http://127.0.0.1:8000/api/reportes/?page=1');
+		// Cargar lista de reportes sin paginar para marcadores de mapa
+		cargarReportesMarcadores()
+
+		// Cargar lista de reportes paginado
+		cargarReportesPaginado('http://127.0.0.1:8000/api/reportes/?page=1');
 	}, [])
-	
+
+	const cargarReportesMarcadores = () => {
+		axios.get(API_ROUTES.REPORTES_SIN_PAGINAR)
+			.then(response => {
+				const data = response.data.results;
+				// console.log(response.data.results);
+				setListaReportesSinPaginar(data)
+			})
+			.catch(error => console.log("Error", error))
+	}
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
@@ -39,34 +55,37 @@ const Buscar = () => {
 			}).catch((error) => console.error(error));
 	}
 
-	const cargarReportes = (url: string | null) => {
-		if (url) {
-			axios
-				.post(url)
-				.then((response) => {
-					setLista(response.data.results);
-					setNextPage(response.data.next);
-					setPreviousPage(response.data.previous);
-					setCurrentPage(response.data.page);
-					setTotalPages(Math.ceil(response.data.count / 15));
-				})
-				.catch((error) => console.error(error));
-		}
+	const cargarReportesPaginado = (url: string | null) => {
+		const urlPost = url ? url : API_ROUTES.REPORTES
+
+		axios
+			.post(urlPost)
+			.then((response) => {
+				// console.log(response.data)
+				setLista(response.data.results);
+				setNextPage(response.data.next);
+				setPreviousPage(response.data.previous);
+				setCurrentPage(response.data.page);
+				setTotalPages(Math.ceil(response.data.count / 15));
+			})
+			.catch((error) => console.error(error));
+
 	};
 
 	const handleNextPage = () => {
-		cargarReportes(nextPage);
+		cargarReportesPaginado(nextPage);
 	};
 
 	const handlePreviousPage = () => {
-		cargarReportes(previousPage);
+		cargarReportesPaginado(previousPage);
 	};
 
 
 	const handlePageClick = (page: number | null) => {
 		const url = `${API_ROUTES.REPORTES}?page=${page}`;
-		cargarReportes(url);
+		cargarReportesPaginado(url);
 	};
+
 
 	return (
 		<PageCard title={'Buscar'}>
@@ -151,10 +170,10 @@ const Buscar = () => {
 
 			<div id='buscarMap'>
 				{isMapView ?
-					<Map zoom={8} click={false} /> :
+					<Map listaReportesSinPaginar={listaReportesSinPaginar} zoom={8} click={false} /> :
 					<>
-						<ListaReportes reportes={lista}/>
-						<Paginacion handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage} handlePageClick={handlePageClick} currentPage={currentPage} totalPages={totalPages} nextPage={nextPage} previousPage={previousPage}/>
+						<ListaReportes reportes={lista} />
+						<Paginacion handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage} handlePageClick={handlePageClick} currentPage={currentPage} totalPages={totalPages} nextPage={nextPage} previousPage={previousPage} />
 					</>
 				}
 			</div>

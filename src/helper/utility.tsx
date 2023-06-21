@@ -8,16 +8,22 @@ export const APP_ROUTES = {
     ADOPCIONES: '/adopciones',
     TERMS: '/terminos-de-uso',
     LINCENCE: '/licencia',
-    EXITO: '/exito/:id'
+    DETALLE_REPORTE: '/reporte/',
+    DETALLE_REPORTE_PARAMS: '/reporte/:id',
+    EXITO: '/exito/',
+    EXITO_PARAMS: '/exito/:id',
+    DETALLE_ADOPCION: '/detalle-adopcion/:id',
 }
 
 const IP = 'http://127.0.0.1:8000'
 
 export const API_ROUTES = {
-    PUBLICAR_MASCOTA: IP + '/publicar/',
-    GET_REPORTBYID: IP + '/reportesget/',
-    REPORTES: IP +'/api/reportes/',
     JUST_IP: IP,
+    REPORTES: IP +'/api/reportes/',
+    REPORTES_SIN_PAGINAR: IP +'/api/reportes/?paginated=false',
+    PUBLICAR_MASCOTA: IP +'/reportes-publicar/',
+    GET_REPORT_BY_ID: IP + '/reportesget/',
+    DETALLE_ADOPCION: IP + '/adopcion/',
 }
 
 export const SRC_FILES = {
