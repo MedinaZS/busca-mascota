@@ -47,7 +47,7 @@ const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click,  listaRepo
                 <Marker key={index} position={[item.latitude, item.longitude]}>
                     <Popup >
                         <div id="popup" className="text-center">
-                            <h2 className="fs-5 text-danger fw-bold">{item.title.toUpperCase()}</h2> <br />
+                            <h2 className="fs-5 text-danger fw-bold">{item.specie.toUpperCase() + " " + item.report_type.toUpperCase()}</h2> <br />
                             <img src={Ip + item.picture} width={120} alt="foto de mascota" />
                             <p className="fs-6 fw-bold">{item.city && item.city + ','} {item.country && item.country}</p>
                             <p className="text-center" >
