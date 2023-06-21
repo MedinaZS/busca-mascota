@@ -8,6 +8,7 @@ export const APP_ROUTES = {
     ADOPCIONES: '/adopciones',
     TERMS: '/terminos-de-uso',
     LINCENCE: '/licencia',
+    EXITO: '/exito/:id'
 }
 
 const IP = 'http://127.0.0.1:8000'
@@ -16,7 +17,6 @@ export const API_ROUTES = {
     PUBLICAR_MASCOTA: IP + '/publicar/',
     GET_REPORTBYID: IP + '/reportesget/',
     REPORTES: IP +'/api/reportes/',
-    EXITO: '/exito/:id',
     JUST_IP: IP,
 }
 
