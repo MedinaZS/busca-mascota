@@ -76,14 +76,14 @@ button:focus-visible {
 
 
 /* CSS CARD EN PAGINA DE EXITO*/
-/* .reportcont {
+.reportcont {
   display: flex;
   flex-direction: column;
   padding: 1rem;
   align-items: center;
   justify-content: center;
   width: 100%;
-} */
+}
 
 
 .cartaReporte {
@@ -127,7 +127,7 @@ button:focus-visible {
   background-color: rgb(107, 202, 208);
 }
 
-/* .contentContainer {
+.contentContainer {
   display: flex;
   padding: 1.5rem;
   background-color: white;
@@ -140,21 +140,21 @@ button:focus-visible {
   border-width: 1px;
   gap: 1rem;
 
-} */
+}
 
-/* .datosContainer {
+.datosContainer {
   display: flex;
   align-items: center;
   column-gap: 0.75rem;
 
-} */
+}
 
-/* .direccionContainer {
+.direccionContainer {
   display: flex;
   justify-content: center;
   column-gap: 0.75rem;
 
-} */
+}
 
 .textoReport {
   color: black;
