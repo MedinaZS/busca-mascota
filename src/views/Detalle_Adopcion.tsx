@@ -73,7 +73,7 @@ const Detalle_Adopcion = () => {
 
   return (
     <div className="reportcont">
-      <h2>{title}</h2>
+      <h2 className="text-center">{title}</h2>
       <div aria-label="Reporte" className="cartaReporte " ref={cardRef}>
         <div className="headerContent">
           <img
@@ -87,7 +87,7 @@ const Detalle_Adopcion = () => {
           </div>
         </div>
 
-        <div className="contentContainer">
+        <div className="contentContainer justify-content-start align-items-start">
           <div className="datosContainer">
             <div>
               <svg
@@ -117,7 +117,7 @@ const Detalle_Adopcion = () => {
             </div>
             <span className="textoReport">Descripción: {description}</span>
           </div>
-          <div className="direccionContainer">
+          <div className="direccionContainer m-0 justify-content-start align-items-start">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -150,17 +150,17 @@ const Detalle_Adopcion = () => {
         </div>
       </div>
       <button
-        className="btn btn-primary botonReporte my-3"
+        className="btn btn-primary botonReporte mt-3"
         onClick={handleExportClick}
       >
         Exportar como imagen
       </button>
-      <h5 className="mt-3">
+      <h5 className="mt-3 text-center">
           Puedes compartir esta publicación{" "}
           <i className="fas fa-share text-success"></i>{" "}
         </h5>
       <div
-        className="btn-group btn-group-lg my-3"
+        className="btn-group btn-group-lg mt-3 mb-3"
         role="group"
         aria-label="share"
       >
