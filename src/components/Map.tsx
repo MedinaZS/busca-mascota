@@ -15,7 +15,7 @@ interface Report {
     report_type: string
 }
 
-const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click, listaReportes, reportDetailPosition }: { click: boolean, zoom?: number, currentPosition?: any, setCurrentPosition?: any, listaReportes?: Array<Report>, reportDetailPosition?: any }) => {
+const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click, listaReportesSinPaginar, reportDetailPosition }: { click: boolean, zoom?: number, currentPosition?: any, setCurrentPosition?: any, listaReportesSinPaginar?: Array<Report>, reportDetailPosition?: any }) => {
     const Ip = 'http://localhost:8000'
     function LocationMarker() {
 
@@ -54,7 +54,7 @@ const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click, listaRepor
                 }
 
 
-                {(listaReportes && listaReportes.length !== 0) && listaReportes.map((item, index) => (
+                {(listaReportesSinPaginar && listaReportesSinPaginar.length !== 0) && listaReportesSinPaginar.map((item, index) => (
                     <Marker key={index} position={[item.latitude, item.longitude]}>
                         <Popup >
                             <div id="popup" className="text-center">
