@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import { Link, useParams } from "react-router-dom";
 import { API_ROUTES} from '../helper/utility';
+import { delay, motion } from "framer-motion";
 
 
 
@@ -19,6 +20,19 @@ interface ReportData {
     picture: string;
 
    }
+
+   const maindiv = {
+    hidden: {
+      x: "-100vw",
+    },
+    visible: {
+      x: "0",
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.3,
+      },
+    },
+  }
 
 export const Exito = () => {
   const [reportData, setReportData] = useState<ReportData | null>(null);
@@ -78,10 +92,25 @@ export const Exito = () => {
   } = reportData;
  
   return (
-    <div className="reportcont">
+    <motion.div 
+    variants={maindiv}
+    initial = "hidden"
+    animate="visible"
+    transition={{duration: 0.38,
+    
+      when: "afterChildren",
+      staggerChildren: 1,
+    }}
+    
+    className="reportcont">
+     
         <span className="reportnro" > Reporte # {report_id},{" "}creado con éxito!</span>
 <span className="reportmessagge">El ID de su reporte es: {report_id},{" "}, guarde este identificador para futuras modificaciones o consultas.</span>
-      <div aria-label="Reporte" className="cartaReporte " ref={cardRef}>
+      <motion.div 
+       initial={{ opacity: 0}}
+       animate={{ opacity: 1}}
+      transition={{ duration : 2, delay: 1}}
+      aria-label="Reporte" className="cartaReporte " ref={cardRef}>
       
           <div className="headerContent">
     
@@ -157,11 +186,17 @@ export const Exito = () => {
           </div>
         </div>
        
-      </div>
-      <button className="btn btn-primary botonReporte" onClick={handleExportClick}>
-          Exportar como imagen
-        </button>
+      </motion.div>
+      
+      <button className="pushable" onClick={handleExportClick}>
+  <span className="shadow"></span>
+  <span className="edge"></span>
+  <span className="front">
+    Exportar como Imagen
+  </span>
+</button>
+      
         <span>La información proporcionada fue publicada en este sitio web, puede ver el reporte completo <Link to={`/report/${report_id}`}>aqui</Link>, también fue publicada en las distintas redes sociales de la página.</span>
-    </div>
+    </motion.div>
   );
 };
