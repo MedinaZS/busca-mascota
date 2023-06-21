@@ -120,13 +120,13 @@ const DetalleReporte = () => {
                         {ubication_resume}
                     </p>
 
-                        {/* Contacto */}
-                        {(phone) &&
-                            <p>
-                                <i className="bi bi-telephone-outbound-fill me-2"></i>
-                                Contactar {name && 'a: ' + name} {phone && 'al: ' + phone}
-                            </p>}
-                    </div>
+                    {/* Contacto */}
+                    {(phone) &&
+                        <p>
+                            <i className="bi bi-telephone-outbound-fill me-2"></i>
+                            Contactar {name && 'a: ' + name} {phone && 'al: ' + phone}
+                        </p>}
+
                 </div>
                 <div className="text-center mb-3 mt-3">
                     <button className="btn btn-primary botonReporte" onClick={handleExportClick}>
