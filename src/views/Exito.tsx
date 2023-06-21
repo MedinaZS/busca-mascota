@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import { Link, useParams } from "react-router-dom";
-import { API_ROUTES } from '../helper/utility';
+import { API_ROUTES, APP_ROUTES } from '../helper/utility';
 import PageCard from "../components/PageCard";
 
 
@@ -126,7 +126,7 @@ export const Exito = () => {
         <button className="btn btn-primary botonReporte" onClick={handleExportClick}>
           <i className="bi bi-download me-2"></i>Guardar como imagen
         </button>
-        <p className="mt-3">La información proporcionada fue publicada en este sitio web, puede ver el reporte completo <Link to={`/report/${report_id}`}>aqui</Link>, también fue publicada en las distintas redes sociales de la página.</p>
+        <p className="mt-3">La información proporcionada fue publicada en este sitio web, puede ver el reporte completo <Link to={APP_ROUTES.DETALLE_REPORTE + report_id}>aqui</Link>, también fue publicada en las distintas redes sociales de la página.</p>
       </div>
     </PageCard>
   );

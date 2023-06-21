@@ -22,7 +22,7 @@ const router = createBrowserRouter(
 			<Route path={APP_ROUTES.PUBLICAR_MASCOTA} element={<Publicar />} />
 			<Route path={APP_ROUTES.BUSCAR_MASCOTA} element={<Buscar />} />
 			<Route path={APP_ROUTES.COLABORAR} element={<Colaborar />} />
-			<Route path={APP_ROUTES.DETALLEREPORTE} element={<DetalleReporte />} />
+			<Route path={APP_ROUTES.DETALLE_REPORTE_PARAMS} element={<DetalleReporte />} />
 			<Route path="*" element={<p className='text-center fs-1 my-auto'>404 Path not resolved</p>} />
 		</Route>
 	)

@@ -8,9 +8,9 @@ export const APP_ROUTES = {
     ADOPCIONES: '/adopciones',
     TERMS: '/terminos-de-uso',
     DETALLE_REPORTE: '/reporte/',
+    DETALLE_REPORTE_PARAMS: '/reporte/:id',
     EXITO: '/exito/',
     EXITO_PARAMS: '/exito/:id',
-    DETALLEREPORTE: '/reporte/:id',
     DETALLE_ADOPCION: '/detalle-adopcion/:id',
 }
 
