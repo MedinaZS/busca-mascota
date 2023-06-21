@@ -89,7 +89,7 @@ export const Exito = () => {
             <img src={`${picture}`} alt="imagen de mascota" className="imageReport" ref={imageRef} />
             <div className="titleReport">
               <h3 >
-                {specie.toUpperCase()} {report_type.toUpperCase()}
+                {specie.toUpperCase() === 'OTRO' ? 'ANIMAL' : specie.toUpperCase() } {report_type.toUpperCase()}
               </h3>
             </div>
           </div>
