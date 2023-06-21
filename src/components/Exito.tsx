@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import { Link, useParams } from "react-router-dom";
 import { API_ROUTES} from '../helper/utility';
