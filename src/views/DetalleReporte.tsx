@@ -120,27 +120,27 @@ const DetalleReporte = () => {
                         {ubication_resume}
                     </p>
 
-                    {/* Contacto */}
-                    {(phone) &&
-                        <p>
-                            <i className="bi bi-telephone-outbound-fill me-2"></i>
-                            Contactar {name && 'a: ' + name} {phone && 'al: ' + phone}
-                        </p>}
+                        {/* Contacto */}
+                        {(phone) &&
+                            <p>
+                                <i className="bi bi-telephone-outbound-fill me-2"></i>
+                                Contactar {name && 'a: ' + name} {phone && 'al: ' + phone}
+                            </p>}
+                    </div>
+                </div>
+                <div className="text-center mb-3 mt-3">
+                    <button className="btn btn-primary botonReporte" onClick={handleExportClick}>
+                        <i className="bi bi-download me-2"></i>Guardar como imagen
+                    </button>
+                </div>
+                <h3 className="text-center">Ubicación</h3>
+                <Map zoom={9} click={false} reportDetailPosition={{ lat: latitude, lng: longitude }} />
+                <div className="text-center">
+                    <button className="btn btn-primary btn-success text-white w-100" onClick={handleGoogleMapsClick}>
+                        <i className="bi bi-geo-alt-fill me-2"></i>Abrir en Google Maps
+                    </button>
                 </div>
             </div>
-            <div className="text-center mb-3">
-                <button className="btn btn-primary botonReporte" onClick={handleExportClick}>
-                    <i className="bi bi-download me-2"></i>Guardar como imagen
-                </button>
-            </div>
-            <h3 className="text-center">Ubicación</h3>
-            <Map zoom={9} click={false} reportDetailPosition={{ lat: latitude, lng: longitude }} />
-            <div className="text-center">
-                <button className="btn btn-primary btn-success text-white w-100" onClick={handleGoogleMapsClick}>
-                    <i className="bi bi-geo-alt-fill me-2"></i>Abrir en Google Maps
-                </button>
-            </div>
-
         </PageCard>
     )
 }
