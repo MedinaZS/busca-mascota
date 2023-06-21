@@ -86,8 +86,6 @@ const DetalleReporte = () => {
     return (
         <PageCard title={'Detalle Reporte #' + report_id}>
 
-            <p> Reporte #{report_id},{" "}creado con éxito! El ID de su reporte es: {report_id}, guarde este identificador para futuras modificaciones o consultas.</p>
-
             {/* Imagen reporte */}
             <div aria-label="Reporte" className="cartaReporte mx-auto shadow" ref={cardRef}>
                 {/* Header reporte */}
@@ -128,19 +126,20 @@ const DetalleReporte = () => {
                         </p>}
 
                 </div>
-                <div className="text-center mb-3 mt-3">
-                    <button className="btn btn-primary botonReporte" onClick={handleExportClick}>
-                        <i className="bi bi-download me-2"></i>Guardar como imagen
-                    </button>
-                </div>
-                <h3 className="text-center">Ubicación</h3>
-                <Map zoom={9} click={false} reportDetailPosition={{ lat: latitude, lng: longitude }} />
-                <div className="text-center">
-                    <button className="btn btn-primary btn-success text-white w-100" onClick={handleGoogleMapsClick}>
-                        <i className="bi bi-geo-alt-fill me-2"></i>Abrir en Google Maps
-                    </button>
-                </div>
             </div>
+            <div className="text-center mb-3 mt-3">
+                <button className="btn btn-primary botonReporte" onClick={handleExportClick}>
+                    <i className="bi bi-download me-2"></i>Guardar como imagen
+                </button>
+            </div>
+            <h3 className="text-center">Ubicación</h3>
+            <Map zoom={9} click={false} reportDetailPosition={{ lat: latitude, lng: longitude }} />
+            <div className="text-center mb-4">
+                <button className="btn btn-primary btn-success text-white w-100" onClick={handleGoogleMapsClick}>
+                    <i className="bi bi-geo-alt-fill me-2"></i>Abrir en Google Maps
+                </button>
+            </div>
+
         </PageCard>
     )
 }
