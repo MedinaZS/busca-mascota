@@ -26,7 +26,7 @@ const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click }: { click:
 
     return (
         <div>
-            <MapContainer center={[-25.3, -57.6]} zoom={zoom} scrollWheelZoom={false}>
+            <MapContainer center={[-25.3, -57.6]} zoom={zoom} scrollWheelZoom={true} >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
