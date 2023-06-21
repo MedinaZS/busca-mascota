@@ -9,7 +9,7 @@ import Publicar from './views/Publicar.tsx';
 import Buscar from './views/Buscar.tsx';
 import Colaborar from './views/Colaborar.tsx';
 import { Exito } from './components/Exito.tsx';
-import Detalle_Adopcion from './components/Detalle_Adopcion.tsx';
+import Detalle_Adopcion from './views/Detalle_Adopcion.tsx';
 
 
 
