@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { API_ROUTES, APP_ROUTES } from '../helper/utility';
 import PageCard from '../components/PageCard';
 import { useEffect, useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 
 const Publicar = () => {

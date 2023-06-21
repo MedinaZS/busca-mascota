@@ -5,8 +5,10 @@ import ListaReportes from '../components/Buscar/ListaReportes';
 import axios from 'axios';
 import { API_ROUTES } from '../helper/utility';
 
-const Buscar = () => {
 
+
+const Buscar = () => {
+	
 	interface Report {
 		id?: number,
 		title?: string,
