@@ -86,10 +86,10 @@ const DetalleReporte = () => {
     return (
         <PageCard title={'Detalle Reporte #' + report_id}>
 
-            <p> Reporte #{report_id},{" "}creado con éxito! El ID de su reporte es: {report_id}, guarde este identificador para futuras modificaciones o consultas.</p>
+            <p className="text-center"> Reporte #{report_id},{" "}creado con éxito! El ID de su reporte es: {report_id}, guarde este identificador para futuras modificaciones o consultas.</p>
 
             {/* Imagen reporte */}
-            <div aria-label="Reporte" className="cartaReporte mx-auto shadow" ref={cardRef}>
+            <div aria-label="Reporte" className="cartaReporte mx-auto shadow-none" ref={cardRef}>
                 {/* Header reporte */}
                 <div className="headerContent">
                     <div className="titleReport">
@@ -140,7 +140,7 @@ const DetalleReporte = () => {
                         <i className="bi bi-geo-alt-fill me-2"></i>Abrir en Google Maps
                     </button>
                 </div>
-            </div>
+           
         </PageCard>
     )
 }
