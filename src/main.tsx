@@ -18,7 +18,7 @@ const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="" element={<App />}>
 			<Route path={APP_ROUTES.HOME} element={<Home />} />
-			<Route path={APP_ROUTES.EXITO} element={<Exito />} />
+			<Route path={APP_ROUTES.EXITO_PARAMS} element={<Exito />} />
 			<Route path={APP_ROUTES.DETALLE_ADOPCION} element={<Detalle_Adopcion/>}/>
 			<Route path={APP_ROUTES.PUBLICAR_MASCOTA} element={<Publicar />} />
 			<Route path={APP_ROUTES.BUSCAR_MASCOTA} element={<Buscar />} />
