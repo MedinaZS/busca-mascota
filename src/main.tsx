@@ -10,6 +10,8 @@ import Buscar from './views/Buscar.tsx';
 import Colaborar from './views/Colaborar.tsx';
 import Terminos from './views/Terminos.tsx';
 import Licencia from './views/Licencia.tsx';
+import { Exito } from './components/Exito.tsx';
+
 
 
 
@@ -17,6 +19,8 @@ const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="" element={<App />}>
 			<Route path={APP_ROUTES.HOME} element={<Home />} />
+			<Route path={APP_ROUTES.EXITO} element={<Exito />} />
+
 			<Route path={APP_ROUTES.PUBLICAR_MASCOTA} element={<Publicar />} />
 			<Route path={APP_ROUTES.BUSCAR_MASCOTA} element={<Buscar />} />
 			<Route path={APP_ROUTES.COLABORAR} element={<Colaborar />} />
@@ -28,7 +32,11 @@ const router = createBrowserRouter(
 );
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+	
 	<React.StrictMode>
+		
 		<RouterProvider router={router} />
+	
 	</React.StrictMode>,
+
 )

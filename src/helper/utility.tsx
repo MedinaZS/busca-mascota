@@ -13,8 +13,11 @@ export const APP_ROUTES = {
 const IP = 'http://127.0.0.1:8000'
 
 export const API_ROUTES = {
-    PUBLICAR_MASCOTA: IP +'/publicar/',
+    PUBLICAR_MASCOTA: IP + '/publicar/',
+    GET_REPORTBYID: IP + '/reportesget/',
     REPORTES: IP +'/api/reportes/',
+    EXITO: '/exito/:id',
+    JUST_IP: IP,
 }
 
 export const SRC_FILES = {
