@@ -1,8 +1,20 @@
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents, } from "react-leaflet";
+import { APP_ROUTES } from "../helper/utility";
+import { Link } from "react-router-dom";
 
-const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click, clickReporte }: { click: boolean, zoom?: number, currentPosition?: any, setCurrentPosition?: any, clickReporte?: LatLngExpression }) => {
+interface Report {
+    id: number,
+    title: string,
+    picture: string,
+    country: string,
+    city: string,
+    latitude: number,
+    longitude: number,
+}
 
+const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click,  listaReportes}: { click: boolean, zoom?: number, currentPosition?: any, setCurrentPosition?: any, listaReportes?: Array<Report> }) => {
+    const Ip = 'http://localhost:8000'
     function LocationMarker() {
 
         const map = useMapEvents({
@@ -36,6 +48,23 @@ const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click, clickRepor
                         A pretty CSS3 popup. <br /> Easily customizable.
                     </Popup>
                 </Marker>}
+
+                
+                {listaReportes.length !== 0 && listaReportes.map((item, index)=> (
+                <Marker key={index} position={[item.latitude, item.longitude]}>
+                    <Popup >
+                        <div id="popup" className="text-center">
+                            <h2 className="fs-5 text-danger fw-bold">{item.specie.toUpperCase() + " " + item.report_type.toUpperCase()}</h2> <br />
+                            <img src={Ip + item.picture} width={120} alt="foto de mascota" />
+                            <p className="fs-6 fw-bold">{item.city && item.city + ','} {item.country && item.country}</p>
+                            <p className="text-center" >
+                                <Link className="bg-blue-subtle btn text-dark small" to={APP_ROUTES.DETALLE_REPORTE  + item.id}>Ver Reporte Completo</Link>
+                            </p>
+                        </div>
+                    </Popup>
+                </Marker>
+                ))}
+                
                 <LocationMarker></LocationMarker>
             </MapContainer>
         </div>

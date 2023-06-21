@@ -252,7 +252,7 @@ section {
 }
 
 #buscarMap .leaflet-container{
-    height: 500px;
+    height: 700px;
 }
 
 .bi.bi-info-circle {
@@ -294,4 +294,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 100%;
 }
 
-
+.leaflet-popup-content{
+    width: 180px !important;
+}
