@@ -185,8 +185,3 @@ button:focus-visible {
 .leaflet-container{
   height: 600px;
 }
-
-.navbar {
-  background: white;
-  z-index: 40;
-}

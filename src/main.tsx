@@ -8,7 +8,7 @@ import Home from './views/Home.tsx';
 import Publicar from './views/Publicar.tsx';
 import Buscar from './views/Buscar.tsx';
 import Colaborar from './views/Colaborar.tsx';
-import { Exito } from './components/Exito.tsx';
+import { Exito } from './views/Exito.tsx';
 import Detalle_Adopcion from './views/Detalle_Adopcion.tsx';
 import DetalleReporte from './views/DetalleReporte.tsx';
 
