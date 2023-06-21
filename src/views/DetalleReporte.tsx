@@ -87,7 +87,7 @@ const DetalleReporte = () => {
         <PageCard title={'Detalle Reporte #' + report_id}>
 
             {/* Imagen reporte */}
-            <div aria-label="Reporte" className="cartaReporte mx-auto shadow" ref={cardRef}>
+            <div aria-label="Reporte" className="cartaReporte mx-auto shadow-none" ref={cardRef}>
                 {/* Header reporte */}
                 <div className="headerContent">
                     <div className="titleReport">
