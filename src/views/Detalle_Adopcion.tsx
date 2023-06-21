@@ -74,8 +74,8 @@ const Detalle_Adopcion = () => {
   return (
     <div className="reportcont">
       <h2 className="text-center">{title}</h2>
-      <div aria-label="Reporte" className="cartaReporte " ref={cardRef}>
-        <div className="headerContent">
+      <div aria-label="Reporte" className="cartaReporte shadow-none rounded" ref={cardRef}>
+        <div className="headerContent rounded border border-5 border-white">
           <img
             src={`${baseUrl}${picture}`}
             alt="imagen de mascota"
