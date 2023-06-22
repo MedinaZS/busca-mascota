@@ -20,7 +20,7 @@ const AdoptionForm = () => {
 		sex: { value: SEX[0].toLowerCase(), required: true },
 		city: { value: '', required: true },
 		country: { value: '', required: true },
-		phone: { value: '', required: false },
+		phone: { value: '', required: true },
 		picture: { value: {}, required: true },
 	})
 
@@ -49,11 +49,11 @@ const AdoptionForm = () => {
 			}
 
 			// Send data
-			axios.post(API_ROUTES.PUBLICAR_MASCOTA, newReport, config)
+			axios.post(API_ROUTES.PUBLICAR_ADOPCION, newReport, config)
 				.then(response => {
 					// console.log(response)
 					let id = response.data?.id
-					navigate(APP_ROUTES.EXITO + id)
+					navigate(APP_ROUTES.EXITO_ADOPCION + id)
 
 				})
 				.catch(error => console.log("Error en post", error))
