@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import PageCard from "../components/PageCard";
 
 interface Pet {
   name: string;
@@ -40,8 +41,8 @@ const AdoptionForm: React.FC = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Formulario de Adopción de Mascotas</h1>
+
+    <PageCard title={"Publicar Adopción"}>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="name">
           <Form.Label>Nombre</Form.Label>
@@ -141,7 +142,7 @@ const AdoptionForm: React.FC = () => {
           Enviar
         </Button>
       </Form>
-    </div>
+    </PageCard>
   );
 };
 export default AdoptionForm;
