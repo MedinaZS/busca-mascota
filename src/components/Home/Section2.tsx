@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { APP_ROUTES } from "../../helper/utility"
+import { motion } from "framer-motion"
 
 const Section2 = () => {
 	const delay = 300
@@ -38,10 +39,23 @@ const Section2 = () => {
 	return (
 		<section className="p-3">
 			<div className='p-3'>
-				<h2 className='my-5 text-center' data-aos='fade-up'>¿Que puedes realizar?</h2>
+				<motion.h2 
+				 initial={{ opacity: 0, y: 50 }}
+				 whileInView={{ opacity: 1, y: 0 }}
+				 viewport={{ once: true }}
+				 transition={{ delay: 4 / 1000, duration: 0.8 }}
+				className='my-5 text-center' >¿Que puedes realizar?</motion.h2>
 				<div className='row row-cols-1 row-cols-md-2 row-cols-xl-4'>
 					{services.map((service, index) => (
-						<div key={index} className='col mb-3 d-flex justify-content-center align-items-center' data-aos='fade-up' data-aos-delay={service.delay}>
+						 <motion.div
+						 key={index}
+						 className="col mb-3 d-flex justify-content-center align-items-center"
+						 initial={{ opacity: 0, y: 50 }}
+						 whileInView={{ opacity: 1, y: 0 }}
+						 viewport={{ once: true }}
+						 transition={{ delay: service.delay / 1000, duration: 0.8 }}
+						
+					   >
 							<div className="card-container w-100 mx-3">
 								<div className='card h-100 rounded-5'>
 									<div className="card-body h-100 flip-front d-flex flex-column align-items-center justify-content-center">
@@ -52,13 +66,18 @@ const Section2 = () => {
 									</div>
 									<div className="card-body h-100 flip-back">
 										<div className='text-center d-flex flex-column h-100'>
-											<p className='my-auto text-center'>{service.description}</p>
-											<Link className="btn bg-blue-subtle fw-bold w-25 mx-auto mt-3" to={service.url}>Ir</Link>
+											<p className='my-auto text-center descripcion'>{service.description}</p>
+											<motion.div
+											 whileHover={{ scale: 1.3 ,  }}
+											 whileTap={{ scale: 0.9 }}
+											>
+												<Link className="btn bg-blue-subtle fw-bold w-25 mx-auto mt-3" to={service.url}>Ir</Link>
+											</motion.div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</motion.div>
 					))}
 				</div>
 			</div>
