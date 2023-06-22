@@ -24,7 +24,7 @@ const Buscar = () => {
 		cargarReportesMarcadores()
 
 		// Cargar lista de reportes paginado
-		cargarReportesPaginado('http://127.0.0.1:8000/api/reportes/?page=1');
+		cargarReportesPaginado(API_ROUTES.REPORTES + '?page=1');
 	}, [])
 
 	const cargarReportesMarcadores = () => {

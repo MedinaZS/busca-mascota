@@ -1,6 +1,6 @@
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, } from "react-leaflet";
-import { APP_ROUTES } from "../helper/utility";
+import { API_ROUTES, APP_ROUTES } from "../helper/utility";
 import { Link } from "react-router-dom";
 
 interface Report {
@@ -16,7 +16,7 @@ interface Report {
 }
 
 const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click, listaReportesSinPaginar, reportDetailPosition }: { click: boolean, zoom?: number, currentPosition?: any, setCurrentPosition?: any, listaReportesSinPaginar?: Array<Report>, reportDetailPosition?: any }) => {
-    const Ip = 'http://localhost:8000'
+    
     function LocationMarker() {
 
         const map = useMapEvents({
@@ -59,7 +59,7 @@ const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click, listaRepor
                         <Popup >
                             <div id="popup" className="text-center">
                                 <h2 className="fs-5 text-danger fw-bold">{item.specie.toUpperCase() == 'OTRO' ? 'ANIMAL' : item.specie.toUpperCase()} {item.report_type.toUpperCase()}</h2> <br />
-                                <img src={Ip + item.picture} width={120} alt="foto de mascota" />
+                                <img src={API_ROUTES.JUST_IP + item.picture} width={120} alt="foto de mascota" />
                                 <p className="fs-6 fw-bold">{item.city && item.city + ','} {item.country && item.country}</p>
                                 <p className="text-center" >
                                     <Link className="bg-blue-subtle btn text-dark small" to={APP_ROUTES.DETALLE_REPORTE + item.id}>Ver Reporte Completo</Link>

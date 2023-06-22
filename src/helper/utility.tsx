@@ -15,7 +15,8 @@ export const APP_ROUTES = {
     DETALLE_ADOPCION: '/detalle-adopcion/:id',
 }
 
-const IP = 'http://127.0.0.1:8000'
+// const IP = 'http://127.0.0.1:8000'
+const IP = 'http://144.126.141.89:8888'
 
 export const API_ROUTES = {
     JUST_IP: IP,
