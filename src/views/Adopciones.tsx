@@ -1,51 +1,48 @@
-import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { useState } from "react";
 import PageCard from "../components/PageCard";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_ROUTES, APP_ROUTES } from "../helper/utility";
+import Swal from 'sweetalert2';
 
-interface Pet {
-  title: string;
-  name: string;
-  description: string;
-  specie: string;
-  age: string;
-  sex: string;
-  city: string;
-  country: string;
-  phone: string;
-  picture: object;
-}
-
-const AdoptionForm: React.FC = () => {
+const AdoptionForm = () => {
   const navigate = useNavigate();
 
   const SPECIES = ["Perro", "Gato", "Otro"];
   const SEX = ["Macho", "Hembra", "Desconocido"];
+  
+  const [report, setReport] = useState({
+    title: { value: '', required: true },
+		name: { value: '', required: false },
+		description: { value: '', required: true },
+		specie: { value: SPECIES[0].toLowerCase(), required: true },
+		age: { value: '', required: false },
+		sex: { value: SEX[0].toLowerCase(), required: true },
+		city: { value: '', required: true },
+		country: { value: '', required: true },
+		phone: { value: '', required: false },
+		picture: { value: {}, required: true },
+	})
 
-  const [pet, setPet] = useState<Pet>({
-    title: "",
-    name: "",
-    description: "",
-    specie: SPECIES[0].toLowerCase(),
-    age: '0',
-    sex: SEX[0].toLowerCase(),
-    city: "",
-    country: "",
-    phone: "",
-    picture: {},
-  });
+  const handleChange = (event: any) => {
+		const { id, value, files } = event.target
+		const currentValue = files ? files[0] : value
+		setReport({ ...report, [id]: { ...report[id as keyof typeof report], value: currentValue } })
+	}
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, files } = event.target;
-    setPet({ ...pet, [name]: files ? files[0] : value });
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // console.log(pet);
-
+	const onSubmitHandler = (event: any) => {
+		event.preventDefault();
+    console.log("hola monse")
+		
+		if (validateForm()) {
+			let newReport = {};
+			// Create Form Data
+			for (const property in report) {
+				const value = report[property as keyof typeof report].value
+				newReport[property as keyof typeof report] = value
+			}
+			// console.log(newReport)
+			
 			const config = {
 				headers: {
 					'Content-Type': `multipart/form-data;`,
@@ -53,128 +50,210 @@ const AdoptionForm: React.FC = () => {
 			}
 
 			// Send data
-			axios.post(API_ROUTES.PUBLICAR_ADOPCION, pet, config)
+			axios.post(API_ROUTES.PUBLICAR_MASCOTA, newReport, config)
 				.then(response => {
-          const id = response.data?.id
-					console.log(id)
-					navigate(APP_ROUTES.EXITO_ADOPCION + id)
+					// console.log(response)
+					let id = response.data?.id
+					navigate(APP_ROUTES.EXITO + id)
 
 				})
 				.catch(error => console.log("Error en post", error))
-  };
+		}
+	}
+
+	const validateForm = () => {
+    console.log("validacion")
+		for (const property in report) {
+			const value = report[property as keyof typeof report].value
+			const required = report[property as keyof typeof report].required
+			if (required === true) {
+
+				if (typeof value === 'string' && value.trim() === '') {
+					Swal.fire({ icon: 'error', text: 'Completa los campos requeridos' })
+					return false
+				} else if (typeof value === 'boolean' && value === false) {
+					Swal.fire({ icon: 'error', text: 'Debes aceptar los términos de uso' })
+					return false
+				} else if (typeof value === 'object' && value.name === '') {
+					Swal.fire({ icon: 'error', text: 'Completa los campos requeridos. La imagen es necesaria' })
+					return false
+				}
+			}
+		}
+
+		return true
+	}
 
   return (
     <PageCard title={"Publicar Adopción"}>
-      <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="title">
-          <Form.Label>Título</Form.Label>
-          <Form.Control
+			<form className='my-5' onSubmit={onSubmitHandler}>
+        <div className="row gy-3">
+        {/* Titulo de reporte */}
+          <div>
+          <label htmlFor="title" className="form-label fw-bold">
+            Titulo de reporte: *
+          </label>
+          <input
+            value={report.title.value}
+            onChange={handleChange}
+            id="title"
             type="text"
-            name="title"
-            value={pet.title}
-            onChange={handleChange}
+            className="form-control"
+            placeholder="Ejemplo: Perro en adopción"
             required
           />
-        </Form.Group>
-        <Form.Group controlId="name">
-          <Form.Label>Nombre</Form.Label>
-          <Form.Control
+          </div>
+        </div>
+
+        <div className="row gy-3">
+        {/* Nombre del animal */}
+          <div>
+          <label htmlFor="name" className="form-label fw-bold">
+            Nombre del animal:
+          </label>
+          <input
+            value={report.name.value}
+            onChange={handleChange}
+            id="name"
             type="text"
-            name="name"
-            value={pet.name}
-            onChange={handleChange}
+            className="form-control"
           />
-        </Form.Group>
-        <Form.Group controlId="description">
-          <Form.Label>Descripción</Form.Label>
-          <Form.Control
-            as="textarea"
-            name="description"
-            value={pet.description}
+          </div>
+        </div>
+
+        <div className="row gy-3">
+        {/* Descripción de reporte */}
+          <div>
+          <label htmlFor="description" className="form-label fw-bold">
+            Descripción de reporte: *
+          </label>
+          <input
+            value={report.description.value}
             onChange={handleChange}
+            id="description"
+            type="text"
+            className="form-control"
+            placeholder="Ejemplo: Perro en adopción. Su pelaje es negro y está castrado."
             required
           />
-        </Form.Group>
-        <Form.Group controlId="specie">
-          <Form.Label>Especie</Form.Label>
-          <Form.Control
-            as="select"
-            name="specie"
-            value={pet.specie}
-            onChange={handleChange}
-            required
-          >
+          </div>
+        </div>
+
+        <div className='row gy-3'>
+					{/* Especie */}
+					<div>
+						<label htmlFor="specie" className='form-label fw-bold'>
+							Especie: *
+						</label>
+						<select value={report.specie.value} id="specie" className='form-select' onChange={handleChange} required>
 							{SPECIES.map((item, index) => (
 								<option key={index} value={item.toLowerCase()} >{item}</option>
 							))}
-          </Form.Control>
-        </Form.Group>
-        <Form.Group controlId="age">
-          <Form.Label>Edad</Form.Label>
-          <Form.Control
+						</select>
+					</div>
+        </div>
+
+        <div className="row gy-3">
+        {/* Edad aproximada */}
+          <div>
+          <label htmlFor="age" className="form-label fw-bold">
+            Edad Aproximada: 
+          </label>
+          <input
+            value={report.age.value}
+            onChange={handleChange}
+            id="age"
             type="number"
-            name="age"
-            value={pet.age}
-            onChange={handleChange}
+            className="form-control"
           />
-        </Form.Group>
-        <Form.Group controlId="sex">
-          <Form.Label>Sexo</Form.Label>
-          <Form.Control
-            as="select"
-            name="sex"
-            onChange={handleChange}
-            required
-          >
+          </div>
+        </div>
+
+        <div className='row gy-3'>
+					{/* Sexo */}
+					<div >
+						<label htmlFor="sex" className='form-label fw-bold'>
+							Sexo: *
+						</label>
+						<select value={report.sex.value} id="sex" className='form-select' onChange={handleChange} required>
 							{SEX.map((item, index) => (
 								<option key={index} value={item.toLowerCase()} >{item}</option>
 							))}
-          </Form.Control>
-        </Form.Group>
-        <Form.Group controlId="city">
-          <Form.Label>Ciudad</Form.Label>
-          <Form.Control
+						</select>
+          </div>
+        </div>
+
+        <div className="row gy-3">
+        {/* Ciudad */}
+          <div>
+          <label htmlFor="city" className="form-label fw-bold">
+            Ciudad: *
+          </label>
+          <input
+            value={report.city.value}
+            onChange={handleChange}
+            id="city"
             type="text"
-            name="city"
-            value={pet.city}
-            onChange={handleChange}
-            required
+            className="form-control"
+            placeholder="Ejemplo: Asunción"
+            
           />
-        </Form.Group>
-        <Form.Group controlId="country">
-          <Form.Label>País</Form.Label>
-          <Form.Control
+          </div>
+        </div>
+
+        <div className="row gy-3">
+        {/* País */}
+          <div>
+          <label htmlFor="country" className="form-label fw-bold">
+            País: *
+          </label>
+          <input
+            value={report.country.value}
+            onChange={handleChange}
+            id="country"
             type="text"
-            name="country"
-            value={pet.country}
-            onChange={handleChange}
-            required
+            className="form-control"
+            placeholder="Ejemplo: Paraguay"
+            
           />
-        </Form.Group>
-        <Form.Group controlId="phone">
-          <Form.Label>Teléfono</Form.Label>
-          <Form.Control
-            type="tel"
-            name="phone"
-            value={pet.phone}
+          </div>
+        </div>
+
+        <div className="row gy-3">
+        {/* Teléfono de contacto */}
+          <div>
+          <label htmlFor="phone" className="form-label fw-bold">
+            Teléfono de contacto: *
+          </label>
+          <input
+            value={report.phone.value}
             onChange={handleChange}
-            required
+            id="phone"
+            type="text"
+            className="form-control"
+            placeholder="Ejemplo: +595990123456"
+            
           />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Imagen</Form.Label>
-          <Form.Control
-            type="file"
-            name="picture"
-            accept="image/*"
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Enviar
-        </Button>
-      </Form>
+          </div>
+        </div>
+        <div className="row gy-3 mb-3">
+        {/* Foto */}
+					<div>
+						<label htmlFor="picture" className='form-label fw-bold'>
+							Foto: *
+						</label>
+						<input onChange={handleChange} type='file' accept="image/*" id='picture' className='form-control' />
+						<p className='mb-0 mt-2 small text-secondary'>Se necesita una imagen de la mascota para evitar confusiones y que sea más sencillo reconocerla</p>
+					</div>
+        </div>
+
+        <span className='rounded-pill bg-warning p-1 small m-3'>* Campos requeridos</span>
+
+				<div className='d-grid mx-3'>
+					<button type='submit' className='btn btn-success btn-lg mt-2'>Publicar</button>
+				</div>
+        
+      </form>
     </PageCard>
   );
 };
