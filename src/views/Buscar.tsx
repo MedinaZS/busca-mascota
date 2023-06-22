@@ -48,11 +48,18 @@ const Buscar = () => {
 			city: event.target.city.value,
 		}
 
+		//Cargar Lista de Reporte
 		axios
 			.post(API_ROUTES.REPORTES, data)
 			.then(response => {
 				setLista(response.data.results);
 			}).catch((error) => console.error(error));
+		//Cargar Marcadores
+		axios
+			.post(API_ROUTES.REPORTES_SIN_PAGINAR, data)
+			.then(response => {
+				setListaReportesSinPaginar(response.data.results);
+			}).catch((error) => console.error('Error trae lista sin paginar filtrado' + error));
 	}
 
 	const cargarReportesPaginado = (url: string | null) => {
