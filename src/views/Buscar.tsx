@@ -97,7 +97,7 @@ const Buscar = () => {
 					</div>
 					<div className='col-12 col-lg-auto'>
 						<select name="type" className="form-select" >
-							<option value="todos">Todos</option>
+							<option value="">Todos</option>
 							<option value="perdido">Perdido</option>
 							<option value="avistado">Avistado</option>
 							<option value="retenido">Retenido</option>
