@@ -14,6 +14,9 @@ export const APP_ROUTES = {
     EXITO: '/exito/',
     EXITO_PARAMS: '/exito/:id',
     DETALLE_ADOPCION: '/detalle-adopcion/:id',
+    EXITO_ADOPCION: '/exito-adopcion/',
+    EXITO_ADOPCION_PARAMS: '/exito-adopcion/:id',
+
 }
 
 // const IP = 'http://127.0.0.1:8000'
@@ -27,7 +30,7 @@ export const API_ROUTES = {
     GET_REPORT_BY_ID: IP + '/reportesget/',
     DETALLE_ADOPCION: IP + '/adopcion/',
     ADOPCIONES: IP + "/adopciones",
-    PUBLICAR_ADOPCION: IP + "/adopciones-publicar",
+    PUBLICAR_ADOPCION: IP + '/adopciones-publicar/',
 };
 
 export const SRC_FILES = {

@@ -32,7 +32,6 @@ const AdoptionForm = () => {
 
 	const onSubmitHandler = (event: any) => {
 		event.preventDefault();
-    console.log("hola monse")
 		
 		if (validateForm()) {
 			let newReport = {};
@@ -62,7 +61,6 @@ const AdoptionForm = () => {
 	}
 
 	const validateForm = () => {
-    console.log("validacion")
 		for (const property in report) {
 			const value = report[property as keyof typeof report].value
 			const required = report[property as keyof typeof report].required
@@ -100,7 +98,6 @@ const AdoptionForm = () => {
             type="text"
             className="form-control"
             placeholder="Ejemplo: Perro en adopción"
-            required
           />
           </div>
         </div>
@@ -134,7 +131,6 @@ const AdoptionForm = () => {
             type="text"
             className="form-control"
             placeholder="Ejemplo: Perro en adopción. Su pelaje es negro y está castrado."
-            required
           />
           </div>
         </div>
@@ -145,7 +141,7 @@ const AdoptionForm = () => {
 						<label htmlFor="specie" className='form-label fw-bold'>
 							Especie: *
 						</label>
-						<select value={report.specie.value} id="specie" className='form-select' onChange={handleChange} required>
+						<select value={report.specie.value} id="specie" className='form-select' onChange={handleChange} >
 							{SPECIES.map((item, index) => (
 								<option key={index} value={item.toLowerCase()} >{item}</option>
 							))}
@@ -175,7 +171,7 @@ const AdoptionForm = () => {
 						<label htmlFor="sex" className='form-label fw-bold'>
 							Sexo: *
 						</label>
-						<select value={report.sex.value} id="sex" className='form-select' onChange={handleChange} required>
+						<select value={report.sex.value} id="sex" className='form-select' onChange={handleChange} >
 							{SEX.map((item, index) => (
 								<option key={index} value={item.toLowerCase()} >{item}</option>
 							))}
