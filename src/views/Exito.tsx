@@ -135,7 +135,7 @@ export const Exito = () => {
               </svg>
             </div>
             <span className="textoReport">
-              {name} Tiene aprox. : {age} años Sexo: {sex}
+               Tiene aprox. : {age} años Sexo: {sex}
             </span>
           </div>
           <div className="datosContainer">
@@ -180,7 +180,7 @@ export const Exito = () => {
               </svg>
             </div>
             <span className="textoReport">
-              Contactar a: {title} &nbsp;
+              Contactar a: {name} &nbsp;
               al: {phone}
             </span>
           </div>
