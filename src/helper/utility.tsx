@@ -53,5 +53,6 @@ export const SRC_FILES = {
 };
 
 export const URL_LINKS = {
-    REPOSITORIO: "https://github.com/MedinaZS/busca-mascota",
+    REPOSITORIO_FRONTEND: "https://github.com/MedinaZS/busca-mascota",
+    REPOSITORIO_BACKEND: "https://github.com/OscarGonzalez97/buscamascota",
 };
