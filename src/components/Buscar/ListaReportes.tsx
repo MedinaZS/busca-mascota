@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { API_ROUTES } from "../../helper/utility";
+import { API_ROUTES, showFormattedDate } from "../../helper/utility";
 import { ResultReporte } from "../../helper/types";
 
 interface PropsListaReporte {
@@ -43,7 +43,7 @@ const ListaReportes = (props: PropsListaReporte) => {
 												<Link to={`/reporte/${item.id}`}>{item.specie.toUpperCase() == 'OTRO' ? 'ANIMAL' : item.specie.toUpperCase()} {item.report_type.toUpperCase()}</Link>
 											</h5>
 											<h6 className="mr-2 small">
-												Últ. vez visto el {item.last_time_seen}
+												Últ. vez visto el {showFormattedDate(item.last_time_seen)}
 											</h6>
 											<p className="mr-2">{item.description}</p>{" "}
 											<p className="mr-2"> Contacto: {item.phone}</p>
