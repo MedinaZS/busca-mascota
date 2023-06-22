@@ -20,6 +20,12 @@ const ListaReportes = (props: PropsListaReporte) => {
 		setLista(props.reportes);
 	}, [props.reportes]);
 
+	function formatDate(dateString) {
+		const date = new Date(dateString);
+		const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+		return formattedDate;
+	  }
+
 	return (
 		<div>
 			{props.reportes && (
@@ -43,7 +49,7 @@ const ListaReportes = (props: PropsListaReporte) => {
 												<Link to={`/reporte/${item.id}`}>{item.specie.toUpperCase() == 'OTRO' ? 'ANIMAL' : item.specie.toUpperCase()} {item.report_type.toUpperCase()}</Link>
 											</h5>
 											<h6 className="mr-2 small">
-												Últ. vez visto el {item.last_time_seen}
+												Últ. vez visto el {formatDate(item.last_time_seen)}
 											</h6>
 											<p className="mr-2">{item.description}</p>
 											{item.phone &&(
