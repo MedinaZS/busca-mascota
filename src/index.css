@@ -333,6 +333,7 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   border-radius: 10px;
+  border: 2px;
   transform-style: preserve-3d;
   transition: transform 0.8s ease;
 }
@@ -345,17 +346,18 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   border-radius: 10px;
+  
   backface-visibility: hidden;
   overflow: hidden;
 }
 
 .flip-front {
-  background: #ffc728;
+  background: white;
   color: #000;
 }
 
 .flip-back {
-  background: #fafafa;
+  background: white;
   color: #333;
   text-align: center;
   transform: rotateY(180deg);
