@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import { Link, useParams } from "react-router-dom";
-import { API_ROUTES } from "../helper/utility";
+import { API_ROUTES, showFormattedDate } from "../helper/utility";
 import Map from "../components/Map";
 import PageCard from "../components/PageCard";
 
@@ -113,7 +113,7 @@ const DetalleReporte = () => {
                     {/* Ultima vez visto */}
                     <p>
                         <i className="bi bi-calendar3 me-2"></i>
-                        Ult vez visto : {last_time_seen}
+                        Ult vez visto : {showFormattedDate(last_time_seen)}
                     </p>
 
                     {/* Resumen ubicacion */}

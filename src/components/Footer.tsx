@@ -26,7 +26,10 @@ const Footer = () => {
                             <Link to={APP_ROUTES.TERMS} className="text-white">T&eacute;rminos de uso <i className="bi bi-book"></i></Link>
                         </li>
                         <li className="list-group-item mb-3">
-                            <a className="text-white text-decoration-none" href={URL_LINKS.REPOSITORIO} target="_blank"> C&oacute;digo fuente aqu&iacute; <i className="bi bi-github"></i></a>
+                            <a className="text-white text-decoration-none" href={URL_LINKS.REPOSITORIO_FRONTEND} target="_blank"> C&oacute;digo fuente FrontEnd aqu&iacute; <i className="bi bi-github"></i></a>
+                        </li>
+                        <li className="list-group-item mb-3">
+                            <a className="text-white text-decoration-none" href={URL_LINKS.REPOSITORIO_BACKEND} target="_blank"> C&oacute;digo fuente Backend aqu&iacute; <i className="bi bi-github"></i></a>
                         </li>
 
                     </ul>
@@ -54,7 +57,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <hr className="text-white"/>
+            <hr className="text-white" />
             <p className="mb-0 text-center text-secondary">Copyright &copy; Busca Mascota</p>
             <p className="mb-0 text-center text-secondary">Pictures made by <a href="https://www.freepik.com">Freepik</a></p>
         </footer>
