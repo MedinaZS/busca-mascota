@@ -84,9 +84,10 @@ nav {
 }
 
 
-section {
+section, .loading-container {
     min-height: 85vh;
 }
+
 
 .row {
     /* height: max-content; */

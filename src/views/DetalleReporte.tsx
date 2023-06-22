@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import { Link, useParams } from "react-router-dom";
-import { API_ROUTES } from "../helper/utility";
+import { API_ROUTES, showFormattedDate } from "../helper/utility";
 import Map from "../components/Map";
 import PageCard from "../components/PageCard";
+import Loading from "../components/Loading"
 
 
 
@@ -65,8 +66,8 @@ const DetalleReporte = () => {
     };
 
     if (!reportData) {
-        return <div>Loading...</div>;
-    }
+		return <Loading></Loading> ;
+	}
 
     const {
         id: report_id,
@@ -97,7 +98,7 @@ const DetalleReporte = () => {
                     <div className="titleReport">
                         <h3 className="fs-1 fw-bold">{specie.toUpperCase() === 'OTRO' ? 'ANIMAL' : specie.toUpperCase()} {report_type.toUpperCase()}</h3>
                     </div>
-                    <div className="p-3 bg-white">
+                    <div className="pt-1 bg-white">
                         <img src={`${picture}`} alt="imagen de mascota" className="imageReport" ref={imageRef} />
                     </div>
                 </div>
@@ -113,7 +114,7 @@ const DetalleReporte = () => {
                     {/* Ultima vez visto */}
                     <p>
                         <i className="bi bi-calendar3 me-2"></i>
-                        Ult vez visto : {last_time_seen}
+                        Ult vez visto : {showFormattedDate(last_time_seen)}
                     </p>
 
                     {/* Resumen ubicacion */}
@@ -136,7 +137,6 @@ const DetalleReporte = () => {
                     <i className="bi bi-download me-2"></i>Guardar como imagen
                 </button>
             </div>
-            <h3 className="text-center">Ubicación</h3>
             <Map zoom={9} click={false} reportDetailPosition={{ lat: latitude, lng: longitude }} />
             <div className="text-center mb-4">
                 <button className="btn btn-primary btn-success text-white w-100" onClick={handleGoogleMapsClick}>

@@ -48,11 +48,18 @@ const Buscar = () => {
 			city: event.target.city.value,
 		}
 
+		//Cargar Lista de Reporte
 		axios
 			.post(API_ROUTES.REPORTES, data)
 			.then(response => {
 				setLista(response.data.results);
 			}).catch((error) => console.error(error));
+		//Cargar Marcadores
+		axios
+			.post(API_ROUTES.REPORTES_SIN_PAGINAR, data)
+			.then(response => {
+				setListaReportesSinPaginar(response.data.results);
+			}).catch((error) => console.error('Error trae lista sin paginar filtrado' + error));
 	}
 
 	const cargarReportesPaginado = (url: string | null) => {
@@ -97,7 +104,7 @@ const Buscar = () => {
 					</div>
 					<div className='col-12 col-lg-auto'>
 						<select name="type" className="form-select" >
-							<option value="todos">Todos</option>
+							<option value="">Todos</option>
 							<option value="perdido">Perdido</option>
 							<option value="avistado">Avistado</option>
 							<option value="retenido">Retenido</option>
