@@ -40,7 +40,7 @@ const ListaReportes = (props: PropsListaReporte) => {
 										</Link>
 										<div className="media-body mx-3">
 											<h5 className="mt-0 text-uppercase text-dark mr-2">
-												<Link to={`/reporte/${item.id}`}>{item.title}</Link>
+												<Link to={`/reporte/${item.id}`}>{item.specie.toUpperCase() == 'OTRO' ? 'ANIMAL' : item.specie.toUpperCase()} {item.report_type.toUpperCase()}</Link>
 											</h5>
 											<h6 className="mr-2 small">
 												Últ. vez visto el {item.last_time_seen}
