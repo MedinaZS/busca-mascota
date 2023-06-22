@@ -1,49 +1,81 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import PageCard from "../components/PageCard";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { API_ROUTES, APP_ROUTES } from "../helper/utility";
 
 interface Pet {
+  title: string;
   name: string;
   description: string;
-  species: string;
-  age: number;
-  gender: string;
+  specie: string;
+  age: string;
+  sex: string;
   city: string;
   country: string;
   phone: string;
-  image: string;
+  picture: object;
 }
 
 const AdoptionForm: React.FC = () => {
+  const navigate = useNavigate();
+
+  const SPECIES = ["Perro", "Gato", "Otro"];
+  const SEX = ["Macho", "Hembra", "Desconocido"];
+
   const [pet, setPet] = useState<Pet>({
+    title: "",
     name: "",
     description: "",
-    species: "",
-    age: 0,
-    gender: "",
+    specie: SPECIES[0].toLowerCase(),
+    age: '0',
+    sex: SEX[0].toLowerCase(),
     city: "",
     country: "",
     phone: "",
-    image: "",
+    picture: {},
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setPet((prevPet) => ({
-      ...prevPet,
-      [name]: value,
-    }));
+    const { name, value, files } = event.target;
+    setPet({ ...pet, [name]: files ? files[0] : value });
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(pet);
+    // console.log(pet);
+
+			const config = {
+				headers: {
+					'Content-Type': `multipart/form-data;`,
+				}
+			}
+
+			// Send data
+			axios.post(API_ROUTES.PUBLICAR_ADOPCION, pet, config)
+				.then(response => {
+          const id = response.data?.id
+					console.log(id)
+					navigate(APP_ROUTES.EXITO_ADOPCION + id)
+
+				})
+				.catch(error => console.log("Error en post", error))
   };
 
   return (
-
     <PageCard title={"Publicar Adopción"}>
       <Form onSubmit={handleSubmit}>
+      <Form.Group controlId="title">
+          <Form.Label>Título</Form.Label>
+          <Form.Control
+            type="text"
+            name="title"
+            value={pet.title}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
         <Form.Group controlId="name">
           <Form.Label>Nombre</Form.Label>
           <Form.Control
@@ -51,7 +83,6 @@ const AdoptionForm: React.FC = () => {
             name="name"
             value={pet.name}
             onChange={handleChange}
-            required
           />
         </Form.Group>
         <Form.Group controlId="description">
@@ -64,38 +95,40 @@ const AdoptionForm: React.FC = () => {
             required
           />
         </Form.Group>
-        <Form.Group controlId="species">
+        <Form.Group controlId="specie">
           <Form.Label>Especie</Form.Label>
           <Form.Control
-            type="text"
-            name="species"
-            value={pet.species}
+            as="select"
+            name="specie"
+            value={pet.specie}
             onChange={handleChange}
             required
-          />
+          >
+							{SPECIES.map((item, index) => (
+								<option key={index} value={item.toLowerCase()} >{item}</option>
+							))}
+          </Form.Control>
         </Form.Group>
         <Form.Group controlId="age">
-          <Form.Label>Año</Form.Label>
+          <Form.Label>Edad</Form.Label>
           <Form.Control
             type="number"
             name="age"
             value={pet.age}
             onChange={handleChange}
-            required
           />
         </Form.Group>
-        <Form.Group controlId="gender">
+        <Form.Group controlId="sex">
           <Form.Label>Sexo</Form.Label>
           <Form.Control
             as="select"
-            name="gender"
-            value={pet.gender}
+            name="sex"
             onChange={handleChange}
             required
           >
-            <option value="">Seleccione</option>
-            <option value="male">Macho</option>
-            <option value="female">Hembra</option>
+							{SEX.map((item, index) => (
+								<option key={index} value={item.toLowerCase()} >{item}</option>
+							))}
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="city">
@@ -132,7 +165,7 @@ const AdoptionForm: React.FC = () => {
           <Form.Label>Imagen</Form.Label>
           <Form.Control
             type="file"
-            name="imagen"
+            name="picture"
             accept="image/*"
             onChange={handleChange}
             required
