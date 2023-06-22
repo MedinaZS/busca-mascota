@@ -189,7 +189,7 @@ button:focus-visible {
 }
 
 @media (min-width: 1024px) {
-  .cartaReporte {
+  .cartaReporte, .pushable, .botonReporte {
     width: 700px;
   }
 
@@ -199,10 +199,6 @@ button:focus-visible {
 
   .direccionContainer {
     margin-left: 5.50rem;
-  }
-
-  .pushable {
-    width: 700px;
   }
 }
 
