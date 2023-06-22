@@ -67,7 +67,7 @@ export const Exito = () => {
 				}).then((canvas) => {
 					const link = document.createElement("a");
 					link.href = canvas.toDataURL();
-					link.download = "reporte.png";
+					link.download = `reporte_${report_id}.png`;
 					link.click();
 				});
 			}
