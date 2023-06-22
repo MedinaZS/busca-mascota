@@ -20,6 +20,7 @@ const ListaReportes = (props: PropsListaReporte) => {
 		setLista(props.reportes);
 	}, [props.reportes]);
 
+
 	return (
 		<div>
 			{props.reportes && (
@@ -45,11 +46,17 @@ const ListaReportes = (props: PropsListaReporte) => {
 											<h6 className="mr-2 small">
 												Últ. vez visto el {showFormattedDate(item.last_time_seen)}
 											</h6>
-											<p className="mr-2">{item.description}</p>{" "}
-											<p className="mr-2"> Contacto: {item.phone}</p>
-											<p>
-												{item.city}, {item.country}
-											</p>
+											<p className="mr-2">{item.description}</p>
+											{item.phone &&(
+												<p className="mr-2"> Contacto: {item.phone}</p>
+											)}
+											{item.city ? (
+												<p>
+													{item.city}, {item.country}
+												</p>
+												) : (
+												<p>{item.country}</p>
+											)}
 											<Link
 												className="btn btn-sm btn-warning mt-3 amarillo"
 												to={`/reporte/${item.id}`}
