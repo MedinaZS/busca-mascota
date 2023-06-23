@@ -36,7 +36,7 @@ const loadingCircleTransition = {
     ease: "easeInOut"
 };
 
-export default function ThreeDotsWave() {
+const Loading = () => {
     return (
         <div className="loading-container d-flex flex-column justify-content-center align-items-center">
             <p className="fs-3 m-0">Cargando...</p>
@@ -68,3 +68,5 @@ export default function ThreeDotsWave() {
         </div>
     );
 }
+
+export default Loading
