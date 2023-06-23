@@ -298,3 +298,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .leaflet-popup-content{
     width: 180px !important;
 }
+
+
+.card-image{
+    height: 200px;
+}
+
+.btn.bg-blue-subtle:hover{
+    background-color: var(--blue) !important;
+    color: white;
+}
