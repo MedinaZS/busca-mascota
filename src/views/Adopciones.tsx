@@ -42,7 +42,7 @@ const AdoptionForm = () => {
 				const value = report[property as keyof typeof report].value
 				newReport[property as keyof typeof report] = value
 			}
-			console.log(newReport)
+			// console.log(newReport)
 			
 			const config = {
 				headers: {
