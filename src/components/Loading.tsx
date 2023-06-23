@@ -25,16 +25,19 @@ const loadingCircleVariants = {
         y: "0%"
     },
     end: {
-        y: "100%"
+        y: "100%",
+        transition :{
+            repeat: Infinity,
+            
+            duration: 0.5,
+            ease: "easeInOut"
+
+        }
     }
+    
 };
 
-const loadingCircleTransition = {
-    repeat: Infinity,
-    repeatType: "mirror",
-    duration: 0.5,
-    ease: "easeInOut"
-};
+
 
 const Loading = () => {
     return (
@@ -50,19 +53,19 @@ const Loading = () => {
                     className="bg-blue"
                     style={loadingCircle}
                     variants={loadingCircleVariants}
-                    transition={loadingCircleTransition}
+                   
                 />
                 <motion.span
                     className="bg-blue"
                     style={loadingCircle}
                     variants={loadingCircleVariants}
-                    transition={loadingCircleTransition}
+                  
                 />
                 <motion.span
                     className="bg-blue"
                     style={loadingCircle}
                     variants={loadingCircleVariants}
-                    transition={loadingCircleTransition}
+              
                 />
             </motion.div>
         </div>

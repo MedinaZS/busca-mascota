@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { ResultAdopciones } from "../helper/types"
 import { APP_ROUTES } from "../helper/utility"
-import { useEffect } from "react"
+
 
 
 const Card = ({ adopcion }: { adopcion: ResultAdopciones }) => {

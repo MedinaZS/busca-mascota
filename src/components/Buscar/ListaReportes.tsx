@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { API_ROUTES, APP_ROUTES, showFormattedDate } from "../../helper/utility";
 import { ResultReporte } from "../../helper/types";
@@ -14,11 +13,7 @@ interface PropsListaReporte {
 
 const ListaReportes = (props: PropsListaReporte) => {
 
-	const [lista, setLista] = useState<ResultReporte[]>(props.reportes);
-
-	useEffect(() => {
-		setLista(props.reportes);
-	}, [props.reportes]);
+	
 
 
 	return (

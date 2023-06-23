@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
-import { APP_ROUTES, SRC_FILES } from "../../helper/utility"
+
+import {  SRC_FILES } from "../../helper/utility"
 import { motion } from "framer-motion"
 
 const Section3 = () => {

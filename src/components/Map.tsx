@@ -19,13 +19,6 @@ const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click, listaRepor
     
     function LocationMarker() {
 
-        const map = useMapEvents({
-            click(e) {
-                if (click) {
-                    setCurrentPosition(e.latlng)
-                }
-            }
-        });
 
         // Si el mapa es clickeable
         if (click) {
