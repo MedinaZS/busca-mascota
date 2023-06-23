@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import html2canvas from "html2canvas";
 import { API_ROUTES } from "../helper/utility.tsx";
 import PageCard from "../components/PageCard.tsx";
+import Loading from "../components/Loading.tsx";
 
 interface ReportData {
   title: string;
@@ -55,7 +56,7 @@ const Detalle_Adopcion = () => {
   };
 
   if (!reportData) {
-    return <div>Loading...</div>;
+    return <Loading></Loading>;
   }
 
   const {
