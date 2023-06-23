@@ -70,7 +70,6 @@ const Detalle_Adopcion = () => {
     phone,
     picture,
   } = reportData;
-  const baseUrl = API_ROUTES.JUST_IP;
 
   return (
     <PageCard title={title}>
@@ -91,7 +90,7 @@ const Detalle_Adopcion = () => {
             </div>
             <div className="p-3 bg-white">
               <img
-                src={`${baseUrl}${picture}`}
+                src={`${API_ROUTES.JUST_IP}${picture}`}
                 alt="imagen de mascota"
                 className="imageReport"
                 ref={imageRef}
@@ -151,7 +150,7 @@ const Detalle_Adopcion = () => {
               className="btn btn-success"
               href={`https://wa.me/?text=${
                 specie == "otro" ? "ANIMAL" : specie.toUpperCase()
-              }+EN+ADOPCION%21+Echa+un+vistazo%21+${baseUrl}%2Fdetalle-adopcion%2F${id}`}
+              }+EN+ADOPCION%21+Echa+un+vistazo%21+${API_ROUTES.JUST_IP}%2Fdetalle-adopcion%2F${id}`}
               data-action="share/whatsapp/share"
               target="_blank"
             >
@@ -159,7 +158,7 @@ const Detalle_Adopcion = () => {
             </a>
             <a
               className="btn btn-primary"
-              href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}/detalle-adopcion/${id}`}
+              href={`https://www.facebook.com/sharer/sharer.php?u=${API_ROUTES.JUST_IP}/detalle-adopcion/${id}`}
               target="_blank"
             >
               <i className="fab fa-facebook text-white"></i>
@@ -168,7 +167,7 @@ const Detalle_Adopcion = () => {
               className="btn btn-info"
               href={`https://twitter.com/share?text=${
                 specie == "otro" ? "ANIMAL" : specie.toUpperCase()
-              }+EN+ADOPCION%21+Echa+un+vistazo%21+${baseUrl}%2Fdetalle-adopcion%2F${id}&amp;hashtags=BuscaMascota`}
+              }+EN+ADOPCION%21+Echa+un+vistazo%21+${API_ROUTES.JUST_IP}%2Fdetalle-adopcion%2F${id}&amp;hashtags=BuscaMascota`}
               target="_blank"
             >
               <i className="fab fa-twitter text-white"></i>
