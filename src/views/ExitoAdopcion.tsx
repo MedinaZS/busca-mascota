@@ -8,7 +8,6 @@ import Loading from "../components/Loading";
 
 
 interface ReportData {
-  title: string;
   name: string;
   description: string;
   specie: string;
@@ -64,7 +63,6 @@ export const ExitoAdopcion = () => {
 
 
   const {
-    title,
     name,
     description,
     specie,
@@ -77,7 +75,7 @@ export const ExitoAdopcion = () => {
   } = reportData;
  
   return (
-    <PageCard title={title}>
+    <PageCard title={`${specie == "otro" ? "ANIMAL " : specie.toUpperCase()} EN ADOPCIÓN`}>
       <div className="reportcont">
         {/* Imagen reporte */}
         <div
