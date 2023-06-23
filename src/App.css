@@ -20,7 +20,7 @@
     /* Color palette */
     --yellow: #fbdb38;
     --blue: #60bfc9;
-    --blue-subtle: #c0e3eb; 
+    --blue-subtle: #c0e3eb;
 }
 
 
@@ -84,7 +84,8 @@ nav {
 }
 
 
-section, .loading-container {
+section,
+.loading-container {
     min-height: 85vh;
 }
 
@@ -252,7 +253,7 @@ section, .loading-container {
     height: 400px;
 }
 
-#buscarMap .leaflet-container{
+#buscarMap .leaflet-container {
     height: 700px;
 }
 
@@ -278,24 +279,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* Colab page */
-.border-blue-subtle{
-    border-color: var(--blue)  !important;
+.border-blue-subtle {
+    border-color: var(--blue) !important;
 }
 
-.card.card-payment{
+.card.card-payment {
     width: 18rem !important;
 }
-.img-top{
+
+.img-top {
     width: 100%;
     height: 10rem;
 }
 
-.img-top .card-img-top{
+.img-top .card-img-top {
     width: 100%;
     height: 100%;
 }
 
-.leaflet-popup-content{
+.leaflet-popup-content {
     width: 180px !important;
 }
 
@@ -307,4 +309,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .btn.bg-blue-subtle:hover{
     background-color: var(--blue) !important;
     color: white;
+}
+
+@media (min-width: 576px) {
+    .border-sm-0 {
+        border-top: 0 !important;
+        border-bottom: 0 !important;
+        border-left: 0 !important;
+        border-right: 0 !important;
+    }
 }

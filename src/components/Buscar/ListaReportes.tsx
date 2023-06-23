@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { API_ROUTES, showFormattedDate } from "../../helper/utility";
+import { API_ROUTES, APP_ROUTES, showFormattedDate } from "../../helper/utility";
 import { ResultReporte } from "../../helper/types";
 
 interface PropsListaReporte {
@@ -26,22 +26,26 @@ const ListaReportes = (props: PropsListaReporte) => {
 			{props.reportes && (
 				<div className="container-fluid">
 					<div className="col-lg-7 mx-auto">
-						<ul className="list-group mb-2">
+						<>
 							{props.reportes.map((item: ResultReporte, i: number) => (
-								<li className="list-group-item" key={i}>
-									<div className="media d-flex">
-										<Link to={`/reporte/${item.id}`}>
-											<img
-												className="align-self-center mr-3 mt-1"
-												width="150px"
-												height="150px"
-												src={`${API_ROUTES.JUST_IP}${item.picture}`}
-												alt="report picture"
-											/>
-										</Link>
-										<div className="media-body mx-3">
+								<div className="border mb-3 rounded-3" key={i}>
+									<div className="d-block d-sm-flex text-center text-sm-start">
+										{/* Imagen */}
+										<div className="border-bottom border-sm-0 p-3">
+											<Link to={APP_ROUTES.DETALLE_REPORTE + item.id}>
+												<img
+													className="mr-3"
+													width="150px"
+													height="150px"
+													src={`${API_ROUTES.JUST_IP}${item.picture}`}
+													alt="report picture"
+												/>
+											</Link>
+										</div>
+										{/* Detalle */}
+										<div className="p-3">
 											<h5 className="mt-0 text-uppercase text-dark mr-2">
-												<Link to={`/reporte/${item.id}`}>{item.specie.toUpperCase() == 'OTRO' ? 'ANIMAL' : item.specie.toUpperCase()} {item.report_type.toUpperCase()}</Link>
+												<Link to={APP_ROUTES.DETALLE_REPORTE + item.id}>{item.specie.toUpperCase() == 'OTRO' ? 'ANIMAL' : item.specie.toUpperCase()} {item.report_type.toUpperCase()}</Link>
 											</h5>
 											<h6 className="mr-2 small">
 												Últ. vez visto el {showFormattedDate(item.last_time_seen)}
@@ -59,16 +63,16 @@ const ListaReportes = (props: PropsListaReporte) => {
 											)}
 											<Link
 												className="btn btn-sm btn-warning mt-3 amarillo"
-												to={`/reporte/${item.id}`}
+												to={APP_ROUTES.DETALLE_REPORTE + item.id}
 											>
 												{" "}
 												Ver reporte completo
 											</Link>
 										</div>
 									</div>
-								</li>
+								</div>
 							))}
-						</ul>
+						</>
 						{/* Render pagination buttons */}
 						<div>
 

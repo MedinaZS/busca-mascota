@@ -6,10 +6,13 @@ import { ResultReporte } from "../helper/types";
 import axios from 'axios';
 import { API_ROUTES } from "../helper/utility";
 import Paginacion from '../components/Buscar/Paginacion';
+import Loading from '../components/Loading';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const Buscar = () => {
 
 	const [isMapView, setIsMapView] = useState(true)
+	const [loading, setLoading] = useState(false)
 
 	const [lista, setLista] = useState<ResultReporte[]>([]);
 	const [nextPage, setNextPage] = useState(null);
@@ -19,12 +22,21 @@ const Buscar = () => {
 
 	const [listaReportesSinPaginar, setListaReportesSinPaginar] = useState([])
 
+	const [filtros, setFiltros] = useState({
+		report_type: '',
+		date_from: '',
+		date_to: '',
+		specie: '',
+		country: '',
+		city: '',
+	})
+
 	useEffect(() => {
 		// Cargar lista de reportes sin paginar para marcadores de mapa
 		cargarReportesMarcadores()
 
 		// Cargar lista de reportes paginado
-		cargarReportesPaginado(API_ROUTES.REPORTES + '?page=1');
+		cargarReportesPaginado(null);
 	}, [])
 
 	const cargarReportesMarcadores = () => {
@@ -39,21 +51,14 @@ const Buscar = () => {
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		const data = {
-			report_type: event.target.type.value,
-			date_from: event.target.ultimoVistoInicio.value,
-			date_to: event.target.ultimoVistoFin.value,
-			specie: event.target.specie.value,
-			country: event.target.country.value,
-			city: event.target.city.value,
-		}
+
+		setLoading(true)
+
+		const data = filtros
 
 		//Cargar Lista de Reporte
-		axios
-			.post(API_ROUTES.REPORTES, data)
-			.then(response => {
-				setLista(response.data.results);
-			}).catch((error) => console.error(error));
+		cargarReportesPaginado(null)
+		
 		//Cargar Marcadores
 		axios
 			.post(API_ROUTES.REPORTES_SIN_PAGINAR, data)
@@ -64,16 +69,20 @@ const Buscar = () => {
 
 	const cargarReportesPaginado = (url: string | null) => {
 		const urlPost = url ? url : API_ROUTES.REPORTES
+		setLoading(true)
+
+		const data = filtros
 
 		axios
-			.post(urlPost)
+			.post(urlPost, data)
 			.then((response) => {
 				// console.log(response.data)
 				setLista(response.data.results);
 				setNextPage(response.data.next);
 				setPreviousPage(response.data.previous);
-				setCurrentPage(response.data.page);
-				setTotalPages(Math.ceil(response.data.count / 15));
+				setCurrentPage(response.data.currentPage);
+				setTotalPages(Math.ceil(response.data.count / response.data.pageSize));
+				setLoading(false)
 			})
 			.catch((error) => console.error(error));
 
@@ -93,6 +102,11 @@ const Buscar = () => {
 		cargarReportesPaginado(url);
 	};
 
+	const handleChange = (event) => {
+		const { id, value } = event.target
+		setFiltros({ ...filtros, [id]: value })
+	}
+
 
 	return (
 		<PageCard title={'Buscar'}>
@@ -103,7 +117,7 @@ const Buscar = () => {
 						<label htmlFor="tipoReporte" className='form-label fw-bold mb-0'>Tipo de reporte: </label>
 					</div>
 					<div className='col-12 col-lg-auto'>
-						<select name="type" className="form-select" >
+						<select id="report_type" className="form-select" onChange={handleChange}>
 							<option value="">Todos</option>
 							<option value="perdido">Perdido</option>
 							<option value="avistado">Avistado</option>
@@ -117,13 +131,13 @@ const Buscar = () => {
 						<label className='form-label fw-bold mb-0'>Últ. vez visto: </label>
 					</div>
 					<div className='col-12 col-md-5 col-lg-auto'>
-						<input id='ultimoVistoInicio' name='ultimoVistoInicio' type="date" className='form-control date-input' />
+						<input id='date_from' type="date" className='form-control date-input' onChange={handleChange} />
 					</div>
 					<div className='col-12 col-md-2 col-lg-auto text-start text-md-center'>
 						<span className='fw-bold'>a</span>
 					</div>
 					<div className='col-12  col-md-5  col-lg-auto'>
-						<input id='ultimoVistoFin' name='ultimoVistoFin' type="date" className='form-control date-input' />
+						<input id='date_to' type="date" className='form-control date-input' onChange={handleChange} />
 					</div>
 
 				</div>
@@ -134,7 +148,8 @@ const Buscar = () => {
 					</div>
 
 					<div className='col-12 col-lg-auto'>
-						<select name="specie" id="especie" className='form-select'>
+						<select id="specie" className='form-select' onChange={handleChange}>
+							<option value="">Todos</option>
 							<option value="perro">Perro</option>
 							<option value="gato">Gato</option>
 							<option value="otro">Otro</option>
@@ -144,18 +159,18 @@ const Buscar = () => {
 
 					{/* Pais */}
 					<div className='col-12 col-lg-auto'>
-						<label htmlFor='pais' className='form-label fw-bold mb-0'>Pais: </label>
+						<label htmlFor='country' className='form-label fw-bold mb-0'>Pais: </label>
 					</div>
 					<div className='col-12 col-lg-auto'>
-						<input id='pais' name='country' type="text" className='form-control' />
+						<input id='country' type="text" className='form-control' onChange={handleChange} />
 					</div>
 
 					{/* Ciudad */}
 					<div className='col-12 col-lg-auto'>
-						<label htmlFor='ciudad' className='form-label fw-bold mb-0'>Ciudad: </label>
+						<label htmlFor='city' className='form-label fw-bold mb-0'>Ciudad: </label>
 					</div>
 					<div className='col-12 col-lg-auto'>
-						<input id='ciudad' name='city' type="text" className='form-control' />
+						<input id='city' type="text" className='form-control' onChange={handleChange} />
 					</div>
 
 					<div className='col-12 col-lg-auto text-center'>
@@ -175,14 +190,24 @@ const Buscar = () => {
 				</div>
 			</div>
 
+			{loading && <LoadingSpinner />}
+
 			<div id='buscarMap'>
-				{isMapView ?
-					<Map listaReportesSinPaginar={listaReportesSinPaginar} zoom={8} click={false} /> :
-					<>
-						<ListaReportes reportes={lista} />
-						<Paginacion handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage} handlePageClick={handlePageClick} currentPage={currentPage} totalPages={totalPages} nextPage={nextPage} previousPage={previousPage} />
-					</>
+
+				{(isMapView && !loading) && <Map listaReportesSinPaginar={listaReportesSinPaginar} zoom={8} click={false} />}
+
+				{(!isMapView && !loading) && <ListaReportes reportes={lista} />}
+
+				{!isMapView && <Paginacion handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage} handlePageClick={handlePageClick} currentPage={currentPage} totalPages={totalPages} nextPage={nextPage} previousPage={previousPage} />}
+
+				{/* {(isMapView && !loading)
+					? <Map listaReportesSinPaginar={listaReportesSinPaginar} zoom={8} click={false} />
+					: (!loading &&
+						<>
+							<ListaReportes reportes={lista} />
+						</>)
 				}
+				{!isMapView && <Paginacion handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage} handlePageClick={handlePageClick} currentPage={currentPage} totalPages={totalPages} nextPage={nextPage} previousPage={previousPage} />} */}
 			</div>
 
 		</PageCard>
