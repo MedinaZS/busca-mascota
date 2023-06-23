@@ -58,7 +58,7 @@ const Buscar = () => {
 
 		//Cargar Lista de Reporte
 		cargarReportesPaginado(null)
-		
+
 		//Cargar Marcadores
 		axios
 			.post(API_ROUTES.REPORTES_SIN_PAGINAR, data)
@@ -200,14 +200,6 @@ const Buscar = () => {
 
 				{!isMapView && <Paginacion handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage} handlePageClick={handlePageClick} currentPage={currentPage} totalPages={totalPages} nextPage={nextPage} previousPage={previousPage} />}
 
-				{/* {(isMapView && !loading)
-					? <Map listaReportesSinPaginar={listaReportesSinPaginar} zoom={8} click={false} />
-					: (!loading &&
-						<>
-							<ListaReportes reportes={lista} />
-						</>)
-				}
-				{!isMapView && <Paginacion handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage} handlePageClick={handlePageClick} currentPage={currentPage} totalPages={totalPages} nextPage={nextPage} previousPage={previousPage} />} */}
 			</div>
 
 		</PageCard>
