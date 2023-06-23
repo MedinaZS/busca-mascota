@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PageCard from "../components/PageCard";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_ROUTES, APP_ROUTES } from "../helper/utility";
 import Swal from 'sweetalert2';
@@ -22,11 +22,13 @@ const AdoptionForm = () => {
 		country: { value: '', required: true },
 		phone: { value: '', required: true },
 		picture: { value: {}, required: true },
+		accept_terms: { value: false, required: true },
 	})
 
-  const handleChange = (event: any) => {
+	const handleChange = (event: any) => {
 		const { id, value, files } = event.target
-		const currentValue = files ? files[0] : value
+		let currentValue = files ? files[0] : value
+		if (id == 'accept_terms') currentValue = event.target.checked
 		setReport({ ...report, [id]: { ...report[id as keyof typeof report], value: currentValue } })
 	}
 
@@ -65,22 +67,21 @@ const AdoptionForm = () => {
 			const value = report[property as keyof typeof report].value
 			const required = report[property as keyof typeof report].required
 			if (required === true) {
-
 				if (typeof value === 'string' && value.trim() === '') {
 					Swal.fire({ icon: 'error', text: 'Completa los campos requeridos' })
 					return false
 				} else if (typeof value === 'boolean' && value === false) {
 					Swal.fire({ icon: 'error', text: 'Debes aceptar los términos de uso' })
 					return false
-				} else if (typeof value === 'object' && value.name === '') {
-					Swal.fire({ icon: 'error', text: 'Completa los campos requeridos. La imagen es necesaria' })
-					return false
+				} else if (typeof value === 'object' && !value.name) {
+            Swal.fire({ icon: 'error', text: 'Completa los campos requeridos. La imagen es necesaria' })
+            return false
+          }
 				}
 			}
+      return true
 		}
 
-		return true
-	}
 
   return (
     <PageCard title={"Publicar Adopción"}>
@@ -243,7 +244,14 @@ const AdoptionForm = () => {
 					</div>
         </div>
 
-        <span className='rounded-pill bg-warning p-1 small m-3'>* Campos requeridos</span>
+				<div className="form-check form-check-reverse text-start m-3">
+					<label className="form-check-label" htmlFor="defaultCheck1">
+						Acepto los <Link to={APP_ROUTES.TERMS}>Términos de uso</Link>: *
+						<input id='accept_terms' onChange={handleChange} defaultChecked={false} className="form-check-input" type="checkbox" />
+					</label>
+				</div>
+
+				<span className='rounded-pill bg-warning p-1 small m-3'>* Campos requeridos</span>
 
 				<div className='d-grid mx-3'>
 					<button type='submit' className='btn btn-success btn-lg mt-2'>Publicar</button>

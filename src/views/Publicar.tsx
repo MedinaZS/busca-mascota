@@ -121,7 +121,7 @@ const Publicar = () => {
 				} else if (typeof value === 'boolean' && value === false) {
 					Swal.fire({ icon: 'error', text: 'Debes aceptar los términos de uso' })
 					return false
-				} else if (typeof value === 'object' && value.name === '') {
+				} else if (typeof value === 'object' && !value.name) {
 					Swal.fire({ icon: 'error', text: 'Completa los campos requeridos. La imagen es necesaria' })
 					return false
 				}
