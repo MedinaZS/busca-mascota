@@ -12,7 +12,6 @@ const AdoptionForm = () => {
   const SEX = ["Macho", "Hembra", "Desconocido"];
   
   const [report, setReport] = useState({
-    title: { value: '', required: true },
 		name: { value: '', required: false },
 		description: { value: '', required: true },
 		specie: { value: SPECIES[0].toLowerCase(), required: true },
@@ -86,23 +85,6 @@ const AdoptionForm = () => {
   return (
     <PageCard title={"Publicar Adopción"}>
 			<form className='my-5' onSubmit={onSubmitHandler}>
-        <div className="row gy-3">
-        {/* Titulo de reporte */}
-          <div>
-          <label htmlFor="title" className="form-label fw-bold">
-            Titulo de reporte: *
-          </label>
-          <input
-            value={report.title.value}
-            onChange={handleChange}
-            id="title"
-            type="text"
-            className="form-control"
-            placeholder="Ejemplo: Perro en adopción"
-          />
-          </div>
-        </div>
-
         <div className="row gy-3">
         {/* Nombre del animal */}
           <div>

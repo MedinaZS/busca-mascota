@@ -6,7 +6,6 @@ import PageCard from "../components/PageCard.tsx";
 import Loading from "../components/Loading.tsx";
 
 interface ReportData {
-  title: string;
   name: string;
   description: string;
   specie: string;
@@ -60,7 +59,6 @@ const Detalle_Adopcion = () => {
   }
 
   const {
-    title,
     name,
     description,
     specie,
@@ -73,7 +71,7 @@ const Detalle_Adopcion = () => {
   } = reportData;
 
   return (
-    <PageCard title={title}>
+    <PageCard title={`${specie == "otro" ? "ANIMAL " : specie.toUpperCase()} EN ADOPCIÓN`}>
       <div className="reportcont">
         {/* Imagen reporte */}
         <div
