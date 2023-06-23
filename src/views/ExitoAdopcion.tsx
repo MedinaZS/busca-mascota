@@ -3,6 +3,7 @@ import html2canvas from "html2canvas";
 import { useParams } from "react-router-dom";
 import { API_ROUTES} from '../helper/utility';
 import PageCard from "../components/PageCard";
+import Loading from "../components/Loading";
 
 
 
@@ -58,7 +59,7 @@ export const ExitoAdopcion = () => {
   };
 
   if (!reportData) {
-    return <div>Loading...</div>;
+    return <Loading></Loading>;
   }
 
 

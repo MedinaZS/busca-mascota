@@ -59,7 +59,7 @@ const Buscar = () => {
 			.post(API_ROUTES.REPORTES_SIN_PAGINAR, data)
 			.then(response => {
 				setListaReportesSinPaginar(response.data.results);
-			}).catch((error) => console.error('Error trae lista sin paginar filtrado' + error));
+			}).catch((error) => console.error('Error trae lista sin paginar filtrado ' + error));
 	}
 
 	const cargarReportesPaginado = (url: string | null) => {
