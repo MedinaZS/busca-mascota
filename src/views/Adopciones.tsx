@@ -79,10 +79,9 @@ const AdoptionForm = () => {
           }
 				}
 			}
+      return true
 		}
 
-		return true
-	}
 
   return (
     <PageCard title={"Publicar Adopción"}>
