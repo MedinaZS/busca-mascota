@@ -73,20 +73,6 @@ const ListaReportes = (props: PropsListaReporte) => {
 								</div>
 							))}
 						</>
-						{/* Render pagination buttons */}
-						<div>
-
-							{Array.from({ length: props.totalPages }, (_, index) => (
-								<button
-									key={index + 1}
-									onClick={() => props.handlePageClick(index + 1)}
-									disabled={props.currentPage === index + 1}
-								>
-									{index + 1}
-								</button>
-							))}
-
-						</div>
 					</div>
 				</div>
 			)}

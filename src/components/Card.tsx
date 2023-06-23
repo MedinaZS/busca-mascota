@@ -51,7 +51,7 @@ const Card = ({ adopcion }: { adopcion: ResultAdopciones }) => {
                     </div>
                     <div className="card-footer d-grid">
                         <Link className="btn btn-sm btn-warning amarillo" to={APP_ROUTES.DETALLE_ADOPCION + adopcion.id}>
-                            Ver reporte completo
+                            Ver detalle adopción
                         </Link>
                     </div>
                 </div>

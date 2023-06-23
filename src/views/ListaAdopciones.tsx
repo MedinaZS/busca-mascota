@@ -12,6 +12,7 @@ import Paginacion from '../components/Buscar/Paginacion';
 const ListaAdopciones = () => {
 
 	const [listaAdopciones, setListaAdopciones] = useState<ResultAdopciones[] | null>(null)
+	const [loading, setLoading] = useState(false)
 
 	const [nextPage, setNextPage] = useState(null);
 	const [previousPage, setPreviousPage] = useState(null);
@@ -24,18 +25,16 @@ const ListaAdopciones = () => {
 
 	const cargarAdopciones = (url: string | null) => {
 		const urlPost = url ? url : API_ROUTES.REPORTE_ADOPCIONES
-
-		axios.get(API_ROUTES.REPORTE_ADOPCIONES)
+		setLoading(true)
+		axios.get(urlPost)
 			.then(response => {
-				console.log(response.data)
-				const data = response.data.results;
-
-				console.log(response.data.results);
-				setListaAdopciones(data)
+				const data = response.data;
+				setListaAdopciones(data.results)
 				setNextPage(data.next);
 				setPreviousPage(data.previous);
 				setCurrentPage(data.currentPage);
-				setTotalPages(data.totalPages);
+				setTotalPages(Math.ceil(response.data.count / response.data.pageSize));
+				setLoading(false)
 			})
 			.catch(error => console.log("Error", error))
 	}
@@ -49,13 +48,13 @@ const ListaAdopciones = () => {
 	};
 
 	const handlePageClick = (page: number | null) => {
-		const url = `${API_ROUTES.REPORTES}?page=${page}`;
+		const url = `${API_ROUTES.REPORTE_ADOPCIONES}?page=${page}`;
 		cargarAdopciones(url);
 	};
 
 	return (
 		<PageCard title={'Lista de Adopciones'}>
-			{listaAdopciones ?
+			{listaAdopciones && !loading ?
 				<>
 					<div className='text-center mb-5'>
 						<Link className='btn bg-blue-subtle rounded-pill fs-5' to={APP_ROUTES.PUBLICAR_ADOPCION}><i className='bi bi-plus'></i>Publicar adopcion </Link>
@@ -69,20 +68,7 @@ const ListaAdopciones = () => {
 				</>
 				: <Loading />
 			}
-			{/* Render pagination buttons */}
-			<div>
-<p>kjh</p>
-				{Array.from({ length: totalPages + 1 }, (_, index) => (
-					<button
-						key={index + 1}
-						onClick={() => handlePageClick(index + 1)}
-						disabled={currentPage === index + 1}
-					>
-						{index + 1}
-					</button>
-				))}
-
-			</div>
+			
 			<Paginacion handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage} handlePageClick={handlePageClick} currentPage={currentPage} totalPages={totalPages} nextPage={nextPage} previousPage={previousPage} />
 		</PageCard>
 	)
