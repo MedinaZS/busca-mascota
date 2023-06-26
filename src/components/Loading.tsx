@@ -28,8 +28,9 @@ const loadingCircleVariants = {
         y: "100%",
         transition :{
             repeat: Infinity,
-            
-            duration: 0.5,
+            repeatType: 'mirror' as const,
+           
+            duration: 1,
             ease: "easeInOut"
 
         }
@@ -48,6 +49,7 @@ const Loading = () => {
                 variants={loadingContainerVariants}
                 initial="start"
                 animate="end"
+                
             >
                 <motion.span
                     className="bg-blue"
