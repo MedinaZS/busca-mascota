@@ -5,6 +5,7 @@ import { API_ROUTES, APP_ROUTES, showFormattedDate } from '../helper/utility';
 import {  motion } from "framer-motion";
 import PageCard from "../components/PageCard";
 import Loading from "../components/Loading";
+import Swal from "sweetalert2";
 import axios from "axios";
 
 
@@ -61,6 +62,9 @@ export const Exito = () => {
               id: idReporte,
               image: base64Image,
             });
+			if (response) {
+				Swal.fire("Publicado en Twitter", "", "success");
+			  }
           } catch (error) {
             console.error('Error al enviar la imagen al backend:', error);
           }
