@@ -27,6 +27,7 @@ const Map = ({ zoom = 11, currentPosition,setCurrentPosition, click, listaReport
                 }
             }
         });
+        console.log(map)
         // Si el mapa es clickeable
         if (click) {
             return currentPosition === null && click == true ? null : (
