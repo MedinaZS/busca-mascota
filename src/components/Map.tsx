@@ -20,6 +20,7 @@ const Map = ({ zoom = 11, currentPosition,setCurrentPosition, click, listaReport
     function LocationMarker() {
 
 
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const map = useMapEvents({
             click(e) {
                 if (click) {
