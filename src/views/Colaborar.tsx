@@ -1,7 +1,13 @@
+import { useEffect } from 'react';
 import PageCard from '../components/PageCard'
 import { SRC_FILES, URL_LINKS } from '../helper/utility'
 
 const Colaborar = () => {
+
+	useEffect(() => {
+		window.scrollTo(0,0);
+	}, [])
+	
 	return (
 		<PageCard title={'Maneras de ayudar al proyecto'}>
 			{/* Contribuir codigo */}

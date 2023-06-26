@@ -36,6 +36,8 @@ const Detalle_Adopcion = () => {
 		};
 
 		fetchReportData();
+
+		window.scrollTo(0,0);
 	}, [id]);
 
 	const handleExportClick = () => {

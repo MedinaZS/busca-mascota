@@ -21,6 +21,7 @@ const ListaAdopciones = () => {
 
 	useEffect(() => {
 		cargarAdopciones(null)
+		window.scrollTo(0,0);
 	}, [])
 
 	const cargarAdopciones = (url: string | null) => {

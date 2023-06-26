@@ -40,6 +40,7 @@ const Buscar = () => {
 
 		// Cargar lista de reportes paginado
 		cargarReportesPaginado(null);
+		window.scrollTo(0,0);
 	}, [])
 
 	const cargarReportesMarcadores = () => {

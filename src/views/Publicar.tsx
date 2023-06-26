@@ -9,9 +9,9 @@ import Swal from 'sweetalert2';
 interface ILatLng {
 	lat: number;
 	lng: number;
-  }
-  
-  interface IReport {
+}
+
+interface IReport {
 	report_type: { value: string; required: boolean };
 	title: { value: string; required: boolean };
 	description: { value: string; required: boolean };
@@ -30,12 +30,12 @@ interface ILatLng {
 	address: { value: string; required: boolean };
 	latitude: { value: string; required: boolean };
 	longitude: { value: string; required: boolean };
-  }
+}
 
 
 const Publicar = () => {
 
-	
+
 
 	const navigate = useNavigate()
 
@@ -70,6 +70,7 @@ const Publicar = () => {
 		if (currentPosition.lat != 0 && currentPosition.lng != 0) {
 			completeUbicationWidgets(currentPosition.lat, currentPosition.lng)
 		}
+		window.scrollTo(0,0);
 	}, [currentPosition])
 
 
@@ -104,16 +105,16 @@ const Publicar = () => {
 	const onSubmitHandler = (event: any) => {
 		event.preventDefault();
 
-		
+
 		if (validateForm()) {
 			let newReport: Record<string, string | boolean | File | {}> = {};
 			// Create Form Data
 			for (const property in report) {
-			  const value = report[property as keyof IReport].value;
-			  newReport[property] = value;
+				const value = report[property as keyof IReport].value;
+				newReport[property] = value;
 			}
 			// console.log(newReport)
-			
+
 			const config = {
 				headers: {
 					'Content-Type': `multipart/form-data;`,
@@ -134,26 +135,26 @@ const Publicar = () => {
 
 	const validateForm = () => {
 		for (const property in report) {
-		  const value = report[property as keyof typeof report].value;
-		  const required = report[property as keyof typeof report].required;
-		  if (required === true) {
-			if (typeof value === "string" && value.trim() === "") {
-			  Swal.fire({ icon: "error", text: "Completa los campos requeridos" });
-			  return false;
-			} else if (typeof value === "boolean" && value === false) {
-			  Swal.fire({ icon: "error", text: "Debes aceptar los términos de uso" });
-			  return false;
-			} else if (typeof value === "object" && "name" in value && !value.name) {
-			  Swal.fire({
-				icon: "error",
-				text: "Completa los campos requeridos. La imagen es necesaria",
-			  });
-			  return false;
+			const value = report[property as keyof typeof report].value;
+			const required = report[property as keyof typeof report].required;
+			if (required === true) {
+				if (typeof value === "string" && value.trim() === "") {
+					Swal.fire({ icon: "error", text: "Completa los campos requeridos" });
+					return false;
+				} else if (typeof value === "boolean" && value === false) {
+					Swal.fire({ icon: "error", text: "Debes aceptar los términos de uso" });
+					return false;
+				} else if (typeof value === "object" && "name" in value && !value.name) {
+					Swal.fire({
+						icon: "error",
+						text: "Completa los campos requeridos. La imagen es necesaria",
+					});
+					return false;
+				}
 			}
-		  }
 		}
 		return true;
-	  };
+	};
 
 
 	return (
