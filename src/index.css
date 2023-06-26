@@ -301,3 +301,7 @@ button:focus-visible {
 .pushable:focus:not(:focus-visible) {
   outline: none;
 }
+.botonesflex{
+  display: flex;
+  justify-content: center;
+}

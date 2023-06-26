@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom'
 import { APP_ROUTES } from '../helper/utility'
 import PageCard from '../components/PageCard'
+import { useEffect } from 'react'
 
 const Terminos = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
   return (
     <PageCard title={'Terminos de Uso'}>
       <h3 className='my-3 display-inline-block border-3 border-bottom border-blue-subtle d-inline-block'>Descargo de responsabilidad</h3>

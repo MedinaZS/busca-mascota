@@ -3,11 +3,11 @@ import html2canvas from "html2canvas";
 import { useParams } from "react-router-dom";
 import { API_ROUTES} from '../helper/utility';
 import PageCard from "../components/PageCard";
+import Loading from "../components/Loading";
 
 
 
 interface ReportData {
-  title: string;
   name: string;
   description: string;
   specie: string;
@@ -58,12 +58,11 @@ export const ExitoAdopcion = () => {
   };
 
   if (!reportData) {
-    return <div>Loading...</div>;
+    return <Loading></Loading>;
   }
 
 
   const {
-    title,
     name,
     description,
     specie,
@@ -76,7 +75,7 @@ export const ExitoAdopcion = () => {
   } = reportData;
  
   return (
-    <PageCard title={title}>
+    <PageCard title={`${specie == "otro" ? "ANIMAL " : specie.toUpperCase()} EN ADOPCIÓN`}>
       <div className="reportcont">
         {/* Imagen reporte */}
         <div

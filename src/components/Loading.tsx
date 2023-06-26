@@ -25,18 +25,22 @@ const loadingCircleVariants = {
         y: "0%"
     },
     end: {
-        y: "100%"
+        y: "100%",
+        transition :{
+            repeat: Infinity,
+            repeatType: 'mirror' as const,
+           
+            duration: 1,
+            ease: "easeInOut"
+
+        }
     }
+    
 };
 
-const loadingCircleTransition = {
-    repeat: Infinity,
-    repeatType: "mirror",
-    duration: 0.5,
-    ease: "easeInOut"
-};
 
-export default function ThreeDotsWave() {
+
+const Loading = () => {
     return (
         <div className="loading-container d-flex flex-column justify-content-center align-items-center">
             <p className="fs-3 m-0">Cargando...</p>
@@ -45,26 +49,29 @@ export default function ThreeDotsWave() {
                 variants={loadingContainerVariants}
                 initial="start"
                 animate="end"
+                
             >
                 <motion.span
                     className="bg-blue"
                     style={loadingCircle}
                     variants={loadingCircleVariants}
-                    transition={loadingCircleTransition}
+                   
                 />
                 <motion.span
                     className="bg-blue"
                     style={loadingCircle}
                     variants={loadingCircleVariants}
-                    transition={loadingCircleTransition}
+                  
                 />
                 <motion.span
                     className="bg-blue"
                     style={loadingCircle}
                     variants={loadingCircleVariants}
-                    transition={loadingCircleTransition}
+              
                 />
             </motion.div>
         </div>
     );
 }
+
+export default Loading

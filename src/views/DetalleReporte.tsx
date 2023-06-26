@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
-import { Link, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { API_ROUTES, showFormattedDate } from "../helper/utility";
 import Map from "../components/Map";
 import PageCard from "../components/PageCard";
@@ -35,6 +35,8 @@ const DetalleReporte = () => {
         window.open(url, "_blank");
     };
     useEffect(() => {
+        window.scrollTo(0,0);
+        
         const fetchReportData = async () => {
             try {
                 const response = await fetch(`${API_ROUTES.GET_REPORT_BY_ID}${id}`);

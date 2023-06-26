@@ -15,7 +15,7 @@ import Licencia from './views/Licencia.tsx';
 import { Exito } from './views/Exito.tsx';
 import Detalle_Adopcion from './views/Detalle_Adopcion.tsx';
 import DetalleReporte from './views/DetalleReporte.tsx';
-import AdoptionForm from './views/Adopciones.tsx';
+import AdoptionForm from './views/AdoptionForm.tsx';
 import ListaAdopciones from './views/ListaAdopciones.tsx';
 import { ExitoAdopcion } from './views/ExitoAdopcion.tsx';
 
@@ -26,7 +26,7 @@ const router = createBrowserRouter(
     <Route path="" element={<App />}>
       <Route path={APP_ROUTES.HOME} element={<Home />} />
       <Route path={APP_ROUTES.EXITO_PARAMS} element={<Exito />} />
-      <Route path={APP_ROUTES.DETALLE_ADOPCION} element={<Detalle_Adopcion />} />
+      <Route path={APP_ROUTES.DETALLE_ADOPCION_PARAMS} element={<Detalle_Adopcion />} />
       <Route path={APP_ROUTES.PUBLICAR_MASCOTA} element={<Publicar />} />
       <Route path={APP_ROUTES.BUSCAR_MASCOTA} element={<Buscar />} />
       <Route path={APP_ROUTES.COLABORAR} element={<Colaborar />} />

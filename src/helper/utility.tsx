@@ -13,7 +13,8 @@ export const APP_ROUTES = {
     DETALLE_REPORTE_PARAMS: '/reporte/:id',
     EXITO: '/exito/',
     EXITO_PARAMS: '/exito/:id',
-    DETALLE_ADOPCION: '/detalle-adopcion/:id',
+    DETALLE_ADOPCION: '/detalle-adopcion/',
+    DETALLE_ADOPCION_PARAMS: '/detalle-adopcion/:id',
     EXITO_ADOPCION: '/exito-adopcion/',
     EXITO_ADOPCION_PARAMS: '/exito-adopcion/:id',
 
@@ -32,6 +33,7 @@ export const API_ROUTES = {
     ADOPCIONES: IP + "/adopciones",
     PUBLICAR_ADOPCION: IP + "/adopciones-publicar",
     REPORT_SUCCESS: IP + '/exito-api/',
+    REPORTE_ADOPCIONES: IP + '/pets/',
 };
 
 export const SRC_FILES = {

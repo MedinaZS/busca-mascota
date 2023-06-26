@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import { Link, useParams } from "react-router-dom";
 import { API_ROUTES, APP_ROUTES, showFormattedDate } from '../helper/utility';
-import { delay, motion } from "framer-motion";
+import {  motion } from "framer-motion";
 import PageCard from "../components/PageCard";
 import Loading from "../components/Loading";
 import axios from "axios";
@@ -114,7 +114,7 @@ export const Exito = () => {
 	const {
 		id: report_id,
 		report_type,
-		title,
+	
 		specie,
 		age,
 		sex,

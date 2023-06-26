@@ -1,9 +1,25 @@
 import { useState } from "react";
 import PageCard from "../components/PageCard";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_ROUTES, APP_ROUTES } from "../helper/utility";
 import Swal from 'sweetalert2';
+import { FormEvent } from "react";
+
+
+
+interface Report {
+  name: { value: string; required: boolean };
+  description: { value: string; required: boolean };
+  specie: { value: string; required: boolean };
+  age: { value: string; required: boolean };
+  sex: { value: string; required: boolean };
+  city: { value: string; required: boolean };
+  country: { value: string; required: boolean };
+  phone: { value: string; required: boolean };
+  picture: { value: File | {}; required: boolean };
+  accept_terms: { value: boolean; required: boolean };
+}
 
 const AdoptionForm = () => {
   const navigate = useNavigate();
@@ -11,8 +27,7 @@ const AdoptionForm = () => {
   const SPECIES = ["Perro", "Gato", "Otro"];
   const SEX = ["Macho", "Hembra", "Desconocido"];
   
-  const [report, setReport] = useState({
-    title: { value: '', required: true },
+  const [report, setReport] = useState<Report>({
 		name: { value: '', required: false },
 		description: { value: '', required: true },
 		specie: { value: SPECIES[0].toLowerCase(), required: true },
@@ -22,86 +37,73 @@ const AdoptionForm = () => {
 		country: { value: '', required: true },
 		phone: { value: '', required: true },
 		picture: { value: {}, required: true },
+		accept_terms: { value: false, required: true },
 	})
 
-  const handleChange = (event: any) => {
+	const handleChange = (event: any) => {
 		const { id, value, files } = event.target
-		const currentValue = files ? files[0] : value
+		let currentValue = files ? files[0] : value
+		if (id == 'accept_terms') currentValue = event.target.checked
 		setReport({ ...report, [id]: { ...report[id as keyof typeof report], value: currentValue } })
 	}
 
-	const onSubmitHandler = (event: any) => {
-		event.preventDefault();
-		
-		if (validateForm()) {
-			let newReport = {};
-			// Create Form Data
-			for (const property in report) {
-				const value = report[property as keyof typeof report].value
-				newReport[property as keyof typeof report] = value
-			}
-			// console.log(newReport)
-			
-			const config = {
-				headers: {
-					'Content-Type': `multipart/form-data;`,
-				}
-			}
+  const onSubmitHandler = (event: FormEvent) => {
+    event.preventDefault();
+  
+    if (validateForm()) {
+      let newReport: Record<string, string | boolean | File | {}> = {};
+      // Create Form Data
+      for (const property in report) {
+        const value = report[property as keyof Report].value;
+        newReport[property] = value;
+      }
+      // console.log(newReport)
+  
+      const config = {
+        headers: {
+          "Content-Type": `multipart/form-data;`,
+        },
+      };
+  
+      // Send data
+      axios
+        .post(API_ROUTES.PUBLICAR_ADOPCION, newReport, config)
+        .then((response) => {
+          // console.log(response)
+          let id = response.data?.id;
+          navigate(APP_ROUTES.EXITO_ADOPCION + id);
+        })
+        .catch((error) => console.log("Error en post", error));
+    }
+  };
+  const validateForm = () => {
+    for (const property in report) {
+      const value = report[property as keyof typeof report].value;
+      const required = report[property as keyof typeof report].required;
+      if (required === true) {
+        if (typeof value === "string" && value.trim() === "") {
+          Swal.fire({ icon: "error", text: "Completa los campos requeridos" });
+          return false;
+        } else if (typeof value === "boolean" && value === false) {
+          Swal.fire({ icon: "error", text: "Debes aceptar los términos de uso" });
+          return false;
+        } else if (typeof value === "object" && "name" in value && !value.name) {
+          Swal.fire({
+            icon: "error",
+            text: "Completa los campos requeridos. La imagen es necesaria",
+          });
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+  
 
-			// Send data
-			axios.post(API_ROUTES.PUBLICAR_ADOPCION, newReport, config)
-				.then(response => {
-					// console.log(response)
-					let id = response.data?.id
-					navigate(APP_ROUTES.EXITO_ADOPCION + id)
-
-				})
-				.catch(error => console.log("Error en post", error))
-		}
-	}
-
-	const validateForm = () => {
-		for (const property in report) {
-			const value = report[property as keyof typeof report].value
-			const required = report[property as keyof typeof report].required
-			if (required === true) {
-
-				if (typeof value === 'string' && value.trim() === '') {
-					Swal.fire({ icon: 'error', text: 'Completa los campos requeridos' })
-					return false
-				} else if (typeof value === 'boolean' && value === false) {
-					Swal.fire({ icon: 'error', text: 'Debes aceptar los términos de uso' })
-					return false
-				} else if (typeof value === 'object' && value.name === '') {
-					Swal.fire({ icon: 'error', text: 'Completa los campos requeridos. La imagen es necesaria' })
-					return false
-				}
-			}
-		}
-
-		return true
-	}
 
   return (
     <PageCard title={"Publicar Adopción"}>
 			<form className='my-5' onSubmit={onSubmitHandler}>
-        <div className="row gy-3">
-        {/* Titulo de reporte */}
-          <div>
-          <label htmlFor="title" className="form-label fw-bold">
-            Titulo de reporte: *
-          </label>
-          <input
-            value={report.title.value}
-            onChange={handleChange}
-            id="title"
-            type="text"
-            className="form-control"
-            placeholder="Ejemplo: Perro en adopción"
-          />
-          </div>
-        </div>
-
         <div className="row gy-3">
         {/* Nombre del animal */}
           <div>
@@ -243,7 +245,14 @@ const AdoptionForm = () => {
 					</div>
         </div>
 
-        <span className='rounded-pill bg-warning p-1 small m-3'>* Campos requeridos</span>
+				<div className="form-check form-check-reverse text-start m-3">
+					<label className="form-check-label" htmlFor="defaultCheck1">
+						Acepto los <Link to={APP_ROUTES.TERMS}>Términos de uso</Link>: *
+						<input id='accept_terms' onChange={handleChange} defaultChecked={false} className="form-check-input" type="checkbox" />
+					</label>
+				</div>
+
+				<span className='rounded-pill bg-warning p-1 small m-3'>* Campos requeridos</span>
 
 				<div className='d-grid mx-3'>
 					<button type='submit' className='btn btn-success btn-lg mt-2'>Publicar</button>

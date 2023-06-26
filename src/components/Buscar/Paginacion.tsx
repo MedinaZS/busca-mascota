@@ -1,10 +1,10 @@
-import React from 'react';
+
 
 interface PaginacionProps {
   currentPage: number;
   totalPages: number;
-  nextPage: number;
-  previousPage: number;
+  nextPage: string;
+  previousPage: string;
   handleNextPage: () => void;
   handlePreviousPage: () => void;
   handlePageClick: (page: number | null) => void;
@@ -14,7 +14,7 @@ const Paginacion = (props: PaginacionProps) => {
     const generatePageNumbers = () => {
         const pageNumbers = [];
         const { currentPage, totalPages } = props;
-        console.log(totalPages)
+        // console.log(props)
         if (totalPages <= 5) {
           for (let i = 1; i <= totalPages; i++) {
             pageNumbers.push(i);
@@ -43,14 +43,14 @@ const Paginacion = (props: PaginacionProps) => {
         {props.previousPage &&(
           <li className="page-item">
             <button className="page-link" onClick={props.handlePreviousPage}>
-              Anterior
+              &lt;
             </button>
           </li>
         )}
         {generatePageNumbers().map((pageNumber) => (
           <li className="page-item" key={pageNumber}>
             <button
-              className={`page-link ${pageNumber !== 1 ? 'mr-1' : ''}`}
+              className={`page-link ${pageNumber !== 1 ? 'mr-1' : ''}  ${pageNumber == props.currentPage && ' active'}`}
               onClick={() => props.handlePageClick(pageNumber)}
             >
               {pageNumber}
@@ -60,7 +60,7 @@ const Paginacion = (props: PaginacionProps) => {
         {props.nextPage && (
           <li className="page-item">
             <button className="page-link" onClick={props.handleNextPage}>
-              Siguiente
+              &gt;
             </button>
           </li>
         )}
