@@ -21,7 +21,7 @@ const Map = ({ zoom = 11, currentPosition,setCurrentPosition, click, listaReport
 
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const map = useMapEvents({
+       useMapEvents({
             click(e) {
                 if (click) {
                     setCurrentPosition(e.latlng)
