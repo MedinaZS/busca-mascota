@@ -1,5 +1,5 @@
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer, Marker, Popup, } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents, } from "react-leaflet";
 import { API_ROUTES, APP_ROUTES } from "../helper/utility";
 import { Link } from "react-router-dom";
 
@@ -15,11 +15,18 @@ interface Report {
     report_type: string
 }
 
-const Map = ({ zoom = 11, currentPosition,  click, listaReportesSinPaginar, reportDetailPosition }: { click: boolean, zoom?: number, currentPosition?: any, setCurrentPosition?: any, listaReportesSinPaginar?: Array<Report>, reportDetailPosition?: any }) => {
-    
+const Map = ({ zoom = 11, currentPosition,setCurrentPosition, click, listaReportesSinPaginar, reportDetailPosition }: { click: boolean, zoom?: number, currentPosition?: any, setCurrentPosition?: any, listaReportesSinPaginar?: Array<Report>, reportDetailPosition?: any }) => {
+
     function LocationMarker() {
 
 
+        const map = useMapEvents({
+            click(e) {
+                if (click) {
+                    setCurrentPosition(e.latlng)
+                }
+            }
+        });
         // Si el mapa es clickeable
         if (click) {
             return currentPosition === null && click == true ? null : (
@@ -31,11 +38,11 @@ const Map = ({ zoom = 11, currentPosition,  click, listaReportesSinPaginar, repo
 
     }
 
-    
+
 
     return (
         <div>
-            <MapContainer center={reportDetailPosition ? [reportDetailPosition.lat, reportDetailPosition.lng] :[-25.3, -57.6]} zoom={zoom} scrollWheelZoom={true}>
+            <MapContainer center={reportDetailPosition ? [reportDetailPosition.lat, reportDetailPosition.lng] : [-25.3, -57.6]} zoom={zoom} scrollWheelZoom={true}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
