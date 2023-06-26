@@ -6,9 +6,7 @@ interface PropsListaReporte {
 	reportes: ResultReporte[];
 	currentPage: number;
 	totalPages: number;
-	handleNextPage: () => void;
-	handlePreviousPage: () => void;
-	handlePageClick: (page: number) => void;
+	
 }
 
 const ListaReportes = (props: PropsListaReporte) => {

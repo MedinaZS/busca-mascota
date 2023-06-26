@@ -1,4 +1,3 @@
-import React from 'react'
 import PageCard from '../components/PageCard'
 import { SRC_FILES, URL_LINKS } from '../helper/utility'
 
@@ -7,7 +6,7 @@ const Colaborar = () => {
 		<PageCard title={'Maneras de ayudar al proyecto'}>
 			{/* Contribuir codigo */}
 			<h3 className='my-3 display-inline-block border-3 border-bottom border-blue-subtle d-inline-block'>Contribuir con el código en <i className='bi bi-github'></i></h3>
-			<p className='ms-lg-4'>Puedes colaborar a mejorar el sitio creando un merge request al <a target='_blank' href={URL_LINKS.REPOSITORIO}>repositorio</a> con alguna característica nueva o puedes descargar el código y realizar otra implementación.</p>
+			<p className='ms-lg-4'>Puedes colaborar a mejorar el sitio creando un merge request al <a target='_blank' href={URL_LINKS.REPOSITORIO_FRONTEND}>repositorio</a> con alguna característica nueva o puedes descargar el código y realizar otra implementación.</p>
 
 			{/* Donaciones */}
 			<h3 className='my-3 display-inline-block border-3 border-bottom border-blue-subtle d-inline-block'>Puedes donar para que el sitio siga activo <i className='bi bi-piggy-bank'></i></h3>

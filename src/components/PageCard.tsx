@@ -1,6 +1,13 @@
 import React from 'react'
 
-const PageCard = ({ title, children }) => {
+
+
+type PageCardProps = {
+    title: string;
+    children: React.ReactNode;
+};
+
+const PageCard = ({ title, children }: PageCardProps) => {
     return (
         <div className='col-sm-10 mx-auto py-4 '>
             <div className='bg-white shadow p-3 px-5 rounded-4'>
@@ -10,7 +17,7 @@ const PageCard = ({ title, children }) => {
                 {children}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default PageCard
+export default PageCard;

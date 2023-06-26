@@ -6,13 +6,36 @@ import { useEffect, useState } from 'react';
 import axios from 'axios'
 import Swal from 'sweetalert2';
 
+interface ILatLng {
+	lat: number;
+	lng: number;
+  }
+  
+  interface IReport {
+	report_type: { value: string; required: boolean };
+	title: { value: string; required: boolean };
+	description: { value: string; required: boolean };
+	picture: { value: File | {}; required: boolean };
+	name: { value: string; required: boolean };
+	phone: { value: string; required: boolean };
+	specie: { value: string; required: boolean };
+	age: { value: string; required: boolean };
+	sex: { value: string; required: boolean };
+	ubication_resume: { value: string; required: boolean };
+	last_time_seen: { value: string; required: boolean };
+	accept_terms: { value: boolean; required: boolean };
+	country: { value: string; required: boolean };
+	postal_code: { value: string; required: boolean };
+	city: { value: string; required: boolean };
+	address: { value: string; required: boolean };
+	latitude: { value: string; required: boolean };
+	longitude: { value: string; required: boolean };
+  }
+
 
 const Publicar = () => {
 
-	interface ILatLng {
-		lat: number,
-		lng: number
-	}
+	
 
 	const navigate = useNavigate()
 
@@ -20,7 +43,7 @@ const Publicar = () => {
 	const SPECIES = ['Perro', 'Gato', 'Otro']
 	const SEX = ['Macho', 'Hembra', 'Desconocido']
 
-	const [report, setReport] = useState({
+	const [report, setReport] = useState<IReport>({
 		report_type: { value: REPORT_TYPES[0].toLowerCase(), required: true },
 		title: { value: '', required: true },
 		description: { value: '', required: true },
@@ -83,11 +106,11 @@ const Publicar = () => {
 
 		
 		if (validateForm()) {
-			let newReport = {};
+			let newReport: Record<string, string | boolean | File | {}> = {};
 			// Create Form Data
 			for (const property in report) {
-				const value = report[property as keyof typeof report].value
-				newReport[property as keyof typeof report] = value
+			  const value = report[property as keyof IReport].value;
+			  newReport[property] = value;
 			}
 			// console.log(newReport)
 			
@@ -111,25 +134,26 @@ const Publicar = () => {
 
 	const validateForm = () => {
 		for (const property in report) {
-			const value = report[property as keyof typeof report].value
-			const required = report[property as keyof typeof report].required
-			if (required === true) {
-
-				if (typeof value === 'string' && value.trim() === '') {
-					Swal.fire({ icon: 'error', text: 'Completa los campos requeridos' })
-					return false
-				} else if (typeof value === 'boolean' && value === false) {
-					Swal.fire({ icon: 'error', text: 'Debes aceptar los términos de uso' })
-					return false
-				} else if (typeof value === 'object' && !value.name) {
-					Swal.fire({ icon: 'error', text: 'Completa los campos requeridos. La imagen es necesaria' })
-					return false
-				}
+		  const value = report[property as keyof typeof report].value;
+		  const required = report[property as keyof typeof report].required;
+		  if (required === true) {
+			if (typeof value === "string" && value.trim() === "") {
+			  Swal.fire({ icon: "error", text: "Completa los campos requeridos" });
+			  return false;
+			} else if (typeof value === "boolean" && value === false) {
+			  Swal.fire({ icon: "error", text: "Debes aceptar los términos de uso" });
+			  return false;
+			} else if (typeof value === "object" && "name" in value && !value.name) {
+			  Swal.fire({
+				icon: "error",
+				text: "Completa los campos requeridos. La imagen es necesaria",
+			  });
+			  return false;
 			}
+		  }
 		}
-
-		return true
-	}
+		return true;
+	  };
 
 
 	return (

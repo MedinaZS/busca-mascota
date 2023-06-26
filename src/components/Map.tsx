@@ -1,5 +1,5 @@
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents, } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, } from "react-leaflet";
 import { API_ROUTES, APP_ROUTES } from "../helper/utility";
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,7 @@ interface Report {
     report_type: string
 }
 
-const Map = ({ zoom = 11, currentPosition, setCurrentPosition, click, listaReportesSinPaginar, reportDetailPosition }: { click: boolean, zoom?: number, currentPosition?: any, setCurrentPosition?: any, listaReportesSinPaginar?: Array<Report>, reportDetailPosition?: any }) => {
+const Map = ({ zoom = 11, currentPosition,  click, listaReportesSinPaginar, reportDetailPosition }: { click: boolean, zoom?: number, currentPosition?: any, setCurrentPosition?: any, listaReportesSinPaginar?: Array<Report>, reportDetailPosition?: any }) => {
     
     function LocationMarker() {
 

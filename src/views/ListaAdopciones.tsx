@@ -14,8 +14,8 @@ const ListaAdopciones = () => {
 	const [listaAdopciones, setListaAdopciones] = useState<ResultAdopciones[] | null>(null)
 	const [loading, setLoading] = useState(false)
 
-	const [nextPage, setNextPage] = useState(null);
-	const [previousPage, setPreviousPage] = useState(null);
+	const [nextPage, setNextPage] = useState<string>('');
+	const [previousPage, setPreviousPage] = useState<string>('');
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
 

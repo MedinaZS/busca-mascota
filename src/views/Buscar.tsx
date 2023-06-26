@@ -6,8 +6,11 @@ import { ResultReporte } from "../helper/types";
 import axios from 'axios';
 import { API_ROUTES } from "../helper/utility";
 import Paginacion from '../components/Buscar/Paginacion';
-import Loading from '../components/Loading';
 import LoadingSpinner from '../components/LoadingSpinner';
+
+
+
+
 
 const Buscar = () => {
 
@@ -15,10 +18,10 @@ const Buscar = () => {
 	const [loading, setLoading] = useState(false)
 
 	const [lista, setLista] = useState<ResultReporte[]>([]);
-	const [nextPage, setNextPage] = useState(null);
-	const [previousPage, setPreviousPage] = useState(null);
-	const [currentPage, setCurrentPage] = useState(1);
-	const [totalPages, setTotalPages] = useState(1);
+	const [nextPage, setNextPage] = useState<string>('');
+	const [previousPage, setPreviousPage] = useState<string>('');
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [totalPages, setTotalPages] = useState<number>(1);
 
 	const [listaReportesSinPaginar, setListaReportesSinPaginar] = useState([])
 
@@ -102,7 +105,7 @@ const Buscar = () => {
 		cargarReportesPaginado(url);
 	};
 
-	const handleChange = (event) => {
+	const handleChange = (event: { target: { id: any; value: any; }; }) => {
 		const { id, value } = event.target
 		setFiltros({ ...filtros, [id]: value })
 	}
@@ -196,7 +199,7 @@ const Buscar = () => {
 
 				{(isMapView && !loading) && <Map listaReportesSinPaginar={listaReportesSinPaginar} zoom={8} click={false} />}
 
-				{(!isMapView && !loading) && <ListaReportes reportes={lista} />}
+				{(!isMapView && !loading) && <ListaReportes reportes={lista} currentPage={currentPage} totalPages={totalPages} />}
 
 				{!isMapView && <Paginacion handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage} handlePageClick={handlePageClick} currentPage={currentPage} totalPages={totalPages} nextPage={nextPage} previousPage={previousPage} />}
 

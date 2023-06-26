@@ -3,8 +3,8 @@
 interface PaginacionProps {
   currentPage: number;
   totalPages: number;
-  nextPage: number;
-  previousPage: number;
+  nextPage: string;
+  previousPage: string;
   handleNextPage: () => void;
   handlePreviousPage: () => void;
   handlePageClick: (page: number | null) => void;

@@ -4,6 +4,22 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_ROUTES, APP_ROUTES } from "../helper/utility";
 import Swal from 'sweetalert2';
+import { FormEvent } from "react";
+
+
+
+interface Report {
+  name: { value: string; required: boolean };
+  description: { value: string; required: boolean };
+  specie: { value: string; required: boolean };
+  age: { value: string; required: boolean };
+  sex: { value: string; required: boolean };
+  city: { value: string; required: boolean };
+  country: { value: string; required: boolean };
+  phone: { value: string; required: boolean };
+  picture: { value: File | {}; required: boolean };
+  accept_terms: { value: boolean; required: boolean };
+}
 
 const AdoptionForm = () => {
   const navigate = useNavigate();
@@ -11,7 +27,7 @@ const AdoptionForm = () => {
   const SPECIES = ["Perro", "Gato", "Otro"];
   const SEX = ["Macho", "Hembra", "Desconocido"];
   
-  const [report, setReport] = useState({
+  const [report, setReport] = useState<Report>({
 		name: { value: '', required: false },
 		description: { value: '', required: true },
 		specie: { value: SPECIES[0].toLowerCase(), required: true },
@@ -31,55 +47,58 @@ const AdoptionForm = () => {
 		setReport({ ...report, [id]: { ...report[id as keyof typeof report], value: currentValue } })
 	}
 
-	const onSubmitHandler = (event: any) => {
-		event.preventDefault();
-		
-		if (validateForm()) {
-			let newReport = {};
-			// Create Form Data
-			for (const property in report) {
-				const value = report[property as keyof typeof report].value
-				newReport[property as keyof typeof report] = value
-			}
-			// console.log(newReport)
-			
-			const config = {
-				headers: {
-					'Content-Type': `multipart/form-data;`,
-				}
-			}
-
-			// Send data
-			axios.post(API_ROUTES.PUBLICAR_ADOPCION, newReport, config)
-				.then(response => {
-					// console.log(response)
-					let id = response.data?.id
-					navigate(APP_ROUTES.EXITO_ADOPCION + id)
-
-				})
-				.catch(error => console.log("Error en post", error))
-		}
-	}
-
-	const validateForm = () => {
-		for (const property in report) {
-			const value = report[property as keyof typeof report].value
-			const required = report[property as keyof typeof report].required
-			if (required === true) {
-				if (typeof value === 'string' && value.trim() === '') {
-					Swal.fire({ icon: 'error', text: 'Completa los campos requeridos' })
-					return false
-				} else if (typeof value === 'boolean' && value === false) {
-					Swal.fire({ icon: 'error', text: 'Debes aceptar los términos de uso' })
-					return false
-				} else if (typeof value === 'object' && !value.name) {
-            Swal.fire({ icon: 'error', text: 'Completa los campos requeridos. La imagen es necesaria' })
-            return false
-          }
-				}
-			}
-      return true
-		}
+  const onSubmitHandler = (event: FormEvent) => {
+    event.preventDefault();
+  
+    if (validateForm()) {
+      let newReport: Record<string, string | boolean | File | {}> = {};
+      // Create Form Data
+      for (const property in report) {
+        const value = report[property as keyof Report].value;
+        newReport[property] = value;
+      }
+      // console.log(newReport)
+  
+      const config = {
+        headers: {
+          "Content-Type": `multipart/form-data;`,
+        },
+      };
+  
+      // Send data
+      axios
+        .post(API_ROUTES.PUBLICAR_ADOPCION, newReport, config)
+        .then((response) => {
+          // console.log(response)
+          let id = response.data?.id;
+          navigate(APP_ROUTES.EXITO_ADOPCION + id);
+        })
+        .catch((error) => console.log("Error en post", error));
+    }
+  };
+  const validateForm = () => {
+    for (const property in report) {
+      const value = report[property as keyof typeof report].value;
+      const required = report[property as keyof typeof report].required;
+      if (required === true) {
+        if (typeof value === "string" && value.trim() === "") {
+          Swal.fire({ icon: "error", text: "Completa los campos requeridos" });
+          return false;
+        } else if (typeof value === "boolean" && value === false) {
+          Swal.fire({ icon: "error", text: "Debes aceptar los términos de uso" });
+          return false;
+        } else if (typeof value === "object" && "name" in value && !value.name) {
+          Swal.fire({
+            icon: "error",
+            text: "Completa los campos requeridos. La imagen es necesaria",
+          });
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+  
 
 
   return (
