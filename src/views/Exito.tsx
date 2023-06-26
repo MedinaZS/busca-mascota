@@ -5,11 +5,13 @@ import { API_ROUTES, APP_ROUTES, showFormattedDate } from '../helper/utility';
 import {  motion } from "framer-motion";
 import PageCard from "../components/PageCard";
 import Loading from "../components/Loading";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 
 
 interface ReportData {
-	id: number;
+  	id: number;
 	title: string;
 	specie: string;
 	report_type: string;
@@ -20,7 +22,7 @@ interface ReportData {
 	name: string;
 	phone: string;
 	picture: string;
-
+    is_tweeted: boolean;
 }
 
 const maindiv = {
@@ -42,17 +44,51 @@ export const Exito = () => {
 	const imageRef = useRef<HTMLImageElement>(null);
 	const { id } = useParams<{ id: string }>();
 
-	useEffect(() => {
-		const fetchReportData = async () => {
-			try {
-				const response = await fetch(`${API_ROUTES.GET_REPORT_BY_ID}${id}`);
-				const data = await response.json();
-				setReportData(data);
 
-			} catch (error) {
-				console.error("Error fetching report data:", error);
-			}
-		};
+  const twit = (idReporte: string|undefined) => {
+    
+    console.log("Twiteo en el backend", idReporte)
+    // generamos imagen
+    if (imageRef.current) {
+      if (cardRef.current && imageRef.current.complete) {
+        html2canvas(cardRef.current, {
+          allowTaint: true,
+          useCORS: true,
+        }).then(async (canvas) => {
+          let base64Image = canvas.toDataURL(("image/png"))
+          //post al backend
+          try {
+            const response = await axios.post(`${API_ROUTES.REPORT_SUCCESS}`, {
+              id: idReporte,
+              image: base64Image,
+            });
+			if (response) {
+				Swal.fire("Publicado en Twitter", "", "success");
+			  }
+          } catch (error) {
+            console.error('Error al enviar la imagen al backend:', error);
+          }
+        });
+      }
+    }
+  }
+
+  useEffect(() => {
+    const fetchReportData = async () => {
+      try {
+        const response = await fetch(`${API_ROUTES.GET_REPORT_BY_ID}${id}`);
+        const data = await response.json();
+        setReportData(data);
+        if(!data.is_tweeted) {
+          // tuitear
+          setTimeout(() => {
+            twit(id)
+          }, 3000);
+        }
+      } catch (error) {
+        console.error("Error fetching report data:", error);
+      }
+    };
 
 		fetchReportData();
 	}, [id]);
