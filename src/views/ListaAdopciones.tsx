@@ -144,7 +144,7 @@ const ListaAdopciones = () => {
 			</form>
 			{listaAdopciones && !loading ?
 				<>
-					<div className='text-center mb-5'>
+					<div className='text-center mb-4 mt-3'>
 						<Link className='btn bg-blue-subtle rounded-pill fs-5' to={APP_ROUTES.PUBLICAR_ADOPCION}><i className='bi bi-plus'></i>Solicitud de adopción</Link>
 					</div>
 
