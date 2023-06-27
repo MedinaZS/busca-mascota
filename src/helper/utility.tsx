@@ -31,7 +31,8 @@ export const API_ROUTES = {
     GET_REPORT_BY_ID: IP + '/reportesget/',
     DETALLE_ADOPCION: IP + '/adopcion/',
     ADOPCIONES: IP + "/adopciones",
-    PUBLICAR_ADOPCION: IP + '/adopciones-publicar/',
+    PUBLICAR_ADOPCION: IP + "/adopciones-publicar/",
+    REPORT_SUCCESS: IP + '/exito-api/',
     REPORTE_ADOPCIONES: IP + '/pets/',
 };
 

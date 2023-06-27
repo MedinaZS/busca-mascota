@@ -35,6 +35,8 @@ const DetalleReporte = () => {
         window.open(url, "_blank");
     };
     useEffect(() => {
+        window.scrollTo(0,0);
+        
         const fetchReportData = async () => {
             try {
                 const response = await fetch(`${API_ROUTES.GET_REPORT_BY_ID}${id}`);

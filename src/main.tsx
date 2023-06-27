@@ -15,7 +15,7 @@ import Licencia from './views/Licencia.tsx';
 import { Exito } from './views/Exito.tsx';
 import Detalle_Adopcion from './views/Detalle_Adopcion.tsx';
 import DetalleReporte from './views/DetalleReporte.tsx';
-import AdoptionForm from './views/Adopciones.tsx';
+import AdoptionForm from './views/AdoptionForm.tsx';
 import ListaAdopciones from './views/ListaAdopciones.tsx';
 import { ExitoAdopcion } from './views/ExitoAdopcion.tsx';
 

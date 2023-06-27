@@ -24,14 +24,14 @@ const Section2 = () => {
             delay: delay * 3,
             title: 'Colaborá con nosotros',
             icon: 'fas fa-hands-holding',
-            description: 'Puedes colaborar para que este sitio siga activo y funcionando siempre',
+            description: 'Puedes colaborar para que el sitio siga mejorando y más personas la conozcan.',
             url: APP_ROUTES.COLABORAR
         },
         {
             delay: delay * 4,
             title: 'Adoptá, no compres.',
             icon: 'fas fa-hand-holding-heart',
-            description: 'Hay miles de animalitos esperando un hogar. Coming soon...',
+            description: 'Hay miles de animalitos esperando un hogar',
             url: APP_ROUTES.ADOPCIONES
         },
     ]
