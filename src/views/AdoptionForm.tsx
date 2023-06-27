@@ -102,7 +102,7 @@ const AdoptionForm = () => {
 
 
   return (
-    <PageCard title={"Publicar Adopción"}>
+    <PageCard title={"Solicitud de adopción"}>
 			<form className='my-5' onSubmit={onSubmitHandler}>
         <div className="row gy-3">
         {/* Nombre del animal */}

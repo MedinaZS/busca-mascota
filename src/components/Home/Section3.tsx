@@ -22,7 +22,7 @@ const Section3 = () => {
 					className="px-5">
 						<p className="mb-4" >Personas que han perdido su mascota y desean publicar un reporte o buscar su mascota.</p>
 						<p className="mb-4" >Personas que han encontrado o avistado una mascota que parecía perdida y desean publicar un reporte.</p>
-						<p className="mb-4" >Coming soon : Quienes quieran brindar a un animalito un hogar cálido.</p>
+						<p className="mb-4" >Quienes quieran brindar a un animalito un hogar cálido.</p>
 					</motion.h4>
 				</div>
 			
