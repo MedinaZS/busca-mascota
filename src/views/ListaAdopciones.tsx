@@ -58,7 +58,7 @@ const ListaAdopciones = () => {
 			{listaAdopciones && !loading ?
 				<>
 					<div className='text-center mb-5'>
-						<Link className='btn bg-blue-subtle rounded-pill fs-5' to={APP_ROUTES.PUBLICAR_ADOPCION}><i className='bi bi-plus'></i>Publicar adopcion </Link>
+						<Link className='btn bg-blue-subtle rounded-pill fs-5' to={APP_ROUTES.PUBLICAR_ADOPCION}><i className='bi bi-plus'></i>Solicitud de adopción</Link>
 					</div>
 
 					<div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 '>
