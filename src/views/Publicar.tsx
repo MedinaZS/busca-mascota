@@ -210,7 +210,7 @@ const Publicar = () => {
 						<label htmlFor="picture" className='form-label fw-bold'>
 							Foto: *
 						</label>
-						<input onChange={handleChange} type='file' id='picture' className='form-control' />
+						<input onChange={handleChange} type='file' id='picture' accept="image/*" className='form-control' />
 						<p className='mb-0 mt-2 small text-secondary'>Se necesita una imagen de la mascota para evitar confusiones y que sea más sencillo reconocerla</p>
 					</div>
 				</div>
