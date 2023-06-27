@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { ResultAdopciones } from "../helper/types"
-import { APP_ROUTES } from "../helper/utility"
+import { API_ROUTES, APP_ROUTES } from "../helper/utility"
 
 
 
@@ -12,7 +12,7 @@ const Card = ({ adopcion }: { adopcion: ResultAdopciones }) => {
             <div className="col d-flex align-items-stretch mb-3">
                 <div className="card rounded-4 w-100 shadow">
                     <div className="card-image">
-                        <img src={adopcion.picture} className="object-fit-cover w-100 h-100 rounded-top-4" alt={adopcion.name} />
+                        <img src={API_ROUTES.JUST_IP + adopcion.picture} className="object-fit-cover w-100 h-100 rounded-top-4" alt={adopcion.name} />
                     </div>
                     <div className="card-body">
                         <h5 className="text-center">
