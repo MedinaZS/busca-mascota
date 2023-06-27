@@ -41,6 +41,8 @@ const ListaAdopciones = () => {
 
 		const data = filtros
 
+		console.log(data)
+
 		axios.post(urlPost, data)
 			.then(response => {
 				// console.log(response)
@@ -59,8 +61,6 @@ const ListaAdopciones = () => {
 		event.preventDefault()
 
 		setLoading(true)
-
-		const data = filtros
 
 		//Cargar Lista de Adopciones con filtros
 		cargarAdopciones(null)
@@ -96,8 +96,8 @@ const ListaAdopciones = () => {
 						<label htmlFor="sexo" className='form-label fw-bold mb-0'>Sexo: </label>
 					</div>
 					<div className='col-12 col-lg-auto'>
-						<select id="sexo" className="form-select" onChange={handleChange} defaultValue={""}>
-							<option value="" disabled>Seleccionar</option>
+						<select id="sex" className="form-select" onChange={handleChange} defaultValue={""}>
+							<option value="" >Todos</option>
 							<option value="macho">Macho</option>
 							<option value="hembra">Hembra</option>
 							<option value="desconocido">Desconocido</option>
