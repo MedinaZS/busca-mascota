@@ -38,3 +38,15 @@ export interface ResultAdopciones {
   phone: string;
   picture: string;
 }
+
+export interface IState {
+  departamento_id: number;
+  departamento_nombre : string;
+  departamento_capital: string;
+}
+
+
+export interface ICity {
+  ciudad_id: number;
+  ciudad_nombre: string;
+}
