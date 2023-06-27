@@ -62,11 +62,11 @@ export const Exito = () => {
               id: idReporte,
               image: base64Image,
             });
-			if (response) {
+			if (response.status === 200) {
 				Swal.fire("Publicado en Twitter", "", "success");
 			  }
           } catch (error) {
-            console.error('Error al enviar la imagen al backend:', error);
+            console.error('Error al tuitear', error);
           }
         });
       }
