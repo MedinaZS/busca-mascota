@@ -18,6 +18,7 @@ import DetalleReporte from './views/DetalleReporte.tsx';
 import AdoptionForm from './views/AdoptionForm.tsx';
 import ListaAdopciones from './views/ListaAdopciones.tsx';
 import { ExitoAdopcion } from './views/ExitoAdopcion.tsx';
+import Page404 from './components/Page404.tsx';
 
 
 
@@ -36,7 +37,7 @@ const router = createBrowserRouter(
       <Route path={APP_ROUTES.ADOPCIONES} element={<ListaAdopciones />} />
       <Route path={APP_ROUTES.PUBLICAR_ADOPCION} element={<AdoptionForm />} />
       <Route path={APP_ROUTES.EXITO_ADOPCION_PARAMS} element={<ExitoAdopcion />} />
-      <Route path="*" element={<p className='text-center fs-1 my-auto'>404 Path not resolved</p>} />
+      <Route path="*" element={<Page404/>} />
     </Route>
   )
 );
