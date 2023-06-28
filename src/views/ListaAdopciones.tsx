@@ -7,6 +7,7 @@ import { ResultAdopciones } from '../helper/types';
 import Card from '../components/Card';
 import Loading from '../components/Loading';
 import Paginacion from '../components/Buscar/Paginacion';
+import Swal from 'sweetalert2';
 
 
 const ListaAdopciones = () => {
@@ -18,21 +19,72 @@ const ListaAdopciones = () => {
 	const [previousPage, setPreviousPage] = useState<string>('');
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
-	const SEX = ['Macho', 'Hembra', 'Desconocido']
+
+	const [listStates, setlistStates] = useState<IState[] | null>(null)
+	const [listCities, setlistCities] = useState<ICity[] | null>(null)
 
 
 	const [filtros, setFiltros] = useState({
 		sex: '',
 		specie: '',
-		country: '',
+		country: 'Paraguay',
 		city: '',
 		state: ''
 	})
 
 	useEffect(() => {
 		cargarAdopciones(null)
-		window.scrollTo(0,0);
+		window.scrollTo(0, 0);
+
+		getDepartamentos()
+
 	}, [])
+
+	// Al elegir un departamento buscar las ciudades del departamento
+	useEffect(() => {
+		getCiudades()
+	}, [filtros.state])
+
+	const getDepartamentos = () => {
+		Swal.fire({
+			text: 'Obteniendo departamentos',
+			allowEscapeKey: false,
+			allowOutsideClick: false,
+			didOpen: () => {
+				Swal.showLoading();
+			}
+		})
+
+		axios.get("https://api-geo.proyectosbeta.net/api/v1/departamentos")
+			.then(response => {
+				// console.log(response.data.data)
+				setlistStates(response.data.data)
+				Swal.close()
+			})
+	}
+
+	const getCiudades = () => {
+		// Obtener ciudades
+		if (filtros.state !== "") {
+			Swal.fire({
+				text: 'Obteniendo ciudades',
+				allowEscapeKey: false,
+				allowOutsideClick: false,
+				didOpen: () => {
+					Swal.showLoading();
+				}
+			})
+
+			const departamento_id = listStates?.filter(item => item.departamento_nombre == filtros.state)[0].departamento_id
+
+			axios.get("https://api-geo.proyectosbeta.net/api/v1/departamentos/" + departamento_id)
+				.then(response => {
+					// console.log(response.data.data)
+					setlistCities(response.data.data)
+					Swal.close()
+				})
+		}
+	}
 
 
 	const cargarAdopciones = (url: string | null) => {
@@ -40,8 +92,6 @@ const ListaAdopciones = () => {
 		setLoading(true)
 
 		const data = filtros
-
-		console.log(data)
 
 		axios.post(urlPost, data)
 			.then(response => {
@@ -85,7 +135,7 @@ const ListaAdopciones = () => {
 		setFiltros({ ...filtros, [id]: value })
 	}
 
-	
+
 
 	return (
 		<PageCard title={'Lista de Adopciones'}>
@@ -122,7 +172,22 @@ const ListaAdopciones = () => {
 						<label htmlFor='country' className='form-label fw-bold mb-0'>Pais: </label>
 					</div>
 					<div className='col-12 col-lg-auto'>
-						<input id='country' type="text" className='form-control' onChange={handleChange} />
+						<select value={filtros.country} id="country" className='form-select' onChange={handleChange} >
+							<option value="Paraguay">Paraguay</option>
+						</select>
+					</div>
+
+					{/* Departamento */}
+					<div className='col-12 col-lg-auto'>
+						<label htmlFor='city' className='form-label fw-bold mb-0'>Departamento: </label>
+					</div>
+					<div className='col-12 col-lg-auto'>
+						<select value={filtros.state} id="state" className='form-select' onChange={handleChange} disabled={listStates ? false : true}>
+							<option value="">Seleccione...</option>
+							{listStates && listStates.map((item, index) => (
+								<option key={index} value={item.departamento_nombre} >{item.departamento_nombre}</option>
+							))}
+						</select>
 					</div>
 
 					{/* Ciudad */}
@@ -130,7 +195,12 @@ const ListaAdopciones = () => {
 						<label htmlFor='city' className='form-label fw-bold mb-0'>Ciudad: </label>
 					</div>
 					<div className='col-12 col-lg-auto'>
-						<input id='city' type="text" className='form-control' onChange={handleChange} />
+					<select value={filtros.city} id="city" className='form-select' onChange={handleChange} disabled={listCities ? false : true}>
+							<option value="">Seleccione...</option>
+							{listCities && listCities.map((item, index) => (
+								<option key={index} value={item.ciudad_nombre} >{item.ciudad_nombre}</option>
+							))}
+						</select>
 					</div>
 
 					<div className='col-12 col-lg-auto text-center'>
