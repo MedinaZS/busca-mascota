@@ -12,6 +12,7 @@ interface ReportData {
 	age: number;
 	sex: string;
 	city: string;
+	state: string;
 	country: string;
 	phone: string;
 	picture: string;
@@ -28,7 +29,7 @@ const Detalle_Adopcion = () => {
 			try {
 				const response = await fetch(`${API_ROUTES.DETALLE_ADOPCION}${id}`);
 				const data = await response.json();
-				console.log(data);
+				// console.log(data);
 				setReportData(data);
 			} catch (error) {
 				console.error("Error fetching report data:", error);
@@ -37,7 +38,7 @@ const Detalle_Adopcion = () => {
 
 		fetchReportData();
 
-		window.scrollTo(0,0);
+		window.scrollTo(0, 0);
 	}, [id]);
 
 	const handleExportClick = () => {
@@ -67,6 +68,7 @@ const Detalle_Adopcion = () => {
 		age,
 		sex,
 		city,
+		state,
 		country,
 		phone,
 		picture,
@@ -117,7 +119,7 @@ const Detalle_Adopcion = () => {
 						{/* Resumen ubicacion */}
 						<p>
 							<i className="bi bi-geo-alt-fill me-2"></i>
-							{city}, {country}
+							{city}, {state}, {country}
 						</p>
 
 						{/* Contacto */}

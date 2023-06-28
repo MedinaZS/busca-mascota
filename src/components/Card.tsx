@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { ResultAdopciones } from "../helper/types"
-import { API_ROUTES, APP_ROUTES } from "../helper/utility"
+import { API_ROUTES, APP_ROUTES, capitalizeFirstLetter } from "../helper/utility"
 
 
 
@@ -21,15 +21,15 @@ const Card = ({ adopcion }: { adopcion: ResultAdopciones }) => {
                         <div >
                             {/* Edad y sexo */}
                             {(adopcion.name || adopcion.age) &&
-                            <p>
-                                <i className="fa fa-paw me-2"></i>
-                                {adopcion.name && adopcion.name} {adopcion.age && ' tiene aprox. : ' + adopcion.age + '.'}
-                            </p>}
+                                <p>
+                                    <i className="fa fa-paw me-2"></i>
+                                    {adopcion.name && adopcion.name} {adopcion.age && ' tiene aprox. : ' + adopcion.age + '.'}
+                                </p>}
 
                             {/* Sexo */}
                             <p>
                                 <i className="bi bi-gender-ambiguous me-2"></i>
-                                Sexo: {adopcion.sex}
+                                Sexo: {capitalizeFirstLetter(adopcion.sex)}
                             </p>
 
                             {/* Descripcion */}
@@ -46,6 +46,10 @@ const Card = ({ adopcion }: { adopcion: ResultAdopciones }) => {
                                     Contactar al {adopcion.phone}
                                 </p>}
 
+                            <p>
+                                <i className="bi bi-geo-alt-fill me-2"></i>
+                                {adopcion.city}, {adopcion.state}, {adopcion.country} 
+                                </p>
                         </div>
 
                     </div>

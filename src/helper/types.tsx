@@ -34,6 +34,7 @@ export interface ResultAdopciones {
   age: number;
   sex: string;
   city: string;
+  state:string;
   country: string;
   phone: string;
   picture: string;
