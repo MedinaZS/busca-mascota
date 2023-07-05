@@ -41,8 +41,6 @@ const ListaAdopciones = () => {
 
 		const data = filtros
 
-		console.log(data)
-
 		axios.post(urlPost, data)
 			.then(response => {
 				// console.log(response)
