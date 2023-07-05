@@ -181,7 +181,7 @@ const Publicar = () => {
 						<label htmlFor="title" className='form-label fw-bold'>
 							Titulo de reporte: *
 						</label>
-						<input value={report.title.value} onChange={handleChange} id='title' type="text" className='form-control' placeholder='Ejemplo: Perro con collar encontrado barrio San Vicente' />
+						<input value={report.title.value} onChange={handleChange} id='title' accept="image/*" type="text" className='form-control' placeholder='Ejemplo: Perro con collar encontrado barrio San Vicente' />
 					</div>
 				</div>
 
