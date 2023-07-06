@@ -23,7 +23,7 @@ const Card = ({ adopcion }: { adopcion: ResultAdopciones }) => {
                             {(adopcion.name || adopcion.age) &&
                                 <p>
                                     <i className="fa fa-paw me-2"></i>
-                                    {adopcion.name && adopcion.name} {adopcion.age && ' tiene aprox. : ' + adopcion.age + '.'}
+                                    {adopcion.name && adopcion.name} {adopcion.age && ' tiene aprox. : ' + adopcion.age + ' años'}
                                 </p>}
 
                             {/* Sexo */}
