@@ -95,7 +95,7 @@ const ListaAdopciones = () => {
 
 		axios.post(urlPost, data)
 			.then(response => {
-				// console.log(response)
+				console.log(response)
 				const data = response.data;
 				setListaAdopciones(data.results)
 				setNextPage(data.next);

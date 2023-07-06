@@ -35,7 +35,7 @@ const Card = ({ adopcion }: { adopcion: ResultAdopciones }) => {
                             {/* Descripcion */}
                             {adopcion.description &&
                                 <p>
-                                    <i className="fa fa-paw me-2"></i>
+                                    <i className="bi bi-file-earmark-text-fill me-2"></i>
                                     {adopcion.description}
                                 </p>}
 
