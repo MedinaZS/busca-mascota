@@ -40,7 +40,7 @@ const Publicar = () => {
 	const REPORT_TYPES = ['Perdido', 'Avistado', 'Retenido', 'Otro']
 	const SPECIES = ['Perro', 'Gato', 'Otro']
 	const SEX = ['Macho', 'Hembra', 'Desconocido']
-
+	const today = new Date().toLocaleDateString('fr-CA',{year:"numeric", month: "2-digit",day:"2-digit"})
 	const [report, setReport] = useState<IReport>({
 		report_type: { value: REPORT_TYPES[0].toLowerCase(), required: true },
 		title: { value: '', required: true },
@@ -247,7 +247,7 @@ const Publicar = () => {
 					{/* Edad aproximada */}
 					<div>
 						<label htmlFor="age" className='form-label fw-bold'>
-							Edad aproximada:
+							Edad aproximada&#40;en años&#41;:
 						</label>
 						<input value={report.age.value} onChange={handleChange} type='number' id='age' min={0} className='form-control' />
 					</div>
@@ -271,7 +271,7 @@ const Publicar = () => {
 						<label htmlFor="last_time_seen" className='form-label fw-bold'>
 							Ultima vez visto: *
 						</label>
-						<input value={report.last_time_seen.value} onChange={handleChange} type='date' id='last_time_seen' className='form-control' />
+						<input value={report.last_time_seen.value} onChange={handleChange} type='date' max={today} id='last_time_seen' className='form-control' />
 					</div>
 				</div>
 
