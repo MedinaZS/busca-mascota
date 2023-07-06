@@ -40,7 +40,7 @@ const Publicar = () => {
 	const REPORT_TYPES = ['Perdido', 'Avistado', 'Retenido', 'Otro']
 	const SPECIES = ['Perro', 'Gato', 'Otro']
 	const SEX = ['Macho', 'Hembra', 'Desconocido']
-	const today = new Date().toLocaleDateString('fr-CA',{year:"numeric", month: "2-digit",day:"2-digit"})
+	const today = new Date().toLocaleDateString('fr-CA', { year: "numeric", month: "2-digit", day: "2-digit" })
 	const [report, setReport] = useState<IReport>({
 		report_type: { value: REPORT_TYPES[0].toLowerCase(), required: true },
 		title: { value: '', required: true },
@@ -68,7 +68,7 @@ const Publicar = () => {
 		if (currentPosition.lat != 0 && currentPosition.lng != 0) {
 			completeUbicationWidgets(currentPosition.lat, currentPosition.lng)
 		}
-		window.scrollTo(0,0);
+		window.scrollTo(0, 0);
 	}, [currentPosition])
 
 
@@ -154,11 +154,24 @@ const Publicar = () => {
 		return true;
 	};
 
+	const rellenarCampos = () => {
+		const newReport = { ...report }
+		newReport.title.value = "Perro con collar perdido barrio San Vicente"
+		newReport.description.value = "Se me perdio mi perro, tiene un collar azul con diseño de patitas"
+		newReport.name.value = "Juan Ramirez"
+		newReport.phone.value = "0981222333"
+		newReport.age.value = "2"
+		newReport.last_time_seen.value = "2023-05-12"
+		setReport(newReport)
+	}
 
 	return (
 		<PageCard title={'Publicar Reporte'}>
 			<p>Elija ubicación o zona cercana donde vio la mascota por última vez * :</p>
 			<Map currentPosition={currentPosition} setCurrentPosition={setCurrentPosition} click={true} />
+
+			{/* Boton develop */}
+			<button type='button' className='m-0 p-0 btn btn-outline-ligth bg-white text-white w-100'  onClick={rellenarCampos}>rellenar</button>
 
 			<form className='my-5' onSubmit={onSubmitHandler}>
 				<div className='row row-cols-1 row-cols-md-2 gy-3'>
@@ -298,6 +311,8 @@ const Publicar = () => {
 				<div className='d-grid mx-3'>
 					<button type='submit' className='btn btn-success btn-lg mt-2'>Publicar</button>
 				</div>
+
+
 
 			</form>
 		</PageCard>
