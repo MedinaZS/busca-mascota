@@ -16,7 +16,7 @@ const Buscar = () => {
 
 	const [isMapView, setIsMapView] = useState(true)
 	const [loading, setLoading] = useState(false)
-
+	const today = new Date().toLocaleDateString('fr-CA',{year:"numeric", month: "2-digit",day:"2-digit"})
 	const [lista, setLista] = useState<ResultReporte[]>([]);
 	const [nextPage, setNextPage] = useState<string>('');
 	const [previousPage, setPreviousPage] = useState<string>('');
@@ -135,13 +135,13 @@ const Buscar = () => {
 						<label className='form-label fw-bold mb-0'>Últ. vez visto: </label>
 					</div>
 					<div className='col-12 col-md-5 col-lg-auto'>
-						<input id='date_from' type="date" className='form-control date-input' onChange={handleChange} />
+						<input id='date_from' type="date" max={today} className='form-control date-input' onChange={handleChange} />
 					</div>
 					<div className='col-12 col-md-2 col-lg-auto text-start text-md-center'>
 						<span className='fw-bold'>a</span>
 					</div>
 					<div className='col-12  col-md-5  col-lg-auto'>
-						<input id='date_to' type="date" className='form-control date-input' onChange={handleChange} />
+						<input id='date_to' type="date" max={today} className='form-control date-input' onChange={handleChange} />
 					</div>
 
 				</div>
