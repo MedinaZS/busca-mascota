@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import PageCard from '../components/PageCard'
-import { SRC_FILES, URL_LINKS } from '../helper/utility'
+import { URL_LINKS } from '../helper/utility'
 
 const Colaborar = () => {
 

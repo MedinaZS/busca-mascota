@@ -3,7 +3,7 @@ import { API_ROUTES, APP_ROUTES } from '../helper/utility'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import PageCard from '../components/PageCard';
-import { ResultAdopciones } from '../helper/types';
+import { ResultAdopciones,IState, ICity } from '../helper/types';
 import Card from '../components/Card';
 import Loading from '../components/Loading';
 import Paginacion from '../components/Buscar/Paginacion';
