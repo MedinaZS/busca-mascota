@@ -40,6 +40,7 @@ export interface ResultAdopciones {
   picture: string;
 }
 
+// Para Lista Adopciones
 export interface IState {
   departamento_id: number;
   departamento_nombre : string;

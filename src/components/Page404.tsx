@@ -1,4 +1,3 @@
-import React from 'react'
 import PageCard from './PageCard'
 
 const Page404 = () => {
