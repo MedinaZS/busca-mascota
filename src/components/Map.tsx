@@ -55,13 +55,13 @@ const Map = ({ zoom = 11, currentPosition,setCurrentPosition, click, listaReport
                 />
 
                 {reportDetailPosition &&
-                    <Marker position={reportDetailPosition}>
+                    <Marker position={reportDetailPosition} icon={iconCustom}>
                     </Marker>
                 }
 
 
                 {(listaReportesSinPaginar && listaReportesSinPaginar.length !== 0) && listaReportesSinPaginar.map((item, index) => (
-                    <Marker key={index} position={[item.latitude, item.longitude]}>
+                    <Marker key={index} position={[item.latitude, item.longitude]} icon={iconCustom}>
                         <Popup >
                             <div id="popup" className="text-center">
                                 <h2 className="fs-5 text-danger fw-bold">{item.specie.toUpperCase() == 'OTRO' ? 'ANIMAL' : item.specie.toUpperCase()} {item.report_type.toUpperCase()}</h2> <br />
