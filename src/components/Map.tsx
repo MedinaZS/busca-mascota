@@ -1,6 +1,10 @@
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, } from "react-leaflet";
 import { API_ROUTES, APP_ROUTES } from "../helper/utility";
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses images from ~leaflet package
+import 'leaflet-defaulticon-compatibility';
+import {  iconCustom  } from './Icon';
+
 import { Link } from "react-router-dom";
 
 interface Report {
@@ -32,8 +36,8 @@ const Map = ({ zoom = 11, currentPosition,setCurrentPosition, click, listaReport
         // Si el mapa es clickeable
         if (click) {
             return currentPosition === null && click == true ? null : (
-                <Marker position={currentPosition}>
-                    <Popup>You are here</Popup>
+                <Marker position={currentPosition} icon={iconCustom}>
+                    <Popup>Estas aquí</Popup>
                 </Marker>
             )
         }
@@ -51,13 +55,13 @@ const Map = ({ zoom = 11, currentPosition,setCurrentPosition, click, listaReport
                 />
 
                 {reportDetailPosition &&
-                    <Marker position={reportDetailPosition}>
+                    <Marker position={reportDetailPosition} icon={iconCustom}>
                     </Marker>
                 }
 
 
                 {(listaReportesSinPaginar && listaReportesSinPaginar.length !== 0) && listaReportesSinPaginar.map((item, index) => (
-                    <Marker key={index} position={[item.latitude, item.longitude]}>
+                    <Marker key={index} position={[item.latitude, item.longitude]} icon={iconCustom}>
                         <Popup >
                             <div id="popup" className="text-center">
                                 <h2 className="fs-5 text-danger fw-bold">{item.specie.toUpperCase() == 'OTRO' ? 'ANIMAL' : item.specie.toUpperCase()} {item.report_type.toUpperCase()}</h2> <br />

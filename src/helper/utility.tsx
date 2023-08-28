@@ -20,7 +20,7 @@ export const APP_ROUTES = {
 
 }
 
-const IP = 'http://127.0.0.1:8000'
+const IP = 'https://buscamascota.roshka.com/'
 // const IP = 'http://144.126.141.89:8888'
 
 export const API_ROUTES = {
