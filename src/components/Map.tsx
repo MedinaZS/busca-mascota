@@ -1,8 +1,9 @@
-
+import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, } from "react-leaflet";
 import { API_ROUTES, APP_ROUTES } from "../helper/utility";
 import {  iconCustom  } from './Icon';
-
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses images from ~leaflet package
+import 'leaflet-defaulticon-compatibility';
 import { Link } from "react-router-dom";
 
 interface Report {
